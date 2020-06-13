@@ -5,15 +5,15 @@ import { Wrapper, Group, PageTitle } from "../components";
 
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const Contact = () => {
   return (
     <Wrapper>
       <Group height="100vh">
-        <PageTitle>Home</PageTitle>
+        <PageTitle>Contact</PageTitle>
         <Link to="/work/about">About</Link>
       </Group>
     </Wrapper>
   );
 };
 
-export default Home;
+export default Contact;
