@@ -16,7 +16,7 @@ const StyledFeaturedWorkPreview = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: row;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
   align-items: center;
   width: 100%;
 `;
@@ -26,10 +26,22 @@ const TextContainer = styled.div`
   padding-left: 5rem;
   padding-right: 5rem;
   align-self: flex-end;
+  transform: translateY(2rem);
 `;
 
 const ImageContainer = styled.div`
   width: 55%;
+`;
+
+const LargeTextWrap = styled.h1`
+  font-size: 4rem;
+  font-weight: 300;
+`;
+
+const SmallTextWrap = styled.p`
+  font-size: 1rem;
+  line-height: 1.4rem;
+  margin-top: 6rem;
 `;
 
 const FeaturedWorkPreview = (props: TFeaturedWorkPreviewProps) => {
@@ -37,9 +49,9 @@ const FeaturedWorkPreview = (props: TFeaturedWorkPreviewProps) => {
   return (
     <StyledFeaturedWorkPreview>
       <TextContainer>
-        <h1> {title} </h1>
-        <h4> {subtitle} </h4>
-        <p> {body}</p>
+        <LargeTextWrap>{title}</LargeTextWrap>
+        <SmallTextWrap>{body}</SmallTextWrap>
+        <SmallTextWrap>{subtitle}</SmallTextWrap>
       </TextContainer>
       <ImageContainer>
         <Image src={imgSrc} alt={imgAlt} />

@@ -1,24 +1,24 @@
 // @flow
 
 import React from "react";
-import type { Node } from "react";
 import styled from "styled-components";
 
 type TStyledImageProps = {
   src: string,
   alt: string,
+  height?: string,
+  width?: string,
 };
 
 const StyledImage = styled.img`
-  background-color: #0c2340;
-  height: auto;
+  height: ${(props) => props.height || "auto"};
   display: flex;
-  width: 100%;
+  width: ${(props) => props.width || "100%"};
 `;
 
 const Image = (props: TStyledImageProps) => {
-  const { src, alt } = props;
-  return <StyledImage src={src} alt={alt} />;
+  const { src, alt, height, width } = props;
+  return <StyledImage src={src} alt={alt} height={height} width={width} />;
 };
 
 export default Image;

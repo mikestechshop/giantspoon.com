@@ -31,13 +31,25 @@ const ImageContainer = styled.div`
   width: 55%;
 `;
 
+const LargeTextWrap = styled.h1`
+  font-size: 3rem;
+  font-weight: 300;
+  margin: 0;
+`;
+
+const SmallTextWrap = styled.p`
+  font-size: 1rem;
+  line-height: 1.4rem;
+  margin-top: 1rem;
+`;
+
 const WorkPreview = (props: TWorkPreviewProps) => {
   const { title, subtitle, imgSrc, imgAlt } = props;
   return (
     <StyledWorkPreview>
       <TextContainer>
-        <h1> {title} </h1>
-        <h4> {subtitle} </h4>
+        <LargeTextWrap>{title}</LargeTextWrap>
+        <SmallTextWrap>{subtitle}</SmallTextWrap>
       </TextContainer>
       <ImageContainer>
         <Image src={imgSrc} alt={imgAlt} />
