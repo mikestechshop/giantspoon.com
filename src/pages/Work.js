@@ -6,8 +6,11 @@ import {
   Group,
   FeaturedWorkPreview,
   WorkPreview,
+  Image,
 } from "../components";
 import { useContentful } from "react-contentful";
+import ReactPlayer from "react-player";
+import playButton from "../static/playButton.png";
 
 const Work = () => {
   const workData = useContentful({
@@ -28,13 +31,24 @@ const Work = () => {
 
   const { items } = data;
   const workFields = workData.data.items[0].fields;
+  console.log(workFields);
 
   return (
     <Wrapper>
-      <Group height="80vh">
-        <img
-          alt={workFields.splash.fields.title || ""}
-          src={workFields.splash.fields.file.url || ""}
+      <Group height="90vh">
+        <ReactPlayer
+          url={workFields.splash.fields.file.url}
+          width="100%"
+          height="100%"
+          light={workFields.splashPreview.fields.file.url}
+          playIcon={
+            <Image
+              src={playButton}
+              alt="play button"
+              height="75px"
+              width="auto"
+            />
+          }
         />
       </Group>
       <Group mt="4rem">
