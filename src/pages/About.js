@@ -1,13 +1,14 @@
 // @flow
 
-import React from 'react';
+import React from "react";
+import { Wrapper } from "../components";
 
-function About() {
+const About = () => {
   return (
-    <div>
-        About
-    </div>
+    <Wrapper>
+      <div>About</div>
+    </Wrapper>
   );
-}
+};
 
 export default About;
