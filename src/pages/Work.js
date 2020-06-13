@@ -33,8 +33,8 @@ const Work = () => {
     <Wrapper>
       <Group height="80vh">
         <img
-          alt={workFields.splash.fields.title}
-          src={workFields.splash.fields.file.url}
+          alt={workFields.splash.fields.title || ""}
+          src={workFields.splash.fields.file.url || ""}
         />
       </Group>
       <Group mt="4rem">
@@ -43,11 +43,11 @@ const Work = () => {
             return (
               <FeaturedWorkPreview
                 key={index}
-                imgSrc={item.fields.previewImage.fields.file.url}
-                imgAlt={item.fields.previewImage.fields.file.title}
-                title={item.fields.title}
-                subtitle={item.fields.subtitle}
-                body={item.fields.body}
+                imgSrc={item.fields.previewImage.fields.file.url || ""}
+                imgAlt={item.fields.previewImage.fields.file.title || ""}
+                title={item.fields.title || ""}
+                subtitle={item.fields.subtitle || ""}
+                body={item.fields.body || ""}
               />
             );
           } else {
@@ -55,14 +55,15 @@ const Work = () => {
           }
         })}
         {items.map((item, index) => {
-          if (!item.fields.featured) {
+          console.log(item);
+          if (item.fields.featured === false) {
             return (
               <WorkPreview
                 key={index}
-                imgSrc={item.fields.previewImage.fields.file.url}
-                imgAlt={item.fields.previewImage.fields.file.title}
-                title={item.fields.title}
-                subtitle={item.fields.subtitle}
+                imgSrc={item.fields.previewImage.fields.file.url || ""}
+                imgAlt={item.fields.previewImage.fields.file.title || ""}
+                title={item.fields.title || ""}
+                subtitle={item.fields.subtitle || ""}
               />
             );
           } else {

@@ -7,7 +7,7 @@ import {
   useContentful,
 } from "react-contentful";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Home, Work } from "./pages";
+import { Home, Work, Contact, About, Culture } from "./pages";
 
 const contentfulClient = new ContentfulClient({
   accessToken: "APy2UiTtUb9pSRPndcvIZ5ezQh7gyxTXd34mwjszugg",
@@ -32,11 +32,20 @@ const App = () => {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/work">
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/work">
             <WorkRoute />
           </Route>
-          <Route path="/">
-            <Home />
+          <Route exact path="/culture">
+            <Culture />
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/contact">
+            <Contact />
           </Route>
         </Switch>
       </Router>
