@@ -3,12 +3,15 @@
 import React from "react";
 import styled from "styled-components";
 import { Image } from "../";
+import Reveal from "react-reveal/Reveal";
+import { Link } from "react-router-dom";
 
 type TWorkPreviewProps = {
   title: string,
   subtitle: string,
   imgSrc: string,
   imgAlt: string,
+  url: string,
 };
 
 const StyledWorkPreview = styled.div`
@@ -18,6 +21,25 @@ const StyledWorkPreview = styled.div`
   margin-bottom: 1rem;
   align-items: center;
   width: 100%;
+  opacity: 1;
+  transition: all 1s;
+  img {
+    transform: scale(1);
+    transition: all 1s;
+  }
+  .text-container {
+    transition: all 1s;
+    transform: translateY(0rem);
+  }
+  &:hover {
+    opacity: 0.5;
+    img {
+      transform: scale(1.1);
+    }
+    .text-container {
+      transform: translateY(-1rem);
+    }
+  }
 `;
 
 const TextContainer = styled.div`
@@ -29,6 +51,7 @@ const TextContainer = styled.div`
 
 const ImageContainer = styled.div`
   width: 55%;
+  overflow: hidden;
 `;
 
 const LargeTextWrap = styled.h1`
@@ -44,17 +67,26 @@ const SmallTextWrap = styled.p`
 `;
 
 const WorkPreview = (props: TWorkPreviewProps) => {
-  const { title, subtitle, imgSrc, imgAlt } = props;
+  const { title, subtitle, imgSrc, imgAlt, url } = props;
   return (
-    <StyledWorkPreview>
-      <TextContainer>
-        <LargeTextWrap>{title}</LargeTextWrap>
-        <SmallTextWrap>{subtitle}</SmallTextWrap>
-      </TextContainer>
-      <ImageContainer>
-        <Image src={imgSrc} alt={imgAlt} />
-      </ImageContainer>
-    </StyledWorkPreview>
+    <Link
+      to={`/work/${url}`}
+      style={{ textDecoration: "none", color: "white", width: "100%" }}
+    >
+      <StyledWorkPreview>
+        <TextContainer className="text-container">
+          <Reveal effect="animate__fadeInUp" duration={1500}>
+            <LargeTextWrap>{title}</LargeTextWrap>
+            <SmallTextWrap>{subtitle}</SmallTextWrap>
+          </Reveal>
+        </TextContainer>
+        <ImageContainer>
+          <Reveal effect="animate__fadeInRight" duration={1500}>
+            <Image src={imgSrc} alt={imgAlt} />
+          </Reveal>
+        </ImageContainer>
+      </StyledWorkPreview>
+    </Link>
   );
 };
 

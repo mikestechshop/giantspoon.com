@@ -20,10 +20,10 @@ const StyledGroup = styled.div`
   flex-direction: column;
   align-items: center;
   height: ${(props) => props.height || "auto"};
-  margin-top: ${(props) => props.mt || "none"};
-  margin-bottom: ${(props) => props.mb || "none"};
-  margin-left: ${(props) => props.ml || "none"};
-  margin-right: ${(props) => props.mr || "none"};
+  margin-top: ${(props) => props.mt || "0"};
+  margin-bottom: ${(props) => props.mb || "0"};
+  margin-left: ${(props) => props.ml || "0"};
+  margin-right: ${(props) => props.mr || "0"};
 `;
 
 const Wrapper = (props: TWrapperProps) => {
