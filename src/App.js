@@ -8,6 +8,7 @@ import {
 } from "react-contentful";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Home, Work, Contact, About, Culture } from "./pages";
+import { Wrapper } from "./components";
 
 const contentfulClient = new ContentfulClient({
   accessToken: "APy2UiTtUb9pSRPndcvIZ5ezQh7gyxTXd34mwjszugg",
@@ -35,7 +36,7 @@ const App = () => {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/work">
+          <Route path="/work">
             <WorkRoute />
           </Route>
           <Route exact path="/culture">
@@ -48,6 +49,9 @@ const App = () => {
             <Contact />
           </Route>
         </Switch>
+        <Route path={`/work/hbo1`}>
+          <Home />
+        </Route>
       </Router>
     </ContentfulProvider>
   );
@@ -73,8 +77,10 @@ const WorkRoute = () => {
       {data.items.map((item, index) => {
         console.log(item.fields.url);
         return (
-          <Route key={index} path={`/work/${item.fields.url}`}>
-            <h1>{item.fields.url}</h1>
+          <Route exact path={`/work/${item.fields.url}`}>
+            <Wrapper>
+              <div>{item.fields.url}</div>
+            </Wrapper>
           </Route>
         );
       })}

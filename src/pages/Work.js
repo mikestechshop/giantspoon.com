@@ -11,6 +11,15 @@ import {
 import { useContentful } from "react-contentful";
 import ReactPlayer from "react-player";
 import playButton from "../static/playButton.png";
+import styled from "styled-components";
+import Reveal from "react-reveal/Reveal";
+
+const CtaText = styled.p`
+  font-size: 1rem;
+  line-height: 1.4rem;
+  align-self: flex-start;
+  margin: 0;
+`;
 
 const Work = () => {
   const workData = useContentful({
@@ -35,22 +44,24 @@ const Work = () => {
 
   return (
     <Wrapper>
-      <Group height="90vh">
-        <ReactPlayer
-          url={workFields.splash.fields.file.url}
-          width="100%"
-          height="100%"
-          light={workFields.splashPreview.fields.file.url}
-          playIcon={
-            <Image
-              src={playButton}
-              alt="play button"
-              height="75px"
-              width="auto"
-            />
-          }
-        />
-      </Group>
+      <Reveal>
+        <Group height="90vh">
+          <ReactPlayer
+            url={workFields.splash.fields.file.url}
+            width="100%"
+            height="100%"
+            light={workFields.splashPreview.fields.file.url}
+            playIcon={
+              <Image
+                src={playButton}
+                alt="play button"
+                height="75px"
+                width="auto"
+              />
+            }
+          />
+        </Group>
+      </Reveal>
       <Group mt="4rem">
         {items.map((item, index) => {
           if (item.fields.featured) {
@@ -62,6 +73,7 @@ const Work = () => {
                 title={item.fields.title || ""}
                 subtitle={item.fields.subtitle || ""}
                 body={item.fields.body || ""}
+                url={item.fields.url || ""}
               />
             );
           } else {
@@ -69,7 +81,6 @@ const Work = () => {
           }
         })}
         {items.map((item, index) => {
-          console.log(item);
           if (item.fields.featured === false) {
             return (
               <WorkPreview
@@ -78,11 +89,23 @@ const Work = () => {
                 imgAlt={item.fields.previewImage.fields.file.title || ""}
                 title={item.fields.title || ""}
                 subtitle={item.fields.subtitle || ""}
+                url={item.fields.url || ""}
               />
             );
           } else {
             return null;
           }
+        })}
+      </Group>
+      <Group mt="10rem" mb="10rem" ml="5rem">
+        {workFields.cta.content.map((content, index) => {
+          return (
+            <CtaText>
+              <Reveal effect="animate__fadeInUp" duration={1500} wave>
+                {content.content[0].value}
+              </Reveal>
+            </CtaText>
+          );
         })}
       </Group>
     </Wrapper>
