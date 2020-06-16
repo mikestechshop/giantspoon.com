@@ -4,7 +4,6 @@ import React from "react";
 import styled from "styled-components";
 import { Image } from "../";
 import Reveal from "react-reveal/Reveal";
-import { Link } from "react-router-dom";
 
 type TWorkPreviewProps = {
   title: string,
@@ -12,6 +11,7 @@ type TWorkPreviewProps = {
   imgSrc: string,
   imgAlt: string,
   url: string,
+  handleLinkChange: Function,
 };
 
 const StyledWorkPreview = styled.div`
@@ -23,6 +23,7 @@ const StyledWorkPreview = styled.div`
   width: 100%;
   opacity: 1;
   transition: all 1s;
+  cursor: pointer;
   img {
     transform: scale(1);
     transition: all 1s;
@@ -67,26 +68,25 @@ const SmallTextWrap = styled.p`
 `;
 
 const WorkPreview = (props: TWorkPreviewProps) => {
-  const { title, subtitle, imgSrc, imgAlt, url } = props;
+  const { title, subtitle, imgSrc, imgAlt, url, handleLinkChange } = props;
   return (
-    <Link
-      to={`/work/${url}`}
-      style={{ textDecoration: "none", color: "white", width: "100%" }}
+    <StyledWorkPreview
+      onClick={() => {
+        handleLinkChange(url);
+      }}
     >
-      <StyledWorkPreview>
-        <TextContainer className="text-container">
-          <Reveal effect="animate__fadeInUp" duration={1500}>
-            <LargeTextWrap>{title}</LargeTextWrap>
-            <SmallTextWrap>{subtitle}</SmallTextWrap>
-          </Reveal>
-        </TextContainer>
-        <ImageContainer>
-          <Reveal effect="animate__fadeInRight" duration={1500}>
-            <Image src={imgSrc} alt={imgAlt} />
-          </Reveal>
-        </ImageContainer>
-      </StyledWorkPreview>
-    </Link>
+      <TextContainer className="text-container">
+        <Reveal effect="animate__fadeInUp" duration={1500}>
+          <LargeTextWrap>{title}</LargeTextWrap>
+          <SmallTextWrap>{subtitle}</SmallTextWrap>
+        </Reveal>
+      </TextContainer>
+      <ImageContainer>
+        <Reveal effect="animate__fadeInRight" duration={1500}>
+          <Image src={imgSrc} alt={imgAlt} />
+        </Reveal>
+      </ImageContainer>
+    </StyledWorkPreview>
   );
 };
 

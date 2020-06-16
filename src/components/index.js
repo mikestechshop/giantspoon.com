@@ -8,3 +8,5 @@ export { default as PageTitle } from "./Type/PageTitle";
 
 export { default as FeaturedWorkPreview } from "./Work/FeaturedWorkPreview";
 export { default as WorkPreview } from "./Work/WorkPreview";
+
+export { default as SimilarProject } from "./CaseStudy/SimilarProject";
