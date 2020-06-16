@@ -1,63 +1,62 @@
 // @flow
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ContentfulClient,
   ContentfulProvider,
   useContentful,
 } from "react-contentful";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Home, Work, Contact, About, Culture } from "./pages";
-import { Wrapper } from "./components";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { Home, Work, Contact, About, Culture, CaseStudy } from "./pages";
+import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+import { TweenMax } from "gsap";
 
 const contentfulClient = new ContentfulClient({
   accessToken: "APy2UiTtUb9pSRPndcvIZ5ezQh7gyxTXd34mwjszugg",
   space: "pk6t686rs2pw",
 });
 
+const TransitionLayer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0c2340;
+  z-index: 9999;
+  transform: translateY(100%);
+`;
+
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 350);
+  }, [pathname]);
+
+  return null;
+};
+
 const App = () => {
   return (
     <ContentfulProvider client={contentfulClient}>
       <Router>
-        {/* <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-        </ul>
-      </nav> */}
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/work">
-            <WorkRoute />
-          </Route>
-          <Route exact path="/culture">
-            <Culture />
-          </Route>
-          <Route exact path="/about">
-            <About />
-          </Route>
-          <Route exact path="/contact">
-            <Contact />
-          </Route>
-        </Switch>
-        <Route path={`/work/hbo1`}>
-          <Home />
-        </Route>
+        <Routes />
       </Router>
     </ContentfulProvider>
   );
 };
 
-const WorkRoute = () => {
+const Routes = () => {
+  const history = useHistory();
   const { data, error, fetched, loading } = useContentful({
     contentType: "caseStudy",
   });
@@ -69,22 +68,60 @@ const WorkRoute = () => {
     console.error(error);
     return null;
   }
+
+  const linkChange = (url) => {
+    history.push(`/work/${url}`);
+  };
+  const resetDiv = () => {
+    TweenMax.set(".transition-div", { y: "100%" });
+  };
+
+  const handleLinkChange = (url) => {
+    TweenMax.to(".transition-div", 0.5, {
+      y: 0,
+      onComplete: linkChange,
+      onCompleteParams: [url],
+      ease: "power3.inOut",
+    });
+    TweenMax.to(".transition-div", 0.5, {
+      y: " -100%",
+      delay: 1,
+      ease: "power3.inOut",
+      onComplete: resetDiv,
+    });
+  };
   return (
-    <Switch>
-      <Route exact path="/work">
-        <Work />
-      </Route>
-      {data.items.map((item, index) => {
-        console.log(item.fields.url);
-        return (
-          <Route exact path={`/work/${item.fields.url}`}>
-            <Wrapper>
-              <div>{item.fields.url}</div>
-            </Wrapper>
-          </Route>
-        );
-      })}
-    </Switch>
+    <>
+      <ScrollToTop />
+      <TransitionLayer className="transition-div" />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/work">
+          <Work handleLinkChange={handleLinkChange} />
+        </Route>
+        {data.items.map((item, index) => {
+          return (
+            <Route exact path={`/work/${item.fields.url}`}>
+              <CaseStudy
+                handleLinkChange={handleLinkChange}
+                caseStudy={item.fields}
+              />
+            </Route>
+          );
+        })}
+        <Route exact path="/culture">
+          <Culture />
+        </Route>
+        <Route exact path="/about">
+          <About />
+        </Route>
+        <Route exact path="/contact">
+          <Contact />
+        </Route>
+      </Switch>
+    </>
   );
 };
 

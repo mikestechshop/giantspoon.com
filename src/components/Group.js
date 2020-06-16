@@ -7,6 +7,8 @@ import styled from "styled-components";
 type TWrapperProps = {
   children: Node,
   height?: string,
+  flexAlign?: string,
+  flexDirection?: string,
   ml?: string,
   mb?: string,
   mt?: string,
@@ -16,9 +18,11 @@ type TWrapperProps = {
 const StyledGroup = styled.div`
   display: flex;
   width: 100%;
+  box-sizing: border-box;
   overflow: hidden;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: ${(props) => props.flexDirection || "column"};
+  align-items: ${(props) => props.flexAlign || "center"};
+  position: relative;
   height: ${(props) => props.height || "auto"};
   margin-top: ${(props) => props.mt || "0"};
   margin-bottom: ${(props) => props.mb || "0"};
@@ -27,9 +31,17 @@ const StyledGroup = styled.div`
 `;
 
 const Wrapper = (props: TWrapperProps) => {
-  const { children, height, mt, mb, mr, ml } = props;
+  const { children, height, mt, mb, mr, ml, flexAlign, flexDirection } = props;
   return (
-    <StyledGroup height={height} mt={mt} mb={mb} mr={mr} ml={ml}>
+    <StyledGroup
+      height={height}
+      mt={mt}
+      mb={mb}
+      mr={mr}
+      ml={ml}
+      flexAlign={flexAlign}
+      flexDirection={flexDirection}
+    >
       {children}
     </StyledGroup>
   );

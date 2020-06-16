@@ -14,6 +14,10 @@ import playButton from "../static/playButton.png";
 import styled from "styled-components";
 import Reveal from "react-reveal/Reveal";
 
+type TWorkProps = {
+  handleLinkChange: Function,
+};
+
 const CtaText = styled.p`
   font-size: 1rem;
   line-height: 1.4rem;
@@ -21,7 +25,8 @@ const CtaText = styled.p`
   margin: 0;
 `;
 
-const Work = () => {
+const Work = (props: TWorkProps) => {
+  const { handleLinkChange } = props;
   const workData = useContentful({
     contentType: "work",
   });
@@ -40,11 +45,10 @@ const Work = () => {
 
   const { items } = data;
   const workFields = workData.data.items[0].fields;
-  console.log(workFields);
 
   return (
     <Wrapper>
-      <Reveal>
+      <Reveal effect="animate__fadeIn" duration={1500}>
         <Group height="90vh">
           <ReactPlayer
             url={workFields.splash.fields.file.url}
@@ -74,6 +78,7 @@ const Work = () => {
                 subtitle={item.fields.subtitle || ""}
                 body={item.fields.body || ""}
                 url={item.fields.url || ""}
+                handleLinkChange={handleLinkChange}
               />
             );
           } else {
@@ -90,6 +95,7 @@ const Work = () => {
                 title={item.fields.title || ""}
                 subtitle={item.fields.subtitle || ""}
                 url={item.fields.url || ""}
+                handleLinkChange={handleLinkChange}
               />
             );
           } else {
