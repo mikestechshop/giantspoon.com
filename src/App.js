@@ -13,7 +13,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { Home, Work, Contact, About, Culture, CaseStudy } from "./pages";
-import { Nav } from "./components";
+import { Nav, Footer } from "./components";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { TweenMax } from "gsap";
@@ -123,6 +123,7 @@ const Routes = () => {
           <Contact />
         </Route>
       </Switch>
+      <Footer handleLinkChange={handleLinkChange} />
     </>
   );
 };

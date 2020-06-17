@@ -12,3 +12,4 @@ export { default as WorkPreview } from "./Work/WorkPreview";
 export { default as SimilarProject } from "./CaseStudy/SimilarProject";
 
 export { default as Nav } from "./Global/Nav";
+export { default as Footer } from "./Global/Footer";
