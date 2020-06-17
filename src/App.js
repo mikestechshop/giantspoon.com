@@ -13,6 +13,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { Home, Work, Contact, About, Culture, CaseStudy } from "./pages";
+import { Nav } from "./components";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { TweenMax } from "gsap";
@@ -70,7 +71,7 @@ const Routes = () => {
   }
 
   const linkChange = (url) => {
-    history.push(`/work/${url}`);
+    history.push(url);
   };
   const resetDiv = () => {
     TweenMax.set(".transition-div", { y: "100%" });
@@ -94,6 +95,7 @@ const Routes = () => {
     <>
       <ScrollToTop />
       <TransitionLayer className="transition-div" />
+      <Nav handleLinkChange={handleLinkChange} />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -103,7 +105,7 @@ const Routes = () => {
         </Route>
         {data.items.map((item, index) => {
           return (
-            <Route exact path={`/work/${item.fields.url}`}>
+            <Route exact path={`/work/${item.fields.url}`} key={index}>
               <CaseStudy
                 handleLinkChange={handleLinkChange}
                 caseStudy={item.fields}

@@ -72,7 +72,7 @@ const WorkPreview = (props: TWorkPreviewProps) => {
   return (
     <StyledWorkPreview
       onClick={() => {
-        handleLinkChange(url);
+        handleLinkChange(`work/${url}`);
       }}
     >
       <TextContainer className="text-container">
