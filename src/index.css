@@ -10,3 +10,10 @@ body {
   font-weight: 300;
   background-color: #0c2340;
 }
+html {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+html::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
