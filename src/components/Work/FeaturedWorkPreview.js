@@ -83,7 +83,7 @@ const FeaturedWorkPreview = (props: TFeaturedWorkPreviewProps) => {
   return (
     <StyledFeaturedWorkPreview
       onClick={() => {
-        handleLinkChange(url);
+        handleLinkChange(`work/${url}`);
       }}
     >
       <TextContainer className="text-container">

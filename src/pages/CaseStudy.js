@@ -166,7 +166,7 @@ const CaseStudy = (props: TCaseStudyProps) => {
           <Reveal effect="animate__fadeInUp" duration={1500}>
             {pageBodyText.content.map((content, index) => {
               return (
-                <SmallTextWrap mb="2rem">
+                <SmallTextWrap mb="2rem" key={index}>
                   {content.content[0].value}
                 </SmallTextWrap>
               );
@@ -178,7 +178,7 @@ const CaseStudy = (props: TCaseStudyProps) => {
             <SmallTextWrap mb="4rem">{pageCampaignType}</SmallTextWrap>
             {pageAwards.content.map((content, index) => {
               return (
-                <SmallTextWrap mb="1rem">
+                <SmallTextWrap mb="1rem" key={index}>
                   {content.content[0].value}
                 </SmallTextWrap>
               );
