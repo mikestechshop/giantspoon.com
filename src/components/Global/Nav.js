@@ -60,29 +60,31 @@ const LinkWrap = styled.h1`
 
 const handleMenuOpen = (open) => {
   if (!open) {
-    TweenMax.to(".menu-wrap", 0.8, {
+    TweenMax.to(".menu-wrap", 0.4, {
       opacity: 1,
       pointerEvents: "all",
       ease: "power3.inOut",
     });
-    TweenMax.to(".menu-link", 0.8, {
+    TweenMax.to(".menu-link", 0.4, {
       rotation: 0,
+      ease: "power4.inOut",
     });
     TweenMax.staggerTo(
       ".link-wrap",
-      0.8,
-      { opacity: 1, y: 0, delay: 0.8 },
-      0.25
+      0.4,
+      { opacity: 1, y: 0, delay: 0.4, ease: "power1.in" },
+      0.3
     );
   } else {
-    TweenMax.to(".menu-wrap", 0.8, {
+    TweenMax.to(".menu-wrap", 0.4, {
       opacity: 0,
       pointerEvents: "none",
       ease: "power3.inOut",
       onComplete: resetMenu,
     });
-    TweenMax.to(".menu-link", 0.8, {
+    TweenMax.to(".menu-link", 0.4, {
       rotation: -45,
+      ease: "power4.inOut",
     });
   }
 };

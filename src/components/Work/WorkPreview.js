@@ -33,12 +33,11 @@ const StyledWorkPreview = styled.div`
     transform: translateY(0rem);
   }
   &:hover {
-    opacity: 0.5;
     img {
       transform: scale(1.1);
     }
     .text-container {
-      transform: translateY(-1rem);
+      transform: translateY(-0.5rem);
     }
   }
 `;
