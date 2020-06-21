@@ -34,12 +34,11 @@ const StyledFeaturedWorkPreview = styled.div`
     transform: translateY(2rem);
   }
   &:hover {
-    opacity: 0.5;
     img {
       transform: scale(1.1);
     }
     .text-container {
-      transform: translateY(-2rem);
+      transform: translateY(0rem);
     }
   }
 `;
