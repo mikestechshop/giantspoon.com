@@ -9,7 +9,6 @@ type TWrapperProps = {
 };
 
 const StyledWrapper = styled.div`
-  background-color: #0c2340;
   max-width: 100%;
   display: flex;
   justify-content: center;
