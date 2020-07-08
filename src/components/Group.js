@@ -13,11 +13,12 @@ type TWrapperProps = {
   mb?: string,
   mt?: string,
   mr?: string,
+  width?: string,
 };
 
 const StyledGroup = styled.div`
   display: flex;
-  width: 100%;
+  width: ${(props) => props.width || "100%"};
   box-sizing: border-box;
   overflow: hidden;
   flex-direction: ${(props) => props.flexDirection || "column"};
