@@ -18,7 +18,15 @@ const StyledImage = styled.img`
 
 const Image = (props: TStyledImageProps) => {
   const { src, alt, height, width } = props;
-  return <StyledImage src={src} alt={alt} height={height} width={width} />;
+  return (
+    <StyledImage
+      className="hoverable"
+      src={src}
+      alt={alt}
+      height={height}
+      width={width}
+    />
+  );
 };
 
 export default Image;

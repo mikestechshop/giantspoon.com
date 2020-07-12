@@ -7,6 +7,7 @@
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
+    <link rel=“stylesheet” href=“https://use.typekit.net/pwb6sws.css”>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -33,11 +34,19 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/TextPlugin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.0/gsap.min.js"></script>
     <title>Giant Spoon</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <div class="cursor">
+      <div class="cursor__ball">
+        <svg height="30" width="30">
+          <circle cx="15" cy="15" r="12" stroke-width="0"></circle>
+        </svg>
+      </div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -48,5 +57,24 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      const $bigBall = document.querySelector(".cursor__ball");
+      const $hoverables = document.querySelectorAll(".hoverable");
+
+      // Listeners
+      document.body.addEventListener("mousemove", onMouseMove);
+      for (let i = 0; i < $hoverables.length; i++) {
+        if (window.CP.shouldStopExecution(0)) break;
+      }
+
+      // Move the cursor
+      window.CP.exitedLoop(0);
+      function onMouseMove(e) {
+        TweenMax.to($bigBall, 0.4, {
+          x: e.pageX - 15,
+          y: e.pageY - 15,
+        });
+      }
+    </script>
   </body>
 </html>

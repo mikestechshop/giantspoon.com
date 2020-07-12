@@ -1,17 +1,12 @@
 // @flow
 
 import React from "react";
-import { Wrapper, Group, PageTitle, Image } from "../../components";
 import ReactFullpage from "@fullpage/react-fullpage";
-import Services from "../../static/Services.png";
-import Awards from "../../static/Awards.png";
+import Services from "./Services";
 import styled from "styled-components";
-import Reveal from "react-reveal/Reveal";
 import Intro from "./Intro";
 import Work from "./Work";
 import News from "./News";
-
-import { Link } from "react-router-dom";
 
 const SectionWrap = styled.div`
   position: relative;
@@ -32,12 +27,15 @@ const Home = () => (
           <SectionWrap className="section" bgc="#E5E5E5">
             <Work />
           </SectionWrap>
-          <SectionWrap className="section" bgc="#FE9B96">
+          <SectionWrap className="section">
+            <Services />
+          </SectionWrap>
+          {/* <SectionWrap className="section" bgc="#FE9B96">
             <Image src={Services} />
           </SectionWrap>
           <SectionWrap className="section" bgc="#FE9B96">
             <Image src={Awards} />
-          </SectionWrap>
+          </SectionWrap> */}
           <SectionWrap className="section" bgc="#FE9B96">
             <News />
           </SectionWrap>

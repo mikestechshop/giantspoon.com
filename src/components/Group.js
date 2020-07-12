@@ -14,6 +14,7 @@ type TWrapperProps = {
   mt?: string,
   mr?: string,
   width?: string,
+  bgc?: string,
 };
 
 const StyledGroup = styled.div`
@@ -29,10 +30,21 @@ const StyledGroup = styled.div`
   margin-bottom: ${(props) => props.mb || "0"};
   margin-left: ${(props) => props.ml || "0"};
   margin-right: ${(props) => props.mr || "0"};
+  background-color: ${(props) => props.bgc || ""};
 `;
 
 const Wrapper = (props: TWrapperProps) => {
-  const { children, height, mt, mb, mr, ml, flexAlign, flexDirection } = props;
+  const {
+    children,
+    height,
+    mt,
+    mb,
+    mr,
+    ml,
+    bgc,
+    flexAlign,
+    flexDirection,
+  } = props;
   return (
     <StyledGroup
       height={height}
@@ -42,6 +54,7 @@ const Wrapper = (props: TWrapperProps) => {
       ml={ml}
       flexAlign={flexAlign}
       flexDirection={flexDirection}
+      bgc={bgc}
     >
       {children}
     </StyledGroup>

@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useState } from "react";
-import { Wrapper, Group, PageTitle, Image } from "../../components";
+import { Wrapper, Image } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import { TweenMax } from "gsap";
@@ -11,7 +11,6 @@ import Slide3 from "../../static/slide3.png";
 import Slide4 from "../../static/slide4.png";
 import ArrowRight from "../../static/arrow-right.png";
 import ArrowLeft from "../../static/arrow-left.png";
-import { Link } from "react-router-dom";
 
 const SlideWrap = styled.div`
   position: absolute;
@@ -73,13 +72,14 @@ const slideLeft = (count, slidesLegnth) => {
 };
 const News = () => {
   const slides = [1, 2, 3, 4];
-  const [ref, inView, entry] = useInView({
+  const [ref, inView] = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true,
   });
   const [count, setCount] = useState(0);
   if (inView) {
+    // $FlowFixMe
     document.querySelector("#section-tab").innerHTML = "CASE STUDIES";
   }
   return (
@@ -107,7 +107,7 @@ const News = () => {
           setCount(count + 1);
         }}
       >
-        <Image src={ArrowRight} width="14px" height="auto" />
+        <Image src={ArrowRight} width="14px" height="auto" alt="right arrow" />
       </ArrowRightWrap>
       <ArrowLeftWrap
         id="arrow-left"
@@ -117,7 +117,7 @@ const News = () => {
           setCount(count - 1);
         }}
       >
-        <Image src={ArrowLeft} width="14px" height="auto" />
+        <Image src={ArrowLeft} width="14px" height="auto" alt="left arrow" />
       </ArrowLeftWrap>
     </Wrapper>
   );
