@@ -4,7 +4,7 @@ import React from "react";
 import { Wrapper } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import { TweenMax, TextPlugin } from "gsap";
+import { TweenMax } from "gsap";
 import "gsap/TextPlugin";
 
 const LargeTextWrap = styled.h1`
@@ -38,18 +38,6 @@ const Paragraph = styled.p`
   display: none;
 `;
 
-const SectionLabel = styled.div`
-  font-weight: bold;
-  color: #fffcf2;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: -5px;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  display: none;
-`;
-
 const Intro = () => {
   const [ref, inView, entry] = useInView({
     /* Optional options */
@@ -57,6 +45,7 @@ const Intro = () => {
     triggerOnce: true,
   });
   if (entry) {
+    // $FlowFixMe
     document.querySelector("#section-tab").innerHTML = "Welcome";
   }
   if (inView) {

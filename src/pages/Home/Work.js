@@ -1,31 +1,14 @@
 // @flow
 
-import React, { useState } from "react";
-import { Wrapper, Group, PageTitle, Image } from "../../components";
+import React from "react";
+import { Wrapper, Slider, Group } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import { TweenMax } from "gsap";
 import Slide1 from "../../static/slide1.png";
 import Slide2 from "../../static/slide2.png";
 import Slide3 from "../../static/slide3.png";
 import Slide4 from "../../static/slide4.png";
-import ArrowRight from "../../static/arrow-right.png";
-import ArrowLeft from "../../static/arrow-left.png";
-import { Link } from "react-router-dom";
 
-const SlideWrap = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  display: inline-flex;
-`;
-const Slide = styled.div`
-  height: 100%;
-  width: ${(props) => props.width || "90vw"};
-  position: relative;
-  overflow: hidden;
-`;
 const SlideImg = styled.img`
   height: 100%;
   min-width: 100%;
@@ -34,91 +17,113 @@ const SlideImg = styled.img`
   left: 50%;
   transform: translateX(-50%);
 `;
-const ArrowRightWrap = styled.div`
+
+const TextBox = styled.div`
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 18px;
+  left: 10%;
+  bottom: 15%;
+  text-align: left;
+  color: white;
   cursor: pointer;
-  z-index: 999;
 `;
-const ArrowLeftWrap = styled.div`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 18px;
-  cursor: pointer;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 999;
+const WorkTitle = styled.h1`
+  line-height: 110%;
+  font-size: 8rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
 `;
-const slideRight = (count, slidesLegnth) => {
-  TweenMax.to("#slider-work", 0.5, { x: "-=90vw" });
-  console.log(count);
-  if (count + 2 >= slidesLegnth) {
-    TweenMax.to("#arrow-right", 0.5, { autoAlpha: 0, pointerEvents: "none" });
-  }
-  if (count === 0) {
-    TweenMax.to("#arrow-left", 0.5, { autoAlpha: 1, pointerEvents: "all" });
-  }
-};
-const slideLeft = (count, slidesLegnth) => {
-  TweenMax.to("#slider-work", 0.5, { x: "+=90vw" });
-  if (count + 1 === slidesLegnth) {
-    TweenMax.to("#arrow-right", 0.5, { autoAlpha: 1, pointerEvents: "all" });
-  }
-  if (count - 1 >= 0) {
-    TweenMax.to("#arrow-left", 0.5, { autoAlpha: 0, pointerEvents: "none" });
-  }
-};
+const WorkDesc = styled.p`
+  font-size: 1rem;
+  line-height: 140%;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  width: 30vw;
+`;
+
 const Work = () => {
-  const slides = [1, 2, 3, 4];
-  const [ref, inView, entry] = useInView({
+  const [ref, inView] = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true,
   });
-  const [count, setCount] = useState(0);
   if (inView) {
+    // $FlowFixMe
     document.querySelector("#section-tab").innerHTML = "CASE STUDIES";
   }
   return (
     <Wrapper>
       <div ref={ref}></div>
-      <SlideWrap id="slider-work">
-        <Slide width="95vw">
-          <SlideImg src={Slide1} />
-        </Slide>
-        <Slide>
-          <SlideImg src={Slide2} />
-        </Slide>
-        <Slide>
-          <SlideImg src={Slide3} />
-        </Slide>
-        <Slide width="95vw">
-          <SlideImg src={Slide4} />
-        </Slide>
-      </SlideWrap>
-      <ArrowRightWrap
-        id="arrow-right"
-        onClick={() => {
-          console.log("ehll");
-          slideRight(count, slides.length);
-          setCount(count + 1);
-        }}
-      >
-        <Image src={ArrowRight} width="14px" height="auto" />
-      </ArrowRightWrap>
-      <ArrowLeftWrap
-        id="arrow-left"
-        onClick={() => {
-          console.log("ehll");
-          slideLeft(count, slides.length);
-          setCount(count - 1);
-        }}
-      >
-        <Image src={ArrowLeft} width="14px" height="auto" />
-      </ArrowLeftWrap>
+      <Slider
+        slideId="work-slider"
+        slides={[
+          <Group height="100vh">
+            <SlideImg src={Slide1} />
+            <TextBox>
+              <WorkTitle> Title </WorkTitle>
+              <WorkDesc>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
+                commodo, bibendum id interdum lobortis praesent lectus.
+                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
+                amet, accumsan.
+              </WorkDesc>
+              <WorkDesc>See More > </WorkDesc>
+            </TextBox>
+          </Group>,
+          <Group height="100vh">
+            <SlideImg src={Slide2} />
+            <TextBox>
+              <WorkTitle> Title </WorkTitle>
+              <WorkDesc>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
+                commodo, bibendum id interdum lobortis praesent lectus.
+                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
+                amet, accumsan.
+              </WorkDesc>
+              <WorkDesc>See More > </WorkDesc>
+            </TextBox>
+          </Group>,
+          <Group height="100vh">
+            <SlideImg src={Slide3} />
+            <TextBox>
+              <WorkTitle> Title </WorkTitle>
+              <WorkDesc>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
+                commodo, bibendum id interdum lobortis praesent lectus.
+                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
+                amet, accumsan.
+              </WorkDesc>
+              <WorkDesc>See More > </WorkDesc>
+            </TextBox>
+          </Group>,
+          <Group height="100vh">
+            <SlideImg src={Slide4} />
+            <TextBox>
+              <WorkTitle> Title </WorkTitle>
+              <WorkDesc>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
+                commodo, bibendum id interdum lobortis praesent lectus.
+                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
+                amet, accumsan.
+              </WorkDesc>
+              <WorkDesc>See More > </WorkDesc>
+            </TextBox>
+          </Group>,
+          <Group height="100vh" bgc="#0C2340">
+            <TextBox>
+              <WorkTitle>
+                Lorem ipsum <br /> About Our Work
+              </WorkTitle>
+              <WorkDesc>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
+                commodo, bibendum id interdum lobortis praesent lectus.
+                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
+                amet, accumsan.
+              </WorkDesc>
+              <WorkDesc>See More > </WorkDesc>
+            </TextBox>
+          </Group>,
+        ]}
+      />
     </Wrapper>
   );
 };
