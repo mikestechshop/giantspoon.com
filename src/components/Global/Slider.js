@@ -77,14 +77,12 @@ const slideLeft = (count, slidesLegnth, id) => {
 };
 
 const onHover = () => {
-  console.log("hello");
   TweenMax.to(".cursor__ball", 0.1, {
     opacity: 1,
   });
   TweenMax.set(".hoverable", { cursor: "none" });
 };
 const onMouseExit = () => {
-  console.log("hello");
   TweenMax.to(".cursor__ball", 0.1, {
     opacity: 0,
   });

@@ -1,4 +1,4 @@
-@import url("https://use.typekit.net/pwb6sws.css");
+@import url("https://use.typekit.net/vqh1yns.css");
 
 html {
   font-size: 16px;
@@ -49,7 +49,7 @@ html::-webkit-scrollbar {
   left: 0;
   z-index: 1000;
   opacity: 0;
-  mix-blend-mode: difference;
+  mix-blend-mode: screen;
 }
 body .cursor__ball circle {
   fill: #f7f8fa;

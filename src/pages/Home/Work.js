@@ -46,28 +46,16 @@ const Work = () => {
     threshold: 0,
     triggerOnce: true,
   });
-  if (inView) {
-    // $FlowFixMe
-    document.querySelector("#section-tab").innerHTML = "CASE STUDIES";
-  }
+
   return (
     <Wrapper>
       <div ref={ref}></div>
+
       <Slider
         slideId="work-slider"
         slides={[
           <Group height="100vh">
             <SlideImg src={Slide1} />
-            <TextBox>
-              <WorkTitle> Title </WorkTitle>
-              <WorkDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
-              </WorkDesc>
-              <WorkDesc>See More > </WorkDesc>
-            </TextBox>
           </Group>,
           <Group height="100vh">
             <SlideImg src={Slide2} />

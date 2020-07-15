@@ -1,6 +1,6 @@
 // @flow
 
-import React from "react";
+import React, { useState } from "react";
 import { Wrapper } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
@@ -39,16 +39,11 @@ const Paragraph = styled.p`
 `;
 
 const Intro = () => {
-  const [ref, inView, entry] = useInView({
-    /* Optional options */
-    threshold: 0,
+  const [ref, inView] = useInView({
     triggerOnce: true,
   });
-  if (entry) {
-    // $FlowFixMe
-    document.querySelector("#section-tab").innerHTML = "Welcome";
-  }
-  if (inView) {
+  const [animationRun, setAnimationRun] = useState(false);
+  if (inView && !animationRun) {
     TweenMax.fromTo(
       ".intro-large-text",
       { opacity: 0, y: "+=20", display: "initial" },
@@ -59,11 +54,7 @@ const Intro = () => {
       { opacity: 0, y: "+=20", display: "initial" },
       { opacity: 1, y: "-=20", delay: 0.7 }
     );
-    TweenMax.fromTo(
-      ".intro-label-text",
-      { x: "100%", y: "-50%", display: "initial" },
-      { x: "0%", y: "-50%", delay: 0.9 }
-    );
+    setAnimationRun(true);
   }
   return (
     <Wrapper>

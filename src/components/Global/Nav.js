@@ -37,14 +37,14 @@ const LogoVertWrap = styled.div`
 const DateWrap = styled.div`
   position: fixed;
   bottom: 140px;
-  right: 1px;
+  right: -1px;
   z-index: 999;
   cursor: pointer;
   color: #fe9b96;
   font-size: 0.75rem;
   letter-spacing: 0.1rem;
   line-height: 1.1rem;
-  transform: rotate(90deg);
+  transform: rotate(270deg);
   transform-origin: 50% 50%;
 `;
 const NYLAWrap = styled.div`
@@ -85,8 +85,8 @@ const MenuWrap = styled.div`
   position: fixed;
   z-index: 99;
   top: 0;
-  left: 0;
-  bottom: 0;
+  left: 10vh;
+  bottom: 10vh;
   right: 0;
   background-color: #0033a0;
   pointer-events: none;
@@ -95,8 +95,8 @@ const MenuWrap = styled.div`
 
 const LinkWrap = styled.h1`
   font-family: Baskerville;
-  font-size: 20vh;
-  line-height: 20vh;
+  font-size: 17.5vh;
+  line-height: 17.5vh;
   margin-left: 5vw;
   margin-bottom: 0;
   color: #b1c3d6;
@@ -133,6 +133,22 @@ const LogoWrap = styled.div`
     width: 100%;
   }
 `;
+const NavWrap = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 91px;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(0, 0, 0, 0.5340511204481793) 100%
+  );
+  z-index: 1000;
+  pointer-events: none;
+  background-blend-mode: multiply;
+`;
 
 const handleMenuOpen = (open) => {
   if (!open) {
@@ -147,6 +163,9 @@ const handleMenuOpen = (open) => {
       { opacity: 1, y: 0, delay: 0.4, ease: "power1.in" },
       0.3
     );
+    TweenMax.to(".bottom-links", 0.4, {
+      y: "-=10vh",
+    });
   } else {
     TweenMax.to(".menu-wrap", 0.4, {
       opacity: 0,
@@ -165,6 +184,9 @@ const resetMenu = () => {
   });
   TweenMax.set(".menu-link", {
     delay: 0.5,
+  });
+  TweenMax.to(".bottom-links", 0.4, {
+    y: "+=10vh",
   });
   TweenMax.set(".link-wrap", { opacity: 0, y: 16 });
 };
@@ -192,12 +214,15 @@ const Nav = (props: TStyledNavProps) => {
       >
         <Image src={LogoVert} alt="menu nav" />
       </LogoVertWrap>
-      <DateWrap>01.01.2020</DateWrap>
-      <NYLAWrap>
+      <DateWrap id="date" className="bottom-links">
+        01.01.2020
+      </DateWrap>
+      <NYLAWrap id="ny-la" className="bottom-links">
         NY <br /> LA
       </NYLAWrap>
+      <NavWrap></NavWrap>
       <SectionTab>
-        <SmallText id="section-tab"> Text </SmallText>
+        <SmallText id="section-tab"> Welcome </SmallText>
       </SectionTab>
       <MenuWrap className="menu-wrap">
         <Group flexDirection="row">
