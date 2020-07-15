@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 type TWrapperProps = {
   children: Node,
+  height?: string,
 };
 
 const StyledWrapper = styled.div`
@@ -14,11 +15,12 @@ const StyledWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   overflow: hidden;
+  height: ${(props) => props.height || "auto"};
 `;
 
 const Wrapper = (props: TWrapperProps) => {
-  const { children } = props;
-  return <StyledWrapper>{children}</StyledWrapper>;
+  const { children, height } = props;
+  return <StyledWrapper height={height}>{children}</StyledWrapper>;
 };
 
 export default Wrapper;
