@@ -71,6 +71,15 @@ const Home = () => (
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper>
+          <SectionWrap className="section" bgc="#0C2340">
+            <Intro />
+            <ScrollEffect bottom="0%" id="scroll0Down">
+              <ScrollEffectDiv color="#FE9B96" />
+              <ScrollEffectDiv color="#B1C3D6" />
+              <ScrollEffectDiv color="#FFFCF2" />
+              <ScrollEffectDiv color="#0C2340" />
+            </ScrollEffect>
+          </SectionWrap>
           <SectionWrap className="section" bgc="#E5E5E5">
             <Services />
             <ScrollEffect bottom="0%" id="scroll1Down">
@@ -86,14 +95,10 @@ const Home = () => (
               <ScrollEffectDiv color="#0C2340" />
             </ScrollEffect>
           </SectionWrap>
-          <SectionWrap className="section" bgc="#0C2340">
-            <Intro />
-            <ScrollEffect bottom="0%" id="scroll0Down">
-              <ScrollEffectDiv color="#FE9B96" />
-              <ScrollEffectDiv color="#B1C3D6" />
-              <ScrollEffectDiv color="#FFFCF2" />
-              <ScrollEffectDiv color="#0C2340" />
-            </ScrollEffect>
+          <SectionWrap className="section">Partners</SectionWrap>
+          <SectionWrap className="section">Awards</SectionWrap>
+          <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
+            <Footer />
           </SectionWrap>
         </ReactFullpage.Wrapper>
       );

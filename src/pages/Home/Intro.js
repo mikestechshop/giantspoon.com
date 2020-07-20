@@ -25,7 +25,7 @@ const Text = styled.div`
 `;
 
 const Paragraph = styled.p`
-  font-family: Interstate;
+  font-family: interstate;
   font-style: normal;
   font-weight: 300;
   font-size: 1rem;

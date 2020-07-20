@@ -37,6 +37,7 @@ const Wrapper = (props: TWrapperProps) => {
   const {
     children,
     height,
+    width,
     mt,
     mb,
     mr,
@@ -55,6 +56,7 @@ const Wrapper = (props: TWrapperProps) => {
       flexAlign={flexAlign}
       flexDirection={flexDirection}
       bgc={bgc}
+      width={width}
     >
       {children}
     </StyledGroup>
