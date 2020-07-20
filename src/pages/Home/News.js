@@ -1,21 +1,13 @@
 // @flow
 
 import React from "react";
-import { Wrapper, Slider, Group } from "../../components";
+import { Wrapper, Slider, Group, FullImage } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import Slide1 from "../../static/pd_loop1.gif";
 import Slide2 from "../../static/news-slide-2.png";
 import Tribeca from "../../static/tribeca-logo.png";
 import Adweek from "../../static/adweek-logo.png";
-const SlideImg = styled.img`
-  height: 100%;
-  min-width: 100%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-`;
 
 const TextBox = styled.div`
   position: absolute;
@@ -45,7 +37,7 @@ const NewsDesc = styled.p`
 `;
 
 const News = () => {
-  const [ref, inView] = useInView({
+  const [ref] = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true,
@@ -58,7 +50,7 @@ const News = () => {
         slideId="news-slider"
         slides={[
           <Group height="100vh">
-            <SlideImg src={Slide1} />
+            <FullImage src={Slide1} alt="news image" />
             <TextBox>
               <NewsImg src={Tribeca} />
               <NewsTitle> Title </NewsTitle>
@@ -72,7 +64,7 @@ const News = () => {
             </TextBox>
           </Group>,
           <Group height="100vh">
-            <SlideImg src={Slide2} />
+            <FullImage src={Slide2} alt="placeholder" />
 
             <TextBox>
               <NewsImg src={Adweek} />

@@ -11,6 +11,10 @@ import News from "./News";
 import { TweenMax } from "gsap";
 import { Footer } from "../../components";
 
+type THomeProps = {
+  handleLinkChange: Function,
+};
+
 const SectionWrap = styled.div`
   position: relative;
   background-color: ${(props) => props.bgc || "#0033a0"};
@@ -32,9 +36,10 @@ const ScrollEffectDiv = styled.div`
 const scrollAni = (id: string, html: string) => {
   TweenMax.to(id, 0.35, { height: "35vh" });
   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
+  // $FlowFixMe
   document.querySelector("#section-tab").innerHTML = html;
 };
-const Home = () => (
+const Home = (props: THomeProps) => (
   <ReactFullpage
     //fullpage options
     licenseKey={"YOUR_KEY_HERE"}
@@ -138,7 +143,7 @@ const Home = () => (
             </ScrollEffect>
           </SectionWrap>
           <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
-            <Footer />
+            <Footer handleLinkChange={props.handleLinkChange} />
           </SectionWrap>
         </ReactFullpage.Wrapper>
       );

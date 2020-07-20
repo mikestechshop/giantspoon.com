@@ -3,12 +3,12 @@
 import React from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import styled from "styled-components";
-import ReactPlayer from "react-player";
-import playButton from "../static/playButton.png";
-import { TweenMax } from "gsap";
-import { Footer, Group, Image } from "../components";
+import { Footer, FullImage } from "../components";
 import { useContentful } from "react-contentful";
-import Slide1 from "../static/pd_loop1.gif";
+
+type TWorkProps = {
+  handleLinkChange: Function,
+};
 
 const SectionWrap = styled.div`
   position: relative;
@@ -29,20 +29,11 @@ const ScrollEffectDiv = styled.div`
   height: 25%;
   background-color: ${(props) => props.color || "auto"};
 `;
-const scrollAni = (id: string, html: string) => {
-  TweenMax.to(id, 0.35, { height: "35vh" });
-  TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
-  document.querySelector("#section-tab").innerHTML = html;
-};
-
-const SlideImg = styled.img`
-  height: 100%;
-  min-width: 100%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-`;
+// const scrollAni = (id: string, html: string) => {
+//   TweenMax.to(id, 0.35, { height: "35vh" });
+//   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
+//   document.querySelector("#section-tab").innerHTML = html;
+// };
 
 const TextBox = styled.div`
   position: absolute;
@@ -74,7 +65,7 @@ const NewsDesc = styled.p`
   width: 400px;
 `;
 
-const Work = () => {
+const Work = (props: TWorkProps) => {
   const { data, error, fetched, loading } = useContentful({
     contentType: "caseStudy",
   });
@@ -116,7 +107,7 @@ const Work = () => {
               } = item.fields;
               return (
                 <SectionWrap className="section">
-                  <SlideImg
+                  <FullImage
                     src={previewMedia.fields.file.url}
                     alt={previewMedia.fields.title}
                   />
@@ -134,7 +125,7 @@ const Work = () => {
             <SectionWrap className="section">More Work</SectionWrap>
             <SectionWrap className="section">Lets Chat</SectionWrap>
             <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
-              <Footer />
+              <Footer handleLinkChange={props.handleLinkChange} />
             </SectionWrap>
           </ReactFullpage.Wrapper>
         );

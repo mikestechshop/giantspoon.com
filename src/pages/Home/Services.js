@@ -1,20 +1,11 @@
 // @flow
 
 import React from "react";
-import { Wrapper, Group } from "../../components";
+import { Wrapper, Group, FullImage } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import ServicesBg from "../../static/services-bg.png";
 import { TweenMax } from "gsap";
-
-const SlideImg = styled.img`
-  height: 100%;
-  min-width: 100%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-`;
 
 const TextBox = styled.div`
   position: absolute;
@@ -59,7 +50,9 @@ const onHover = (color, title, desc) => {
     fill: color,
   });
   TweenMax.set(".hoverable", { cursor: "none" });
+  // $FlowFixMe
   document.querySelector("#service-title").innerHTML = title;
+  // $FlowFixMe
   document.querySelector("#service-desc").innerHTML = desc;
 };
 const onMouseExit = () => {
@@ -71,13 +64,15 @@ const onMouseExit = () => {
     fill: "#f7f8fa",
   });
   TweenMax.set(".hoverable", { cursor: "default" });
+  // $FlowFixMe
   document.querySelector("#service-title").innerHTML = "Title";
+  // $FlowFixMe
   document.querySelector("#service-desc").innerHTML =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. At commodo, bibendum id interdum lobortis praesent lectus. Ullamcorper non pretium tincidunt felis amet. A eget tellus et, amet, accumsan.";
 };
 
 const Services = () => {
-  const [ref, inView] = useInView({
+  const [ref] = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true,
@@ -87,7 +82,7 @@ const Services = () => {
     <Wrapper>
       <div ref={ref}></div>
       <Group height="100vh">
-        <SlideImg src={ServicesBg} />
+        <FullImage src={ServicesBg} alt="services background" />
         <TextBox>
           <ServicesTitle id="service-title"> Title </ServicesTitle>
           <ServicesDesc id="service-desc">

@@ -13,7 +13,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { Home, Work, Contact, About, Culture, CaseStudy } from "./pages";
-import { Nav, Footer } from "./components";
+import { Nav } from "./components";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { TweenMax } from "gsap";
@@ -98,7 +98,7 @@ const Routes = () => {
       <Nav handleLinkChange={handleLinkChange} />
       <Switch>
         <Route exact path="/">
-          <Home />
+          <Home handleLinkChange={handleLinkChange} />
         </Route>
         <Route exact path="/work">
           <Work handleLinkChange={handleLinkChange} />
@@ -114,13 +114,13 @@ const Routes = () => {
           );
         })}
         <Route exact path="/culture">
-          <Culture />
+          <Culture handleLinkChange={handleLinkChange} />
         </Route>
         <Route exact path="/about">
-          <About />
+          <About handleLinkChange={handleLinkChange} />
         </Route>
         <Route exact path="/contact">
-          <Contact />
+          <Contact handleLinkChange={handleLinkChange} />
         </Route>
       </Switch>
     </>

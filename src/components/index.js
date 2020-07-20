@@ -14,3 +14,4 @@ export { default as SimilarProject } from "./CaseStudy/SimilarProject";
 export { default as Nav } from "./Global/Nav";
 export { default as Footer } from "./Global/Footer";
 export { default as Slider } from "./Global/Slider";
+export { default as FullImage } from "./Global/FullImage";

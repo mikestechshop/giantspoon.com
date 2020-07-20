@@ -1,14 +1,12 @@
 // @flow
 
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { Image, Group } from "../";
-import Dots from "../../static/dots.png";
+import { Image } from "../";
 import Logo from "../../static/logo.png";
 import Ig from "../../static/ig.png";
 import Twitter from "../../static/twitter.png";
 import Link from "../../static/link.png";
-import { TweenMax } from "gsap";
 
 type TStyledFooterProps = {
   handleLinkChange: Function,

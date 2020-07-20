@@ -1,23 +1,12 @@
 // @flow
 
 import React from "react";
-import { Wrapper, Slider, Group } from "../../components";
+import { Wrapper, Slider, Group, FullImage } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import Slide1 from "../../static/slide1.png";
-import Slide2 from "../../static/slide2.png";
 import Slide3 from "../../static/slide3.png";
 import Slide4 from "../../static/slide4.png";
 import { TimelineMax } from "gsap";
-
-const SlideImg = styled.img`
-  height: 100%;
-  min-width: 100%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-`;
 
 const TextBox = styled.div`
   position: absolute;
@@ -310,7 +299,7 @@ const Work = () => {
       .to("#media-ball5", 3, { y: "34vh", ease: "power2.easeIn" }, "start")
       .to("#media-ball6", 3, { y: "34vh", ease: "power2.easeIn" }, "start");
 
-    var tl4 = new TimelineMax({ repeat: -1 });
+    var tl5 = new TimelineMax({ repeat: -1 });
     tl4
       .set("#exp-animation div", { y: "15", x: "120vw" })
       .add("start")
@@ -329,7 +318,7 @@ const Work = () => {
         "start+=1.75"
       );
 
-    var tl5 = new TimelineMax({ repeat: -1 })
+    var tl6 = new TimelineMax({ repeat: -1 })
       .set("#pro-ball1", {
         x: "-50%",
         left: "50%",
@@ -377,7 +366,7 @@ const Work = () => {
         "+=1"
       );
 
-    var tl6 = new TimelineMax({ repeat: -1 })
+    var tl7 = new TimelineMax({ repeat: -1 })
       .set("#social-animation div", {
         x: "25vw",
         y: "46vh",
@@ -540,6 +529,9 @@ const Work = () => {
         { x: "25vw", y: "46vh", ease: "power2.inOut" },
         "next6"
       );
+    tl5.play();
+    tl6.play();
+    tl7.play();
   }
 
   return (
@@ -686,7 +678,7 @@ const Work = () => {
           </Group>,
 
           <Group height="100vh">
-            <SlideImg src={Slide3} />
+            <FullImage src={Slide3} alt="placeholder" />
             <TextBox>
               <ServicesBigTitle> Title </ServicesBigTitle>
               <ServicesDesc>
@@ -699,7 +691,7 @@ const Work = () => {
             </TextBox>
           </Group>,
           <Group height="100vh">
-            <SlideImg src={Slide4} />
+            <FullImage src={Slide4} alt="placeholder" />
             <TextBox>
               <ServicesBigTitle> Title </ServicesBigTitle>
               <ServicesDesc>
