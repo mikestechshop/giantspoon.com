@@ -123,7 +123,6 @@ const Routes = () => {
           <Contact />
         </Route>
       </Switch>
-      <Footer handleLinkChange={handleLinkChange} />
     </>
   );
 };

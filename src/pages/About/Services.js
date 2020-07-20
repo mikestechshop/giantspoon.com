@@ -202,16 +202,81 @@ const Work = () => {
       .to("#service-ball1", 1.5, { y: "20vh", x: "12vw" })
       .fromTo(
         "#services-animation",
-        9,
+        1.5,
         {
           rotation: 0,
+        },
+        {
+          rotation: 60,
+          duration: 1,
+          ease: "power1.inOut",
+        },
+        0
+      )
+      .fromTo(
+        "#services-animation",
+        1.5,
+        {
+          rotation: 60,
+        },
+        {
+          rotation: 120,
+          duration: 1,
+          ease: "power1.inOut",
+        },
+        1.5
+      )
+      .fromTo(
+        "#services-animation",
+        1.5,
+        {
+          rotation: 120,
+        },
+        {
+          rotation: 180,
+          duration: 1,
+          ease: "power1.inOut",
+        },
+        3
+      )
+      .fromTo(
+        "#services-animation",
+        1.5,
+        {
+          rotation: 180,
+        },
+        {
+          rotation: 240,
+          duration: 1,
+          ease: "power1.inOut",
+        },
+        4.5
+      )
+      .fromTo(
+        "#services-animation",
+        1.5,
+        {
+          rotation: 240,
+        },
+        {
+          rotation: 300,
+          duration: 1,
+          ease: "power1.inOut",
+        },
+        6
+      )
+      .fromTo(
+        "#services-animation",
+        1.5,
+        {
+          rotation: 300,
         },
         {
           rotation: 360,
           duration: 1,
           ease: "power1.inOut",
         },
-        0
+        7.5
       );
     tl2.play();
 

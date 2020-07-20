@@ -1,260 +1,192 @@
 // @flow
 
-import React from "react";
-import { Wrapper, Group, Image, SimilarProject } from "../components";
-import ReactPlayer from "react-player";
-import playButton from "../static/playButton.png";
+import React, { useState } from "react";
+import { Footer, Slider, Group } from "../components";
+import ReactFullpage from "@fullpage/react-fullpage";
+import { TweenMax } from "gsap";
+
 import styled from "styled-components";
-import Carousel from "@brainhubeu/react-carousel";
-import "@brainhubeu/react-carousel/lib/style.css";
-import arrowLeft from "../static/arrow-left.png";
-import arrowRight from "../static/arrow-right.png";
-import Reveal from "react-reveal/Reveal";
 
 type TCaseStudyProps = {
   handleLinkChange: Function,
-  caseStudy: {
-    pageTitle: string,
-    pageSplashImage: {
-      fields: {
-        file: {
-          url: string,
-          title: string,
-        },
-      },
-    },
-    pageSplashVideo: {
-      fields: {
-        file: {
-          url: string,
-          title: string,
-        },
-      },
-    },
-    pageBodyText: { content: Array<Object> },
-    pageCampaignType: string,
-    pageAwards: { content: Array<Object> },
-    pageSlideShow: Array<Object>,
-    similarProject1Title: string,
-    similarProject1Url: string,
-    similarProject1Image: {
-      fields: {
-        file: {
-          url: string,
-          title: string,
-        },
-      },
-    },
-    similarProject2Title: string,
-    similarProject2Url: string,
-    similarProject2Image: {
-      fields: {
-        file: {
-          url: string,
-          title: string,
-        },
-      },
-    },
-    similarProject3Title: string,
-    similarProject3Url: string,
-    similarProject3Image: {
-      fields: {
-        file: {
-          url: string,
-          title: string,
-        },
-      },
-    },
-  },
 };
 
-const StyledPageTitle = styled.h1`
-  margin: 0;
-  font-size: 4rem;
-  bottom: 0;
-  margin-left: 8rem;
-  font-weight: 300;
-  transform: translateY(-50%);
-  align-content: left;
-  align-self: flex-start;
+const SectionWrap = styled.div`
+  position: relative;
+  background-color: ${(props) => props.bgc || "#0033a0"};
+`;
+const SlideImg = styled.img`
+  height: 100%;
+  min-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+const TextBox = styled.div`
+  position: absolute;
+  left: 10%;
+  bottom: 10%;
+  text-align: left;
+  color: white;
+  cursor: pointer;
 `;
 
-const SmallTextWrap = styled.p`
+const CampaignType = styled.div`
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 140%;
+  text-transform: uppercase;
+`;
+
+const NewsTitle = styled.h1`
+  line-height: 140%;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: ${(props) => props.fw || 300};
+`;
+const NewsDesc = styled.p`
   font-size: 1rem;
-  line-height: 1.4rem;
+  line-height: 140%;
   font-weight: 300;
-  margin: 0;
-  margin-bottom: ${(props) => props.mb || 0};
+  margin-bottom: 1rem;
+  width: 400px;
+  max-width: 90%;
 `;
-
-const TextGroupLeft = styled.div`
-  width: 55%;
-  padding-left: 8rem;
-  align-self: flex-start;
-  align-items: flex-start;
-  box-sizing: border-box;
+const BreadCrumbWrap = styled.div`
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 20px;
+  z-index: 1000;
+  &.hide {
+    display: none;
+  }
+  div {
+    height: 7px;
+    width: 7px;
+    margin: 5px 0px;
+    background: #fffcf2;
+    border-radius: 100%;
+  }
+  div.active {
+    background: #fe9b96;
+  }
 `;
-const TextGroupRight = styled.div`
-  width: 45%;
-  padding-left: 8rem;
-  align-self: flex-start;
-  align-items: flex-start;
-  box-sizing: border-box;
-`;
-const CarouselWrap = styled.div`
-  width: 100%;
-  box-sizing: border-box;
-  padding-left: 1rem;
-  padding-right: 1rem;
-`;
-
 const CaseStudy = (props: TCaseStudyProps) => {
   console.log(props);
   const {
     pageSplashImage,
     pageSplashVideo,
-    pageTitle,
-    pageBodyText,
-    pageCampaignType,
-    pageAwards,
-    pageSlideShow,
-    similarProject1Title,
-    similarProject1Url,
-    similarProject1Image,
-    similarProject2Title,
-    similarProject2Url,
-    similarProject2Image,
-    similarProject3Title,
-    similarProject3Url,
-    similarProject3Image,
+    pageGallery,
+    campaignTitle,
+    campaignType,
+    clientTitle,
+    pageBlurb,
   } = props.caseStudy;
+  console.log(pageGallery);
+  const [breadcrumbs, setBreadcrumbs] = useState(0);
   return (
-    <Wrapper>
-      <Group height="90vh">
-        <Reveal effect="animate__fadeIn" duration={1500}>
-          {" "}
-          {pageSplashVideo ? (
-            <ReactPlayer
-              url={pageSplashVideo.fields.file.url}
-              width="100%"
-              height="100%"
-              light={pageSplashImage.fields.file.url}
-              playIcon={
-                <Image
-                  src={playButton}
-                  alt="play button"
-                  height="75px"
-                  width="auto"
-                />
-              }
-            />
-          ) : (
-            <Image
-              height="auto"
-              width="100%"
-              src={pageSplashImage.fields.file.url}
-              alt={pageSplashImage.fields.file.title}
-            />
-          )}
-        </Reveal>
-      </Group>
-      <Reveal effect="animate__fadeIn" duration={1500}>
-        <StyledPageTitle>{pageTitle}</StyledPageTitle>
-      </Reveal>
-      <Group mt="3rem" flexDirection="row">
-        <TextGroupLeft>
-          <Reveal effect="animate__fadeInUp" duration={1500}>
-            {pageBodyText.content.map((content, index) => {
-              return (
-                <SmallTextWrap mb="2rem" key={index}>
-                  {content.content[0].value}
-                </SmallTextWrap>
-              );
-            })}
-          </Reveal>
-        </TextGroupLeft>
-        <TextGroupRight>
-          <Reveal effect="animate__fadeInUp" duration={1500}>
-            <SmallTextWrap mb="4rem">{pageCampaignType}</SmallTextWrap>
-            {pageAwards.content.map((content, index) => {
-              return (
-                <SmallTextWrap mb="1rem" key={index}>
-                  {content.content[0].value}
-                </SmallTextWrap>
-              );
-            })}
-          </Reveal>
-        </TextGroupRight>
-      </Group>
-      <Group mt="4rem">
-        <CarouselWrap>
-          <Reveal effect="animate__fadeIn" duration={1500}>
-            <Carousel
-              arrowLeft={
-                <Image
-                  src={arrowLeft}
-                  alt="arrow left"
-                  width="auto"
-                  height="50px"
-                />
-              }
-              arrowRight={
-                <Image
-                  src={arrowRight}
-                  alt="arrow-right"
-                  width="auto"
-                  height="50px"
-                />
-              }
-              addArrowClickHandler
-              infinite
-            >
-              {pageSlideShow.map((slide, index) => {
-                return (
-                  <Image
-                    width="70vw"
-                    height="auto"
-                    key={index}
-                    src={slide.fields.file.url}
-                    alt={slide.fields.title}
+    <>
+      <BreadCrumbWrap id="breadcrumbs">
+        {[...Array(4)].map((x, i) => {
+          if (i === breadcrumbs) {
+            return <div class="active" key={i} />;
+          } else {
+            return <div key={i} />;
+          }
+        })}
+      </BreadCrumbWrap>
+      <ReactFullpage
+        //fullpage options
+        licenseKey={"YOUR_KEY_HERE"}
+        scrollingSpeed={800} /* Options here */
+        onLeave={function (origin, destination, direction) {
+          setBreadcrumbs(destination.index);
+          if (destination.isLast) {
+            TweenMax.set("#breadcrumbs", { display: "none" });
+          } else {
+            TweenMax.set("#breadcrumbs", { display: "block" });
+          }
+        }}
+        render={({ state, fullpageApi }) => {
+          return (
+            <ReactFullpage.Wrapper>
+              <SectionWrap className="section">
+                {pageSplashVideo ? (
+                  {
+                    /* <Group height="90vh">
+                  <ReactPlayer
+                    url={workFields.splash.fields.file.url}
+                    width="100%"
+                    height="100%"
+                    light={workFields.splashPreview.fields.file.url}
+                    playIcon={
+                      <Image
+                        src={playButton}
+                        alt="play button"
+                        height="75px"
+                        width="auto"
+                      />
+                    }
                   />
-                );
-              })}
-            </Carousel>
-          </Reveal>
-        </CarouselWrap>
-      </Group>
-      <TextGroupLeft>
-        <Reveal effect="animate__fadeInUp" duration={1500}>
-          <SmallTextWrap mb="2rem">Similar Projects</SmallTextWrap>
-        </Reveal>
-      </TextGroupLeft>
-      <Group flexDirection="row">
-        <SimilarProject
-          title={similarProject1Title}
-          handleLinkChange={props.handleLinkChange}
-          url={similarProject1Url}
-          src={similarProject1Image.fields.file.url}
-          alt={similarProject1Image.fields.file.title}
-        />
-        <SimilarProject
-          ml="2%"
-          mr="2%"
-          title={similarProject2Title}
-          handleLinkChange={props.handleLinkChange}
-          url={similarProject2Url}
-          src={similarProject2Image.fields.file.url}
-          alt={similarProject2Image.fields.file.title}
-        />
-        <SimilarProject
-          title={similarProject3Title}
-          handleLinkChange={props.handleLinkChange}
-          url={similarProject3Url}
-          src={similarProject3Image.fields.file.url}
-          alt={similarProject3Image.fields.file.title}
-        />
-      </Group>
-    </Wrapper>
+                </Group> */
+                  }
+                ) : (
+                  <SlideImg
+                    src={pageSplashImage.fields.file.url}
+                    alt={pageSplashImage.fields.file.title}
+                  />
+                )}
+              </SectionWrap>
+              <SectionWrap className="section">
+                <Slider
+                  slideId={`${campaignTitle}-slider`}
+                  slides={pageGallery.map((image, index) => {
+                    if (index === 0) {
+                      return (
+                        <Group height="100vh" flexDirection="row">
+                          <Group width="40%" height="100vh" bgc="#0C2340">
+                            <TextBox>
+                              <CampaignType> {campaignType}</CampaignType>
+                              <NewsTitle>
+                                {clientTitle} <br />{" "}
+                                <strong>{campaignTitle} </strong>
+                              </NewsTitle>
+                              <NewsDesc>{pageBlurb}</NewsDesc>
+                            </TextBox>
+                          </Group>
+                          <Group width="60%" height="100vh">
+                            <SlideImg
+                              src={image.fields.file.url}
+                              alt={image.fields.title}
+                            />
+                          </Group>
+                        </Group>
+                      );
+                    } else {
+                      return (
+                        <Group height="100vh">
+                          <SlideImg
+                            src={image.fields.file.url}
+                            alt={image.fields.title}
+                          />
+                        </Group>
+                      );
+                    }
+                  })}
+                />
+              </SectionWrap>
+              <SectionWrap className="section">More Projects</SectionWrap>
+              <SectionWrap className="section">Lets Chat</SectionWrap>
+              <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
+                <Footer />
+              </SectionWrap>
+            </ReactFullpage.Wrapper>
+          );
+        }}
+      />
+    </>
   );
 };
 

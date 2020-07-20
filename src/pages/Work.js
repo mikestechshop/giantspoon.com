@@ -1,120 +1,145 @@
 // @flow
 
 import React from "react";
-import {
-  Wrapper,
-  Group,
-  FeaturedWorkPreview,
-  WorkPreview,
-  Image,
-} from "../components";
-import { useContentful } from "react-contentful";
+import ReactFullpage from "@fullpage/react-fullpage";
+import styled from "styled-components";
 import ReactPlayer from "react-player";
 import playButton from "../static/playButton.png";
-import styled from "styled-components";
-import Reveal from "react-reveal/Reveal";
+import { TweenMax } from "gsap";
+import { Footer, Group, Image } from "../components";
+import { useContentful } from "react-contentful";
+import Slide1 from "../static/pd_loop1.gif";
 
-type TWorkProps = {
-  handleLinkChange: Function,
-};
-
-const CtaText = styled.p`
-  font-size: 1rem;
-  line-height: 1.4rem;
-  align-self: flex-start;
-  margin: 0;
+const SectionWrap = styled.div`
+  position: relative;
+  background-color: ${(props) => props.bgc || "#0033a0"};
 `;
 
-const Work = (props: TWorkProps) => {
-  const { handleLinkChange } = props;
-  const workData = useContentful({
-    contentType: "work",
-  });
+const ScrollEffect = styled.div`
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: ${(props) => props.top || "initial"};
+  bottom: ${(props) => props.bottom || "initial"};
+  height: 0%;
+`;
 
+const ScrollEffectDiv = styled.div`
+  width: 100%;
+  height: 25%;
+  background-color: ${(props) => props.color || "auto"};
+`;
+const scrollAni = (id: string, html: string) => {
+  TweenMax.to(id, 0.35, { height: "35vh" });
+  TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
+  document.querySelector("#section-tab").innerHTML = html;
+};
+
+const SlideImg = styled.img`
+  height: 100%;
+  min-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
+const TextBox = styled.div`
+  position: absolute;
+  left: 10%;
+  bottom: 15%;
+  text-align: left;
+  color: white;
+  cursor: pointer;
+`;
+
+const CampaignType = styled.div`
+  font-size: 0.75rem;
+  font-weight: bold;
+  line-height: 140%;
+  text-transform: uppercase;
+`;
+
+const NewsTitle = styled.h1`
+  line-height: 140%;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: ${(props) => props.fw || 300};
+`;
+const NewsDesc = styled.p`
+  font-size: 1rem;
+  line-height: 140%;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  width: 400px;
+`;
+
+const Work = () => {
   const { data, error, fetched, loading } = useContentful({
     contentType: "caseStudy",
   });
-  if (loading || !fetched || workData.loading || !workData.fetched) {
+  if (loading || !fetched) {
     return null;
   }
 
-  if (error || workData.error) {
+  if (error) {
     console.error(error);
     return null;
   }
 
   const { items } = data;
-  const workFields = workData.data.items[0].fields;
-
+  console.log(items);
   return (
-    <Wrapper>
-      <Reveal effect="animate__fadeIn" duration={1500}>
-        <Group height="90vh">
-          <ReactPlayer
-            url={workFields.splash.fields.file.url}
-            width="100%"
-            height="100%"
-            light={workFields.splashPreview.fields.file.url}
-            playIcon={
-              <Image
-                src={playButton}
-                alt="play button"
-                height="75px"
-                width="auto"
-              />
-            }
-          />
-        </Group>
-      </Reveal>
-      <Group mt="4rem">
-        {items.map((item, index) => {
-          if (item.fields.featured) {
-            return (
-              <FeaturedWorkPreview
-                key={index}
-                imgSrc={item.fields.previewImage.fields.file.url || ""}
-                imgAlt={item.fields.previewImage.fields.file.title || ""}
-                title={item.fields.title || ""}
-                subtitle={item.fields.subtitle || ""}
-                body={item.fields.body || ""}
-                url={item.fields.url || ""}
-                handleLinkChange={handleLinkChange}
-              />
-            );
-          } else {
-            return null;
-          }
-        })}
-        {items.map((item, index) => {
-          if (item.fields.featured === false) {
-            return (
-              <WorkPreview
-                key={index}
-                imgSrc={item.fields.previewImage.fields.file.url || ""}
-                imgAlt={item.fields.previewImage.fields.file.title || ""}
-                title={item.fields.title || ""}
-                subtitle={item.fields.subtitle || ""}
-                url={item.fields.url || ""}
-                handleLinkChange={handleLinkChange}
-              />
-            );
-          } else {
-            return null;
-          }
-        })}
-      </Group>
-      <Group mt="10rem" mb="10rem" ml="5rem">
-        {workFields.cta.content.map((content, index) => {
-          return (
-            <CtaText>
-              <Reveal effect="animate__fadeInUp" duration={1500} wave>
-                {content.content[0].value}
-              </Reveal>
-            </CtaText>
-          );
-        })}
-      </Group>
-    </Wrapper>
+    <ReactFullpage
+      //fullpage options
+      licenseKey={"YOUR_KEY_HERE"}
+      scrollingSpeed={800} /* Options here */
+      render={({ state, fullpageApi }) => {
+        return (
+          <ReactFullpage.Wrapper>
+            <SectionWrap className="section">
+              Work Video Goes here
+              <ScrollEffect bottom="0%" id="scroll0Down">
+                <ScrollEffectDiv color="#FE9B96" />
+                <ScrollEffectDiv color="#B1C3D6" />
+                <ScrollEffectDiv color="#FFFCF2" />
+                <ScrollEffectDiv color="#0C2340" />
+              </ScrollEffect>
+            </SectionWrap>
+            {items.map((item) => {
+              const {
+                campaignTitle,
+                campaignType,
+                clientTitle,
+                previewBlurb,
+                previewMedia,
+              } = item.fields;
+              return (
+                <SectionWrap className="section">
+                  <SlideImg
+                    src={previewMedia.fields.file.url}
+                    alt={previewMedia.fields.title}
+                  />
+                  <TextBox>
+                    <CampaignType> {campaignType}</CampaignType>
+                    <NewsTitle>
+                      {clientTitle} <br /> <strong>{campaignTitle} </strong>
+                    </NewsTitle>
+                    <NewsDesc>{previewBlurb}</NewsDesc>
+                    <NewsDesc>View Project > </NewsDesc>
+                  </TextBox>
+                </SectionWrap>
+              );
+            })}
+            <SectionWrap className="section">More Work</SectionWrap>
+            <SectionWrap className="section">Lets Chat</SectionWrap>
+            <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
+              <Footer />
+            </SectionWrap>
+          </ReactFullpage.Wrapper>
+        );
+      }}
+    />
   );
 };
 
