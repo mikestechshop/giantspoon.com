@@ -1,22 +1,13 @@
 // @flow
 
 import React from "react";
-import { Wrapper, Slider, Group } from "../../components";
+import { Wrapper, Slider, Group, FullImage } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import Slide1 from "../../static/slide1.png";
 import Slide2 from "../../static/slide2.png";
 import Slide3 from "../../static/slide3.png";
 import Slide4 from "../../static/slide4.png";
-
-const SlideImg = styled.img`
-  height: 100%;
-  min-width: 100%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-`;
 
 const TextBox = styled.div`
   position: absolute;
@@ -41,7 +32,7 @@ const WorkDesc = styled.p`
 `;
 
 const Work = () => {
-  const [ref, inView] = useInView({
+  const [ref] = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true,
@@ -55,10 +46,10 @@ const Work = () => {
         slideId="work-slider"
         slides={[
           <Group height="100vh">
-            <SlideImg src={Slide1} />
+            <FullImage src={Slide1} alt="slide image" />
           </Group>,
           <Group height="100vh">
-            <SlideImg src={Slide2} />
+            <FullImage src={Slide2} alt="slide image" />
             <TextBox>
               <WorkTitle> Title </WorkTitle>
               <WorkDesc>
@@ -71,7 +62,7 @@ const Work = () => {
             </TextBox>
           </Group>,
           <Group height="100vh">
-            <SlideImg src={Slide3} />
+            <FullImage src={Slide3} alt="slide image" />
             <TextBox>
               <WorkTitle> Title </WorkTitle>
               <WorkDesc>
@@ -84,7 +75,7 @@ const Work = () => {
             </TextBox>
           </Group>,
           <Group height="100vh">
-            <SlideImg src={Slide4} />
+            <FullImage src={Slide4} alt="slide image" />
             <TextBox>
               <WorkTitle> Title </WorkTitle>
               <WorkDesc>

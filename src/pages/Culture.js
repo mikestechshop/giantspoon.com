@@ -6,29 +6,20 @@ import styled from "styled-components";
 import { TweenMax } from "gsap";
 import { Footer } from "../components";
 
+type TCultureProps = {
+  handleLinkChange: Function,
+};
+
 const SectionWrap = styled.div`
   position: relative;
   background-color: ${(props) => props.bgc || "#0033a0"};
 `;
-const ScrollEffect = styled.div`
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: ${(props) => props.top || "initial"};
-  bottom: ${(props) => props.bottom || "initial"};
-  height: 0%;
-`;
 
-const ScrollEffectDiv = styled.div`
-  width: 100%;
-  height: 25%;
-  background-color: ${(props) => props.color || "auto"};
-`;
 const scrollAni = (id: string) => {
   TweenMax.to(id, 0.35, { height: "35vh" });
   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
 };
-const Home = () => (
+const Culture = (props: TCultureProps) => (
   <ReactFullpage
     //fullpage options
     licenseKey={"YOUR_KEY_HERE"}
@@ -84,7 +75,7 @@ const Home = () => (
             news
           </SectionWrap>
           <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
-            <Footer />
+            <Footer handleLinkChange={props.handleLinkChange} />
           </SectionWrap>
         </ReactFullpage.Wrapper>
       );
@@ -92,4 +83,4 @@ const Home = () => (
   />
 );
 
-export default Home;
+export default Culture;

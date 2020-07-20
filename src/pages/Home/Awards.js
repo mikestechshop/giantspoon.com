@@ -1,20 +1,10 @@
 // @flow
 
 import React from "react";
-import { Wrapper, Group } from "../../components";
+import { Wrapper, Group, FullImage } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import AwardsBg from "../../static/awards-bg.png";
-import { TweenMax } from "gsap";
-
-const SlideImg = styled.img`
-  height: 100%;
-  min-width: 100%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-`;
 
 const TextBox = styled.div`
   position: absolute;
@@ -50,7 +40,7 @@ const Awards = () => {
     <Wrapper>
       <div ref={ref}></div>
       <Group height="100vh">
-        <SlideImg src={AwardsBg} />
+        <FullImage src={AwardsBg} alt="awards image" />
         <TextBox>
           <AwardsTitle> lorem ipsum about trophies </AwardsTitle>
           <AwardsDesc>

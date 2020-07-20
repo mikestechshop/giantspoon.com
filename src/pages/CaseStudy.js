@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useState } from "react";
-import { Footer, Slider, Group } from "../components";
+import { Footer, Slider, Group, FullImage } from "../components";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { TweenMax } from "gsap";
 
@@ -9,20 +9,14 @@ import styled from "styled-components";
 
 type TCaseStudyProps = {
   handleLinkChange: Function,
+  caseStudy: Object,
 };
 
 const SectionWrap = styled.div`
   position: relative;
   background-color: ${(props) => props.bgc || "#0033a0"};
 `;
-const SlideImg = styled.img`
-  height: 100%;
-  min-width: 100%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-`;
+
 const TextBox = styled.div`
   position: absolute;
   left: 10%;
@@ -133,7 +127,7 @@ const CaseStudy = (props: TCaseStudyProps) => {
                 </Group> */
                   }
                 ) : (
-                  <SlideImg
+                  <FullImage
                     src={pageSplashImage.fields.file.url}
                     alt={pageSplashImage.fields.file.title}
                   />
@@ -157,7 +151,7 @@ const CaseStudy = (props: TCaseStudyProps) => {
                             </TextBox>
                           </Group>
                           <Group width="60%" height="100vh">
-                            <SlideImg
+                            <FullImage
                               src={image.fields.file.url}
                               alt={image.fields.title}
                             />
@@ -167,7 +161,7 @@ const CaseStudy = (props: TCaseStudyProps) => {
                     } else {
                       return (
                         <Group height="100vh">
-                          <SlideImg
+                          <FullImage
                             src={image.fields.file.url}
                             alt={image.fields.title}
                           />
@@ -180,7 +174,7 @@ const CaseStudy = (props: TCaseStudyProps) => {
               <SectionWrap className="section">More Projects</SectionWrap>
               <SectionWrap className="section">Lets Chat</SectionWrap>
               <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
-                <Footer />
+                <Footer handleLinkChange={props.handleLinkChange} />
               </SectionWrap>
             </ReactFullpage.Wrapper>
           );

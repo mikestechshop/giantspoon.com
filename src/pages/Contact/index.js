@@ -4,8 +4,11 @@ import React from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import styled from "styled-components";
 import Intro from "./Intro";
-import { TweenMax } from "gsap";
 import { Footer, Group } from "../../components";
+
+type TContactProps = {
+  handleLinkChange: Function,
+};
 
 const SectionWrap = styled.div`
   position: relative;
@@ -40,12 +43,12 @@ const ScrollEffectDiv = styled.div`
   height: 25%;
   background-color: ${(props) => props.color || "auto"};
 `;
-const scrollAni = (id: string, html: string) => {
-  TweenMax.to(id, 0.35, { height: "35vh" });
-  TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
-  document.querySelector("#section-tab").innerHTML = html;
-};
-const Home = () => (
+// const scrollAni = (id: string, html: string) => {
+//   TweenMax.to(id, 0.35, { height: "35vh" });
+//   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
+//   document.querySelector("#section-tab").innerHTML = html;
+// };
+const Contact = (props: TContactProps) => (
   <ReactFullpage
     //fullpage options
     licenseKey={"YOUR_KEY_HERE"}
@@ -121,7 +124,7 @@ const Home = () => (
             </ScrollEffect>
           </SectionWrap>
           <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
-            <Footer />
+            <Footer handleLinkChange={props.handleLinkChange} />
           </SectionWrap>
         </ReactFullpage.Wrapper>
       );
@@ -129,4 +132,4 @@ const Home = () => (
   />
 );
 
-export default Home;
+export default Contact;

@@ -1,10 +1,9 @@
 // @flow
 
 import React, { useState } from "react";
-import { Wrapper } from "../../components";
+import { Wrapper, FullImage } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import { TweenMax } from "gsap";
 import Contact from "../../static/contact.png";
 import "gsap/TextPlugin";
 
@@ -24,15 +23,6 @@ const Text = styled.div`
   color: ${(props) => props.color || "white"};
 `;
 
-const SlideImg = styled.img`
-  height: 100%;
-  min-width: 100%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-`;
-
 const Paragraph = styled.p`
   font-family: interstate;
   font-style: normal;
@@ -48,13 +38,14 @@ const Intro = () => {
   });
   const [animationRun, setAnimationRun] = useState(false);
   if (inView && !animationRun) {
+    // $FlowFixMe
     document.querySelector("#section-tab").innerHTML = "Contact";
     setAnimationRun(true);
   }
   return (
     <Wrapper>
       <div ref={ref}></div>
-      <SlideImg src={Contact} alt="contact-bg" />
+      <FullImage src={Contact} alt="contact-bg" />
       <TextBox>
         <LargeTextWrap>
           <Text color="#FE9B96">We’d Love to</Text>
