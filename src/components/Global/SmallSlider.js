@@ -10,18 +10,19 @@ import ArrowLeft from "../../static/arrow-left.png";
 type TSliderProps = {
   slideId: string,
   slides: Array<Node>,
+  height?: string,
 };
 
 const SlideWrap = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
+  height: ${(props) => props.height || "100%"};
   display: inline-flex;
 `;
 const Slide = styled.div`
   height: 100%;
-  width: ${(props) => props.width || "90vw"};
+  width: ${(props) => props.width || "30vw"};
   position: relative;
   overflow: hidden;
 `;
@@ -45,7 +46,7 @@ const ArrowLeftWrap = styled.div`
   z-index: 999;
 `;
 const slideRight = (count, slidesLegnth, id) => {
-  TweenMax.to(id, 0.5, { x: "-=90vw" });
+  TweenMax.to(id, 0.5, { x: "-=30vw" });
   console.log(count);
   if (count + 2 >= slidesLegnth) {
     TweenMax.to(id + "-arrow-right", 0.5, {
@@ -53,7 +54,7 @@ const slideRight = (count, slidesLegnth, id) => {
       pointerEvents: "none",
     });
   }
-  if (count === 0) {
+  if (count === 2) {
     TweenMax.to(id + "-arrow-left", 0.5, {
       autoAlpha: 1,
       pointerEvents: "all",
@@ -61,14 +62,14 @@ const slideRight = (count, slidesLegnth, id) => {
   }
 };
 const slideLeft = (count, slidesLegnth, id) => {
-  TweenMax.to(id, 0.5, { x: "+=90vw" });
+  TweenMax.to(id, 0.5, { x: "+=30vw" });
   if (count + 1 === slidesLegnth) {
     TweenMax.to(id + "-arrow-right", 0.5, {
       autoAlpha: 1,
       pointerEvents: "all",
     });
   }
-  if (count - 1 <= 0) {
+  if (count - 3 <= 0) {
     TweenMax.to(id + "-arrow-left", 0.5, {
       autoAlpha: 0,
       pointerEvents: "none",
@@ -89,20 +90,16 @@ const onMouseExit = () => {
   TweenMax.set(".hoverable", { cursor: "default" });
 };
 const Work = (props: TSliderProps) => {
-  const { slideId, slides } = props;
+  const { slideId, slides, height } = props;
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(2);
 
   return (
     <div>
-      <SlideWrap id={slideId}>
+      <SlideWrap id={slideId} height={height}>
         {slides.map((slide, i) => {
           if (i === 0 || i === slides.length - 1) {
-            return (
-              <Slide width="95vw" key={i}>
-                {slide}
-              </Slide>
-            );
+            return <Slide key={i}>{slide}</Slide>;
           } else {
             return <Slide key={i}>{slide}</Slide>;
           }

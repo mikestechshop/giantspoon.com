@@ -36,6 +36,8 @@ const SmallText = styled.div`
   line-height: 140%;
   margin-top: ${(props) => props.mt || 0};
   color: ${(props) => props.color || "#B1C3D6"};
+  width: 400px;
+  marin-left: 20%;
 `;
 
 const ScrollEffectDiv = styled.div`

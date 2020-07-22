@@ -5,6 +5,8 @@ import ReactFullpage from "@fullpage/react-fullpage";
 import Services from "./Services";
 import styled from "styled-components";
 import Intro from "./Intro";
+import Partners from "./Partners";
+import Awards from "./Awards";
 import { TweenMax } from "gsap";
 import { Footer } from "../../components";
 
@@ -30,6 +32,7 @@ const ScrollEffectDiv = styled.div`
   height: 25%;
   background-color: ${(props) => props.color || "auto"};
 `;
+
 const scrollAni = (id: string, html: string) => {
   TweenMax.to(id, 0.35, { height: "35vh" });
   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
@@ -100,8 +103,13 @@ const Home = (props: TAboutProps) => (
               <ScrollEffectDiv color="#0C2340" />
             </ScrollEffect>
           </SectionWrap>
-          <SectionWrap className="section">Partners</SectionWrap>
-          <SectionWrap className="section">Awards</SectionWrap>
+          <SectionWrap className="section">
+            <Partners />
+          </SectionWrap>
+          <SectionWrap className="section" bgc="#0C2340">
+            <Awards />
+          </SectionWrap>
+
           <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
             <Footer handleLinkChange={props.handleLinkChange} />
           </SectionWrap>

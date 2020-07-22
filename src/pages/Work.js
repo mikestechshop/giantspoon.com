@@ -3,7 +3,7 @@
 import React from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import styled from "styled-components";
-import { Footer, FullImage } from "../components";
+import { Footer, FullImage, MoreProjects } from "../components";
 import { useContentful } from "react-contentful";
 
 type TWorkProps = {
@@ -97,7 +97,7 @@ const Work = (props: TWorkProps) => {
                 <ScrollEffectDiv color="#0C2340" />
               </ScrollEffect>
             </SectionWrap>
-            {items.map((item) => {
+            {items.map((item, i) => {
               const {
                 campaignTitle,
                 campaignType,
@@ -106,7 +106,7 @@ const Work = (props: TWorkProps) => {
                 previewMedia,
               } = item.fields;
               return (
-                <SectionWrap className="section">
+                <SectionWrap key={i} className="section">
                   <FullImage
                     src={previewMedia.fields.file.url}
                     alt={previewMedia.fields.title}
@@ -122,8 +122,9 @@ const Work = (props: TWorkProps) => {
                 </SectionWrap>
               );
             })}
-            <SectionWrap className="section">More Work</SectionWrap>
-            <SectionWrap className="section">Lets Chat</SectionWrap>
+            <SectionWrap className="section" bgc="#0C2340">
+              <MoreProjects />
+            </SectionWrap>
             <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
               <Footer handleLinkChange={props.handleLinkChange} />
             </SectionWrap>
