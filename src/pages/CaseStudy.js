@@ -1,7 +1,14 @@
 // @flow
 
 import React, { useState } from "react";
-import { Footer, Slider, Group, FullImage } from "../components";
+import {
+  Footer,
+  Slider,
+  Group,
+  FullImage,
+  Breadcrumbs,
+  MoreProjects,
+} from "../components";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { TweenMax } from "gsap";
 
@@ -47,26 +54,7 @@ const NewsDesc = styled.p`
   width: 400px;
   max-width: 90%;
 `;
-const BreadCrumbWrap = styled.div`
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 20px;
-  z-index: 1000;
-  &.hide {
-    display: none;
-  }
-  div {
-    height: 7px;
-    width: 7px;
-    margin: 5px 0px;
-    background: #fffcf2;
-    border-radius: 100%;
-  }
-  div.active {
-    background: #fe9b96;
-  }
-`;
+
 const CaseStudy = (props: TCaseStudyProps) => {
   console.log(props);
   const {
@@ -82,15 +70,7 @@ const CaseStudy = (props: TCaseStudyProps) => {
   const [breadcrumbs, setBreadcrumbs] = useState(0);
   return (
     <>
-      <BreadCrumbWrap id="breadcrumbs">
-        {[...Array(4)].map((x, i) => {
-          if (i === breadcrumbs) {
-            return <div class="active" key={i} />;
-          } else {
-            return <div key={i} />;
-          }
-        })}
-      </BreadCrumbWrap>
+      <Breadcrumbs count={4} active={breadcrumbs} />
       <ReactFullpage
         //fullpage options
         licenseKey={"YOUR_KEY_HERE"}
@@ -139,7 +119,7 @@ const CaseStudy = (props: TCaseStudyProps) => {
                   slides={pageGallery.map((image, index) => {
                     if (index === 0) {
                       return (
-                        <Group height="100vh" flexDirection="row">
+                        <Group height="100vh" flexDirection="row" key={index}>
                           <Group width="40%" height="100vh" bgc="#0C2340">
                             <TextBox>
                               <CampaignType> {campaignType}</CampaignType>
@@ -160,7 +140,7 @@ const CaseStudy = (props: TCaseStudyProps) => {
                       );
                     } else {
                       return (
-                        <Group height="100vh">
+                        <Group height="100vh" key={index}>
                           <FullImage
                             src={image.fields.file.url}
                             alt={image.fields.title}
@@ -171,8 +151,9 @@ const CaseStudy = (props: TCaseStudyProps) => {
                   })}
                 />
               </SectionWrap>
-              <SectionWrap className="section">More Projects</SectionWrap>
-              <SectionWrap className="section">Lets Chat</SectionWrap>
+              <SectionWrap className="section" bgc="#0C2340">
+                <MoreProjects />
+              </SectionWrap>
               <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
                 <Footer handleLinkChange={props.handleLinkChange} />
               </SectionWrap>

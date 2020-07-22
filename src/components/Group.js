@@ -15,6 +15,7 @@ type TWrapperProps = {
   mr?: string,
   width?: string,
   bgc?: string,
+  flexWrap?: string,
 };
 
 const StyledGroup = styled.div`
@@ -23,6 +24,7 @@ const StyledGroup = styled.div`
   box-sizing: border-box;
   overflow: hidden;
   flex-direction: ${(props) => props.flexDirection || "column"};
+  flex-wrap: ${(props) => props.flexWrap || "nowrap"};
   align-items: ${(props) => props.flexAlign || "center"};
   position: relative;
   height: ${(props) => props.height || "auto"};
@@ -45,6 +47,7 @@ const Wrapper = (props: TWrapperProps) => {
     bgc,
     flexAlign,
     flexDirection,
+    flexWrap,
   } = props;
   return (
     <StyledGroup
@@ -55,6 +58,7 @@ const Wrapper = (props: TWrapperProps) => {
       ml={ml}
       flexAlign={flexAlign}
       flexDirection={flexDirection}
+      flexWrap={flexWrap}
       bgc={bgc}
       width={width}
     >
