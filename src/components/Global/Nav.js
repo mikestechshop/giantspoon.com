@@ -10,6 +10,7 @@ import Ig from "../../static/ig.png";
 import Twitter from "../../static/twitter.png";
 import Link from "../../static/link.png";
 import { TweenMax } from "gsap";
+import { useContentful } from "react-contentful";
 
 type TStyledNavProps = {
   //   src: string,
@@ -36,7 +37,7 @@ const LogoVertWrap = styled.div`
 `;
 const DateWrap = styled.div`
   position: fixed;
-  bottom: 140px;
+  bottom: 168px;
   right: -1px;
   z-index: 999;
   cursor: pointer;
@@ -46,6 +47,7 @@ const DateWrap = styled.div`
   line-height: 1.1rem;
   transform: rotate(270deg);
   transform-origin: 50% 50%;
+  z-index: 99;
 `;
 const NYLAWrap = styled.div`
   position: fixed;
@@ -145,9 +147,36 @@ const NavWrap = styled.div`
     rgba(255, 255, 255, 0) 40%,
     rgba(0, 0, 0, 0.5340511204481793) 100%
   );
-  z-index: 1000;
+  z-index: 9;
   pointer-events: none;
   background-blend-mode: multiply;
+`;
+
+const ThoughtOfTheDay = styled.div`
+  position: fixed;
+  top: 220px;
+  left: 0;
+  background: #fffcf2;
+  height: 60vh;
+  width: 100%;
+  z-index: 98;
+  padding: 2.5rem 2rem;
+  opacity: 0;
+  pointer-events: none;
+  h2 {
+    font-size: 16px;
+    mb: 1.5rem;
+    color: #0033a0;
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 3.2rem;
+    line-height: 140%;
+    color: #0c2340;
+    font-weight: 300;
+    width: 70%;
+    margin-top: 0;
+  }
 `;
 
 const handleMenuOpen = (open) => {
@@ -175,6 +204,27 @@ const handleMenuOpen = (open) => {
     });
   }
 };
+const handleThoughtOpen = (open) => {
+  if (!open) {
+    TweenMax.to("#thought", 0.4, {
+      opacity: 1,
+      ease: "power3.inOut",
+    });
+    TweenMax.to("#date", 0.4, {
+      color: "#0C2340",
+      ease: "power3.inOut",
+    });
+  } else {
+    TweenMax.to("#thought", 0.4, {
+      opacity: 0,
+      ease: "power3.inOut",
+    });
+    TweenMax.to("#date", 0.4, {
+      color: "#FE9B96",
+      ease: "power3.inOut",
+    });
+  }
+};
 const resetMenu = () => {
   TweenMax.set(".menu-wrap", {
     opacity: 0,
@@ -192,9 +242,33 @@ const resetMenu = () => {
 };
 const Nav = (props: TStyledNavProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [thoughtOpen, setThoughtOpen] = useState(false);
+  const { data, error, fetched, loading } = useContentful({
+    contentType: "thoughtOfTheDay",
+  });
+  if (loading || !fetched) {
+    return null;
+  }
+
+  if (error) {
+    console.error(error);
+    return null;
+  }
+  const date = new Date();
+  let year = date.getFullYear();
+
+  let month = (1 + date.getMonth()).toString();
+  month = month.length > 1 ? month : "0" + month;
+
+  let day = date.getDate().toString();
+  day = day.length > 1 ? day : "0" + day;
+
+  const todaysDate = month + "." + day + "." + year;
+  const { items } = data;
   const { handleLinkChange } = props;
   return (
     <>
+      <NavWrap></NavWrap>
       <MenuDotsWrap
         className="menu-link"
         onClick={() => {
@@ -214,13 +288,24 @@ const Nav = (props: TStyledNavProps) => {
       >
         <Image src={LogoVert} alt="menu nav" />
       </LogoVertWrap>
-      <DateWrap id="date" className="bottom-links">
-        01.01.2020
+      <DateWrap
+        id="date"
+        onClick={() => {
+          handleThoughtOpen(thoughtOpen);
+          setThoughtOpen(!thoughtOpen);
+        }}
+        className="bottom-links"
+      >
+        {todaysDate}
       </DateWrap>
       <NYLAWrap id="ny-la" className="bottom-links">
         NY <br /> LA
       </NYLAWrap>
-      <NavWrap></NavWrap>
+      <ThoughtOfTheDay id="thought">
+        <h2> Here's a thought </h2>
+        <h1>{items[0].fields.thought}</h1>
+      </ThoughtOfTheDay>
+
       <SectionTab>
         <SmallText id="section-tab"> Welcome </SmallText>
       </SectionTab>
