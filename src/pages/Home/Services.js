@@ -4,8 +4,19 @@ import React from "react";
 import { Wrapper, Group, FullImage } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import ServicesBg from "../../static/services-bg.png";
 import { TweenMax } from "gsap";
+import Crane from "../../static/Crane.png";
+
+type TServicesProps = {
+  blurbs: {
+    strategyBlurb: string,
+    creativeBlurb: string,
+    experientialBlurb: string,
+    mediaBlurb: string,
+    productionBlurb: string,
+    socialBlurb: string,
+  },
+};
 
 const TextBox = styled.div`
   position: absolute;
@@ -71,75 +82,76 @@ const onMouseExit = () => {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. At commodo, bibendum id interdum lobortis praesent lectus. Ullamcorper non pretium tincidunt felis amet. A eget tellus et, amet, accumsan.";
 };
 
-const Services = () => {
+const Services = (props: TServicesProps) => {
   const [ref] = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true,
   });
+  const {
+    strategyBlurb,
+    creativeBlurb,
+    experientialBlurb,
+    mediaBlurb,
+    productionBlurb,
+    socialBlurb,
+  } = props.blurbs;
 
   return (
     <Wrapper>
       <div ref={ref}></div>
       <Group height="100vh">
-        <FullImage src={ServicesBg} alt="services background" />
+        <FullImage src={Crane} alt="services background" />
         <TextBox>
-          <ServicesTitle id="service-title"> Title </ServicesTitle>
-          <ServicesDesc id="service-desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. At commodo,
-            bibendum id interdum lobortis praesent lectus. Ullamcorper non
-            pretium tincidunt felis amet. A eget tellus et, amet, accumsan.
-          </ServicesDesc>
+          <ServicesTitle id="service-title"> Strategy </ServicesTitle>
+          <ServicesDesc id="service-desc">{strategyBlurb}</ServicesDesc>
           <ServicesDesc>See More > </ServicesDesc>
         </TextBox>
         <ServicesList className="hoverable">
           <ServicesSpan
-            onMouseEnter={() =>
-              onHover(
-                "#B1C3D6",
-                "Services",
-                "brand strategy, brand positioning, brand architecture, communications planning, audience insights and personas, customer journey mapping, creative strategy and brief development, content strategy, and of course, research"
-              )
-            }
+            onMouseEnter={() => onHover("#B1C3D6", "Services", strategyBlurb)}
             onMouseLeave={() => onMouseExit()}
           >
             Strategy
           </ServicesSpan>
           <br />
           <ServicesSpan
-            onMouseEnter={() => onHover("#FE9B96")}
+            onMouseEnter={() => onHover("#FE9B96", "Creative", creativeBlurb)}
             onMouseLeave={() => onMouseExit()}
           >
             Creative
           </ServicesSpan>
           <br />
           <ServicesSpan
-            onMouseEnter={() => onHover("#0033A0")}
+            onMouseEnter={() => onHover("#0033A0", "Media", mediaBlurb)}
             onMouseLeave={() => onMouseExit()}
           >
             Media
           </ServicesSpan>
           <br />
           <ServicesSpan
-            onMouseEnter={() => onHover("#B1C3D6")}
+            onMouseEnter={() =>
+              onHover("#B1C3D6", "Production", productionBlurb)
+            }
             onMouseLeave={() => onMouseExit()}
           >
             Production
           </ServicesSpan>
           <br />
           <ServicesSpan
-            onMouseEnter={() => onHover("#FE9B96")}
+            onMouseEnter={() => onHover("#FE9B96", "Social", socialBlurb)}
             onMouseLeave={() => onMouseExit()}
           >
             Social
           </ServicesSpan>
           <br />
           <ServicesSpan
-            onMouseEnter={() => onHover("#0033A0")}
+            onMouseEnter={() =>
+              onHover("#0033A0", "Experiential", experientialBlurb)
+            }
             onMouseLeave={() => onMouseExit()}
           >
-            {" "}
-            Experiential{" "}
+            Experiential
           </ServicesSpan>
           <br />
         </ServicesList>

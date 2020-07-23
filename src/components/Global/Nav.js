@@ -38,16 +38,19 @@ const LogoVertWrap = styled.div`
 const DateWrap = styled.div`
   position: fixed;
   bottom: 168px;
-  right: -1px;
+  right: -8px;
   z-index: 999;
   cursor: pointer;
   color: #fe9b96;
   font-size: 0.75rem;
   letter-spacing: 0.1rem;
   line-height: 1.1rem;
-  transform: rotate(270deg);
+  transform: rotate(90deg);
   transform-origin: 50% 50%;
   z-index: 99;
+  font-family: interstate-mono, monospace;
+  font-weight: 400;
+  font-style: normal;
 `;
 const NYLAWrap = styled.div`
   position: fixed;
@@ -59,6 +62,9 @@ const NYLAWrap = styled.div`
   font-size: 0.75rem;
   letter-spacing: 0.1rem;
   line-height: 1.1rem;
+  font-family: interstate-mono, monospace;
+  font-weight: 400;
+  font-style: normal;
 `;
 const SectionTab = styled.div`
   position: fixed;

@@ -29,7 +29,7 @@ const Box = styled.div`
 `;
 
 const TextWrap = styled.p`
-  font-size: 1.2rem;
+  font-size: 1rem;
   line-height: 1.8rem;
   font-weight: 300;
   margin: 0;

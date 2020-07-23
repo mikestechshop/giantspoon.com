@@ -6,6 +6,11 @@ import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import AwardsBg from "../../static/awards-bg.png";
 
+type TAwardsProps = {
+  awardsBlurb: string,
+  awardsTitle: string,
+};
+
 const TextBox = styled.div`
   position: absolute;
   left: 10%;
@@ -29,12 +34,14 @@ const AwardsDesc = styled.p`
   width: 30vw;
 `;
 
-const Awards = () => {
+const Awards = (props: TAwardsProps) => {
   const [ref] = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true,
   });
+
+  const { awardsTitle, awardsBlurb } = props;
 
   return (
     <Wrapper>
@@ -42,12 +49,8 @@ const Awards = () => {
       <Group height="100vh">
         <FullImage src={AwardsBg} alt="awards image" />
         <TextBox>
-          <AwardsTitle> lorem ipsum about trophies </AwardsTitle>
-          <AwardsDesc>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. At commodo,
-            bibendum id interdum lobortis praesent lectus. Ullamcorper non
-            pretium tincidunt felis amet. A eget tellus et, amet, accumsan.
-          </AwardsDesc>
+          <AwardsTitle> {awardsTitle} </AwardsTitle>
+          <AwardsDesc>{awardsBlurb}</AwardsDesc>
           <AwardsDesc>See More > </AwardsDesc>
         </TextBox>
       </Group>

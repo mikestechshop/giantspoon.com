@@ -5,10 +5,10 @@ import { Wrapper, Slider, Group, FullImage } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import Slide1 from "../../static/slide1.png";
-import Slide2 from "../../static/slide2.png";
-import Slide3 from "../../static/slide3.png";
-import Slide4 from "../../static/slide4.png";
 
+type TWorkProps = {
+  caseStudyItems: Array<Object>,
+};
 const TextBox = styled.div`
   position: absolute;
   left: 10%;
@@ -31,13 +31,34 @@ const WorkDesc = styled.p`
   width: 30vw;
 `;
 
-const Work = () => {
+const Work = (props: TWorkProps) => {
   const [ref] = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true,
   });
 
+  const { caseStudyItems } = props;
+
+  const featuredCaseStudies = caseStudyItems
+    .filter((caseStudy) => {
+      return caseStudy.fields.featured;
+    })
+    .map((caseStudy, index) => {
+      return (
+        <Group height="100vh">
+          <FullImage
+            src={caseStudy.fields.previewMedia.fields.file.url}
+            alt={caseStudy.fields.previewMedia.fields.title}
+          />
+          <TextBox>
+            <WorkTitle> {caseStudy.fields.campaignTitle} </WorkTitle>
+            <WorkDesc>{caseStudy.fields.previewBlurb}</WorkDesc>
+            <WorkDesc>See More > </WorkDesc>
+          </TextBox>
+        </Group>
+      );
+    });
   return (
     <Wrapper>
       <div ref={ref}></div>
@@ -48,45 +69,7 @@ const Work = () => {
           <Group height="100vh">
             <FullImage src={Slide1} alt="slide image" />
           </Group>,
-          <Group height="100vh">
-            <FullImage src={Slide2} alt="slide image" />
-            <TextBox>
-              <WorkTitle> Title </WorkTitle>
-              <WorkDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
-              </WorkDesc>
-              <WorkDesc>See More > </WorkDesc>
-            </TextBox>
-          </Group>,
-          <Group height="100vh">
-            <FullImage src={Slide3} alt="slide image" />
-            <TextBox>
-              <WorkTitle> Title </WorkTitle>
-              <WorkDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
-              </WorkDesc>
-              <WorkDesc>See More > </WorkDesc>
-            </TextBox>
-          </Group>,
-          <Group height="100vh">
-            <FullImage src={Slide4} alt="slide image" />
-            <TextBox>
-              <WorkTitle> Title </WorkTitle>
-              <WorkDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
-              </WorkDesc>
-              <WorkDesc>See More > </WorkDesc>
-            </TextBox>
-          </Group>,
+          ...featuredCaseStudies,
           <Group height="100vh" bgc="#0C2340">
             <TextBox>
               <WorkTitle>

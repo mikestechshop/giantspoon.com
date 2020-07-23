@@ -97,33 +97,41 @@ const Work = (props: TWorkProps) => {
                 <ScrollEffectDiv color="#0C2340" />
               </ScrollEffect>
             </SectionWrap>
-            {items.map((item, i) => {
-              const {
-                campaignTitle,
-                campaignType,
-                clientTitle,
-                previewBlurb,
-                previewMedia,
-              } = item.fields;
-              return (
-                <SectionWrap key={i} className="section">
-                  <FullImage
-                    src={previewMedia.fields.file.url}
-                    alt={previewMedia.fields.title}
-                  />
-                  <TextBox>
-                    <CampaignType> {campaignType}</CampaignType>
-                    <NewsTitle>
-                      {clientTitle} <br /> <strong>{campaignTitle} </strong>
-                    </NewsTitle>
-                    <NewsDesc>{previewBlurb}</NewsDesc>
-                    <NewsDesc>View Project > </NewsDesc>
-                  </TextBox>
-                </SectionWrap>
-              );
-            })}
+            {items
+              .filter((item) => {
+                return item.fields.featured;
+              })
+              .map((item, i) => {
+                const {
+                  campaignTitle,
+                  campaignType,
+                  clientTitle,
+                  previewBlurb,
+                  previewMedia,
+                } = item.fields;
+                return (
+                  <SectionWrap key={i} className="section">
+                    <FullImage
+                      src={previewMedia.fields.file.url}
+                      alt={previewMedia.fields.title}
+                    />
+                    <TextBox>
+                      <CampaignType> {campaignType}</CampaignType>
+                      <NewsTitle>
+                        {clientTitle} <br /> <strong>{campaignTitle} </strong>
+                      </NewsTitle>
+                      <NewsDesc>{previewBlurb}</NewsDesc>
+                      <NewsDesc>View Project > </NewsDesc>
+                    </TextBox>
+                  </SectionWrap>
+                );
+              })}
             <SectionWrap className="section" bgc="#0C2340">
-              <MoreProjects />
+              <MoreProjects
+                projects={items.filter((item) => {
+                  return !item.fields.featured;
+                })}
+              />
             </SectionWrap>
             <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
               <Footer handleLinkChange={props.handleLinkChange} />
