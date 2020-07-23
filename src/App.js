@@ -109,6 +109,7 @@ const Routes = () => {
               <CaseStudy
                 handleLinkChange={handleLinkChange}
                 caseStudy={item.fields}
+                projects={data.items}
               />
             </Route>
           );

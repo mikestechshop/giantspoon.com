@@ -4,11 +4,10 @@ import React from "react";
 import { Wrapper, Slider, Group, FullImage } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import Slide1 from "../../static/pd_loop1.gif";
-import Slide2 from "../../static/news-slide-2.png";
-import Tribeca from "../../static/tribeca-logo.png";
-import Adweek from "../../static/adweek-logo.png";
 
+type TNewsProps = {
+  newsItems: Array<Object>,
+};
 const TextBox = styled.div`
   position: absolute;
   left: 10%;
@@ -34,52 +33,51 @@ const NewsDesc = styled.p`
   font-weight: 300;
   margin-bottom: 1rem;
   width: 30vw;
+  a {
+    color: white;
+    text-decoration: none;
+  }
 `;
 
-const News = () => {
+const News = (props: TNewsProps) => {
   const [ref] = useInView({
     /* Optional options */
     threshold: 0,
     triggerOnce: true,
   });
+  console.log(props.newsItems);
+
+  const newsItemsArray = props.newsItems
+    .filter((news, index) => {
+      return index < 3;
+    })
+    .map((news, index) => {
+      return (
+        <Group height="100vh">
+          <FullImage
+            src={news.fields.image.fields.file.url}
+            alt={news.fields.image.fields.title}
+          />
+          <TextBox>
+            <NewsImg
+              src={news.fields.publicationImage.fields.file.url}
+              alt={news.fields.publicationImage.fields.title}
+            />
+            <NewsTitle> {news.fields.title} </NewsTitle>
+            <NewsDesc>{news.fields.blurb}</NewsDesc>
+            <NewsDesc>
+              {" "}
+              <a href={news.fields.url}>See More > </a>
+            </NewsDesc>
+          </TextBox>
+        </Group>
+      );
+    });
 
   return (
     <Wrapper height="100vh">
       <div ref={ref}></div>
-      <Slider
-        slideId="news-slider"
-        slides={[
-          <Group height="100vh">
-            <FullImage src={Slide1} alt="news image" />
-            <TextBox>
-              <NewsImg src={Tribeca} />
-              <NewsTitle> Title </NewsTitle>
-              <NewsDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
-              </NewsDesc>
-              <NewsDesc>See More > </NewsDesc>
-            </TextBox>
-          </Group>,
-          <Group height="100vh">
-            <FullImage src={Slide2} alt="placeholder" />
-
-            <TextBox>
-              <NewsImg src={Adweek} />
-              <NewsTitle> Title </NewsTitle>
-              <NewsDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
-              </NewsDesc>
-              <NewsDesc>See More > </NewsDesc>
-            </TextBox>
-          </Group>,
-        ]}
-      />
+      <Slider slideId="news-slider" slides={newsItemsArray} />
     </Wrapper>
   );
 };

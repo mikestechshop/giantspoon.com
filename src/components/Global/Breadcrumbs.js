@@ -6,6 +6,7 @@ import styled from "styled-components";
 type TBreadcrumbsProps = {
   count: number,
   active: number,
+  hideFirst?: boolean,
 };
 
 const StyledBreadcrumbs = styled.div`
@@ -30,9 +31,9 @@ const StyledBreadcrumbs = styled.div`
 `;
 
 const Breadcrumbs = (props: TBreadcrumbsProps) => {
-  const { count, active } = props;
+  const { count, active, hideFirst } = props;
   return (
-    <StyledBreadcrumbs id="breadcrumbs">
+    <StyledBreadcrumbs className={hideFirst ? "hide" : ""} id="breadcrumbs">
       {[...Array(count)].map((x, i) => {
         if (i === active) {
           return <div className="active" key={i} />;

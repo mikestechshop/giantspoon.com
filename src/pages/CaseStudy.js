@@ -17,6 +17,7 @@ import styled from "styled-components";
 type TCaseStudyProps = {
   handleLinkChange: Function,
   caseStudy: Object,
+  projects: Array<Object>,
 };
 
 const SectionWrap = styled.div`
@@ -152,7 +153,11 @@ const CaseStudy = (props: TCaseStudyProps) => {
                 />
               </SectionWrap>
               <SectionWrap className="section" bgc="#0C2340">
-                <MoreProjects />
+                <MoreProjects
+                  projects={props.projects.filter((project) => {
+                    return project.fields.campaignTitle !== campaignTitle;
+                  })}
+                />
               </SectionWrap>
               <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
                 <Footer handleLinkChange={props.handleLinkChange} />
