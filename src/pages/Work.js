@@ -3,8 +3,11 @@
 import React from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import styled from "styled-components";
-import { Footer, FullImage, MoreProjects } from "../components";
+import { Footer, FullImage, MoreProjects, Group, Image } from "../components";
 import { useContentful } from "react-contentful";
+import Video from "../static/video.mp4";
+import playButton from "../static/playButton.png";
+import ReactPlayer from "react-player";
 
 type TWorkProps = {
   handleLinkChange: Function,
@@ -42,6 +45,10 @@ const TextBox = styled.div`
   text-align: left;
   color: white;
   cursor: pointer;
+
+  @media (max-width: 1024px) {
+    bottom: 5vh;
+  }
 `;
 
 const CampaignType = styled.div`
@@ -49,6 +56,10 @@ const CampaignType = styled.div`
   font-weight: bold;
   line-height: 140%;
   text-transform: uppercase;
+  font-family: interstate-mono, monospace;
+  @media (max-width: 1024px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const NewsTitle = styled.h1`
@@ -56,6 +67,11 @@ const NewsTitle = styled.h1`
   font-size: 2rem;
   margin-bottom: 1rem;
   font-weight: ${(props) => props.fw || 300};
+  @media (max-width: 1024px) {
+    font-weight: 300;
+    margin: 1rem 0rem;
+    width: 70vw;
+  }
 `;
 const NewsDesc = styled.p`
   font-size: 1rem;
@@ -63,8 +79,17 @@ const NewsDesc = styled.p`
   font-weight: 300;
   margin-bottom: 1rem;
   width: 400px;
+  @media (max-width: 1024px) {
+    width: 70vw;
+    font-size: 0.8rem;
+  }
 `;
-
+const Vid = styled.video`
+  height: 100%;
+  width: 177.77777778vh; /* 100 * 16 / 9 */
+  min-width: 100%;
+  min-height: 56.25vw; /* 100 * 9 / 16 */
+`;
 const Work = (props: TWorkProps) => {
   const { data, error, fetched, loading } = useContentful({
     contentType: "caseStudy",
@@ -89,7 +114,11 @@ const Work = (props: TWorkProps) => {
         return (
           <ReactFullpage.Wrapper>
             <SectionWrap className="section">
-              Work Video Goes here
+              <Group height="100vh" width="auto">
+                <Vid id="vid" autoPlay muted loop>
+                  <source id="mp4" src={Video} type="video/mp4" />
+                </Vid>
+              </Group>
               <ScrollEffect bottom="0%" id="scroll0Down">
                 <ScrollEffectDiv color="#FE9B96" />
                 <ScrollEffectDiv color="#B1C3D6" />
@@ -108,10 +137,12 @@ const Work = (props: TWorkProps) => {
                   clientTitle,
                   previewBlurb,
                   previewMedia,
+                  url,
                 } = item.fields;
                 return (
-                  <SectionWrap key={i} className="section">
+                  <SectionWrap key={i} className="section" bgc="#0C2340">
                     <FullImage
+                      className="half"
                       src={previewMedia.fields.file.url}
                       alt={previewMedia.fields.title}
                     />
@@ -121,13 +152,20 @@ const Work = (props: TWorkProps) => {
                         {clientTitle} <br /> <strong>{campaignTitle} </strong>
                       </NewsTitle>
                       <NewsDesc>{previewBlurb}</NewsDesc>
-                      <NewsDesc>View Project > </NewsDesc>
+                      <NewsDesc
+                        onClick={() => {
+                          props.handleLinkChange(`work/${url}`);
+                        }}
+                      >
+                        View Project >{" "}
+                      </NewsDesc>
                     </TextBox>
                   </SectionWrap>
                 );
               })}
             <SectionWrap className="section" bgc="#0C2340">
               <MoreProjects
+                handleLinkChange={props.handleLinkChange}
                 projects={items.filter((item) => {
                   return !item.fields.featured;
                 })}

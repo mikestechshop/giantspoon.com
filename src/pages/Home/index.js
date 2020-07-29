@@ -170,7 +170,10 @@ const Home = (props: THomeProps) => {
                 </ScrollEffect>
               </SectionWrap>
               <SectionWrap className="section" bgc="#E5E5E5">
-                <Work caseStudyItems={caseStudyItems} />
+                <Work
+                  caseStudyItems={caseStudyItems}
+                  handleLinkChange={props.handleLinkChange}
+                />
                 <ScrollEffect bottom="0%" id="scroll1Down">
                   <ScrollEffectDiv color="#FE9B96" />
                   <ScrollEffectDiv color="#B1C3D6" />
@@ -186,6 +189,7 @@ const Home = (props: THomeProps) => {
               </SectionWrap>
               <SectionWrap className="section">
                 <Services
+                  handleLinkChange={props.handleLinkChange}
                   blurbs={{
                     strategyBlurb,
                     creativeBlurb,
@@ -209,7 +213,11 @@ const Home = (props: THomeProps) => {
                 </ScrollEffect>
               </SectionWrap>
               <SectionWrap className="section">
-                <Awards awardsBlurb={awardsBlurb} awardsTitle={awardsTitle} />
+                <Awards
+                  handleLinkChange={props.handleLinkChange}
+                  awardsBlurb={awardsBlurb}
+                  awardsTitle={awardsTitle}
+                />
                 <ScrollEffect bottom="0%" id="scroll3Down">
                   <ScrollEffectDiv color="#FE9B96" />
                   <ScrollEffectDiv color="#B1C3D6" />
@@ -223,7 +231,7 @@ const Home = (props: THomeProps) => {
                   <ScrollEffectDiv color="#0C2340" />
                 </ScrollEffect>
               </SectionWrap>
-              <SectionWrap className="section" bgc="#FE9B96">
+              <SectionWrap className="section" bgc="#0C2340">
                 <News newsItems={newsItems} />
                 <ScrollEffect top="0%" id="scroll4Up">
                   <ScrollEffectDiv color="#FE9B96" />

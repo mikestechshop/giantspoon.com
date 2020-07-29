@@ -25,6 +25,10 @@ const Slide = styled.div`
   width: ${(props) => props.width || "30vw"};
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 1024px) {
+    width: 75vw;
+  }
 `;
 
 const ArrowRightWrap = styled.div`
@@ -46,7 +50,12 @@ const ArrowLeftWrap = styled.div`
   z-index: 999;
 `;
 const slideRight = (count, slidesLegnth, id) => {
-  TweenMax.to(id, 0.5, { x: "-=30vw" });
+  if (window.innerWidth < 1025) {
+    TweenMax.to(id, 0.5, { x: "-=75vw" });
+  } else {
+    TweenMax.to(id, 0.5, { x: "-=30vw" });
+  }
+
   console.log(count);
   if (count + 2 >= slidesLegnth) {
     TweenMax.to(id + "-arrow-right", 0.5, {
@@ -62,7 +71,12 @@ const slideRight = (count, slidesLegnth, id) => {
   }
 };
 const slideLeft = (count, slidesLegnth, id) => {
-  TweenMax.to(id, 0.5, { x: "+=30vw" });
+  if (window.innerWidth < 1025) {
+    TweenMax.to(id, 0.5, { x: "+=75vw" });
+  } else {
+    TweenMax.to(id, 0.5, { x: "+=30vw" });
+  }
+
   if (count + 1 === slidesLegnth) {
     TweenMax.to(id + "-arrow-right", 0.5, {
       autoAlpha: 1,

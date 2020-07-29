@@ -1,6 +1,6 @@
 // @flow
 
-import React from "react";
+import React, { useState } from "react";
 import { Wrapper, Slider, Group, FullImage } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
@@ -50,6 +50,10 @@ const IntroAnimation = styled.div`
   width: 13vh;
   right: 10vw;
   background: none;
+
+  .ball {
+    opacity: 0;
+  }
 `;
 const ServicesAnimation = styled.div`
   height: 100vh;
@@ -59,12 +63,16 @@ const ServicesAnimation = styled.div`
   background: none;
 `;
 const CreativeAnimation = styled.div`
-  height: 100vh;
+  height: 60vh;
   position: absolute;
-  width: 100vw;
-  top: 0;
-  left: 0;
+  width: 60vw;
+  top: 20vh;
+  right: 0;
   background: none;
+  div {
+    width: 10vw;
+    height: 10vw;
+  }
 `;
 
 const MediaAnimation = styled.div`
@@ -76,12 +84,50 @@ const MediaAnimation = styled.div`
   background: none;
 `;
 const ExpAnimation = styled.div`
-  height: 100vh;
+  height: 50vh;
   position: absolute;
-  width: 100vw;
-  top: 0;
-  left: 0;
+  width: 60vw;
+  top: 25vh;
+  right: 5vw;
   background: none;
+  .container {
+    width: 30vw;
+    height: 30vw;
+    position: absolute;
+    top: 0;
+    transform-origin: center;
+    &:nth-child(1) {
+      left: 58%;
+    }
+    &:nth-child(2) {
+      left: 21%;
+      transform: rotate(60deg);
+      top: 25%;
+    }
+    .exp-ball {
+      &:nth-child(1) {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -100%);
+      }
+      &:nth-child(2) {
+        top: 50%;
+        left: 50%;
+        transform: translate(10%, 0%);
+      }
+      &:nth-child(3) {
+        top: 50%;
+        left: 50%;
+        transform: translate(-110%, 0%);
+      }
+    }
+  }
+  .exp-ball {
+    width: 10vw;
+    height: 10vw;
+    top: 0;
+    left: 0;
+  }
 `;
 const ProAnimation = styled.div`
   height: 100vh;
@@ -105,11 +151,12 @@ const Work = () => {
     threshold: 0,
     triggerOnce: true,
   });
-
-  if (inView) {
+  const [animationRun, setAnimationRun] = useState(false);
+  if (inView && !animationRun) {
+    setAnimationRun(true);
     var tl = new TimelineMax({ repeat: -1, repeatDelay: 1, yoyo: true });
 
-    tl.set(".ball", { y: "110vh" })
+    tl.set(".ball", { y: "110vh", opacity: 1 })
       .add("start")
       .to("#ball1", 0.7, { y: "90vh", ease: "power1.out" }, "start")
       .to("#ball2", 0.7, { y: "90vh", ease: "power1.out" }, "start")
@@ -271,18 +318,59 @@ const Work = () => {
 
     var tl3 = new TimelineMax({ repeat: -1 });
     tl3
-      .set("#creative-animation div", { y: "42vh", x: "50vw" })
-      .set("#creative-ball6", { x: "-20vw" })
-      .to("#creative-ball6", 1, { x: "50vw" })
-      .add("start", "-=0.2")
-      .to("#creative-ball2", 1, { y: "28vh", x: "60vw" }, "start")
-      .to("#creative-ball3", 1, { y: "56vh", x: "60vw" }, "start")
-      .to("#creative-ball4", 1.1, { y: "28vh", x: "70vw" }, "start")
-      .to("#creative-ball5", 1.1, { y: "56vh", x: "70vw" }, "start")
-      .to("#creative-ball1", 1.2, { x: "80vw" }, "start")
-      .add("next", "+=1")
-      .to("#creative-animation div", 2, { x: "+=60vw" }, "next");
-
+      .set("#creative-animation div", {
+        top: "50%",
+        left: "50%",
+        x: "-50%",
+        y: "-50%",
+      })
+      .add("step1")
+      .to("#creative-ball2", 1, { y: "-170%", x: "-50%" }, "step1")
+      .to("#creative-ball3", 1, { y: "70%", x: "-50%" }, "step1")
+      .to("#creative-ball4", 1, { x: "-170%", y: "-50%" }, "step1")
+      .to("#creative-ball5", 1, { x: "70%", y: "-50%" }, "step1")
+      .to("#creative-ball6", 1, { y: "-170%", x: "-50%" }, "step1")
+      .add("step2")
+      .to("#creative-ball6", 1, { y: "-170%", x: "70%" }, "step2")
+      .add("step3")
+      .to("#creative-ball5", 1, { y: "70%", x: "70%" }, "step3")
+      .add("step4")
+      .to("#creative-ball5", 1, { y: "70%", x: "-50%" }, "step4")
+      .to("#creative-ball6", 1, { y: "-170%", x: "-50%" }, "step4")
+      .to("#creative-ball1", 1, { y: "-50%", x: "70%" }, "step4")
+      .to("#creative-ball4", 1, { y: "-50%", x: "-50%" }, "step4")
+      .to("#creative-ball3", 1, { y: "70%", x: "-170%" }, "step4")
+      .to("#creative-ball2", 1, { y: "-170%", x: "-170%" }, "step4")
+      .add("step5")
+      .to("#creative-ball2", 1, { y: "-50%", x: "-170%" }, "step5")
+      .add("step6")
+      .to("#creative-ball5", 1, { y: "70%", x: "70%" }, "step6")
+      .add("step7")
+      .to("#creative-ball5", 1, { y: "-50%", x: "70%" }, "step7")
+      .to("#creative-ball1", 1, { y: "-170%", x: "70%" }, "step7")
+      .to("#creative-ball6", 1, { y: "-50%", x: "-50%" }, "step7")
+      .to("#creative-ball4", 1, { y: "70%", x: "-50%" }, "step7")
+      .to("#creative-ball2", 1, { y: "-170%", x: "-170%" }, "step7")
+      .to("#creative-ball3", 1, { y: "-50%", x: "-170%" }, "step7")
+      .add("step8")
+      .to("#creative-ball1", 1, { y: "-170%", x: "-50%" }, "step8")
+      .add("step9")
+      .to("#creative-ball4", 1, { y: "70%", x: "70%" }, "step9")
+      .add("step10")
+      .to("#creative-ball1", 1, { y: "-50%", x: "-50%" }, "step10")
+      .to("#creative-ball6", 1, { y: "70%", x: "-50%" }, "step10")
+      .to("#creative-ball4", 1, { y: "-50%", x: "70%" }, "step10")
+      .to("#creative-ball5", 1, { y: "-170%", x: "70%" }, "step10")
+      .add("step11")
+      .to("#creative-ball2", 1, { y: "-170%", x: "-50%" }, "step11")
+      .to("#creative-ball5", 1, { y: "-170%", x: "-50%" })
+      .add("final")
+      .to("#creative-ball1", 1, { y: "-50%", x: "-50%" }, "final")
+      .to("#creative-ball2", 1, { y: "-50%", x: "-50%" }, "final")
+      .to("#creative-ball3", 1, { y: "-50%", x: "-50%" }, "final")
+      .to("#creative-ball4", 1, { y: "-50%", x: "-50%" }, "final")
+      .to("#creative-ball5", 1, { y: "-50%", x: "-50%" }, "final")
+      .to("#creative-ball6", 1, { y: "-50%", x: "-50%" }, "final");
     var tl4 = new TimelineMax({ repeat: -1, yoyo: true, repeatDelay: 1 });
     tl4
       .set("#media-ball1", { x: 0, y: "34vh" })
@@ -299,23 +387,31 @@ const Work = () => {
       .to("#media-ball5", 3, { y: "34vh", ease: "power2.easeIn" }, "start")
       .to("#media-ball6", 3, { y: "34vh", ease: "power2.easeIn" }, "start");
 
-    var tl5 = new TimelineMax({ repeat: -1 });
-    tl4
-      .set("#exp-animation div", { y: "15", x: "120vw" })
+    var tl5 = new TimelineMax({ repeat: -1, yoyo: true, repeatDelay: 2 });
+    tl5
       .add("start")
-      .staggerTo(
-        "#exp-animation div",
-        2,
-        { y: "84vh", x: "60vw", ease: "linear" },
-        0.5,
+      .to("#container1", 1, { rotation: "120" }, "start")
+      .to(
+        "#container2",
+        1,
+        { left: "14%", top: "18%", rotation: "-63" },
         "start"
       )
-      .staggerTo(
-        "#exp-animation div",
-        2,
-        { y: "-20vh", x: "10vw", ease: "linear" },
-        0.5,
-        "start+=1.75"
+      .add("start2")
+      .to("#container1", 1, { rotation: "237" }, "start2")
+      .to(
+        "#container2",
+        1,
+        { left: "21%", top: "26%", rotation: "-180" },
+        "start2"
+      )
+      .add("start3")
+      .to("#container1", 1, { rotation: "+=120deg" }, "start3")
+      .to(
+        "#container2",
+        1,
+        { left: "21%", top: "24%", rotation: "-300" },
+        "start3"
       );
 
     var tl6 = new TimelineMax({ repeat: -1 })
@@ -541,109 +637,13 @@ const Work = () => {
       <Slider
         slideId="work-slider"
         slides={[
-          <Group height="100vh" bgc="#B1C3D6">
-            <TextBox>
-              <ServicesSmallTitle>Social </ServicesSmallTitle>
-              <ServicesDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
-              </ServicesDesc>
-            </TextBox>
-            <SocialAnimation id="social-animation">
-              <Ball id="social-ball1" color="#0033A0" zIndex={9} />
-              <Ball id="social-ball2" color="#FFFCF2" />
-              <Ball id="social-ball3" color="#FFFCF2" />
-              <Ball id="social-ball4" color="#FFFCF2" />
-              <Ball id="social-ball5" color="#FFFCF2" />
-              <Ball id="social-ball6" color="#FFFCF2" />
-            </SocialAnimation>
-          </Group>,
-          <Group height="100vh" bgc="#B1C3D6">
-            <TextBox>
-              <ServicesSmallTitle>Production </ServicesSmallTitle>
-              <ServicesDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
-              </ServicesDesc>
-            </TextBox>
-            <ProAnimation id="pro-animation">
-              <Ball id="pro-ball1" color="#0033A0" />
-              <Ball id="pro-ball2" color="#FFFCF2" />
-              <Ball id="pro-ball3" color="#FFFCF2" />
-              <Ball id="pro-ball4" color="#FFFCF2" />
-              <Ball id="pro-ball5" color="#FFFCF2" />
-              <Ball id="pro-ball6" color="#FFFCF2" />
-            </ProAnimation>
-          </Group>,
           <Group height="100vh" bgc="#0C2340">
             <TextBox>
-              <ServicesSmallTitle>Experiential </ServicesSmallTitle>
+              <ServicesBigTitle> Our Services </ServicesBigTitle>
               <ServicesDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
-              </ServicesDesc>
-            </TextBox>
-            <ExpAnimation id="exp-animation">
-              <Ball id="exp-ball1" color="#B1C3D6" />
-              <Ball id="exp-ball2" color="#FFFCF2" />
-              <Ball id="exp-ball3" color="#FFFCF2" />
-              <Ball id="exp-ball4" color="#FFFCF2" />
-              <Ball id="exp-ball5" color="#FFFCF2" />
-              <Ball id="exp-ball6" color="#FFFCF2" />
-            </ExpAnimation>
-          </Group>,
-          <Group height="100vh" bgc="#0C2340">
-            <TextBox>
-              <ServicesSmallTitle>Media </ServicesSmallTitle>
-              <ServicesDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
-              </ServicesDesc>
-            </TextBox>
-            <MediaAnimation id="media-animation">
-              <Ball id="media-ball1" color="#B1C3D6" />
-              <Ball id="media-ball2" color="#FFFCF2" />
-              <Ball id="media-ball3" color="#FFFCF2" />
-              <Ball id="media-ball4" color="#FFFCF2" />
-              <Ball id="media-ball5" color="#FFFCF2" />
-              <Ball id="media-ball6" color="#FFFCF2" />
-            </MediaAnimation>
-          </Group>,
-          <Group height="100vh" bgc="#0033A0">
-            <TextBox>
-              <ServicesSmallTitle> Creative </ServicesSmallTitle>
-              <ServicesDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
-              </ServicesDesc>
-            </TextBox>
-            <CreativeAnimation id="creative-animation">
-              <Ball id="creative-ball1" color="#FE9B96" />
-              <Ball id="creative-ball2" color="#FFFCF2" />
-              <Ball id="creative-ball3" color="#FFFCF2" />
-              <Ball id="creative-ball4" color="#FFFCF2" />
-              <Ball id="creative-ball5" color="#FFFCF2" />
-              <Ball id="creative-ball6" color="#FFFCF2" />
-            </CreativeAnimation>
-          </Group>,
-          <Group height="100vh" bgc="#0C2340">
-            <TextBox>
-              <ServicesBigTitle> Title </ServicesBigTitle>
-              <ServicesDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
+                We aren’t like everyone else and neither are our services. Take
+                a scroll to check out what we do differently to build our
+                Spoonshots
               </ServicesDesc>
             </TextBox>
             <IntroAnimation id="intro-animation">
@@ -658,12 +658,14 @@ const Work = () => {
           </Group>,
           <Group height="100vh" bgc="#B1C3D6">
             <TextBox>
-              <ServicesBigTitle> Title </ServicesBigTitle>
+              <ServicesSmallTitle> Strategy</ServicesSmallTitle>
               <ServicesDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
+                We don’t look at brands for what they are, but what they could
+                be. We read between the lines of client briefs, scour the far
+                corners of culture, and challenge accepted wisdom to help our
+                partners unlock the potential buried within their brand. We
+                aren’t just brief writers, but critical collaborators that stay
+                involved every step of the way.
               </ServicesDesc>
             </TextBox>
             <ServicesAnimation id="services-animation">
@@ -677,45 +679,130 @@ const Work = () => {
             </ServicesAnimation>
           </Group>,
 
-          <Group height="100vh">
-            <FullImage src={Slide3} alt="placeholder" />
+          <Group height="100vh" bgc="#0033A0">
             <TextBox>
-              <ServicesBigTitle> Title </ServicesBigTitle>
+              <ServicesSmallTitle> Creative </ServicesSmallTitle>
               <ServicesDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
+                Builders of brand worlds and silver-tongued storytellers. Our
+                creative team cracks the big idea then sets out to craft a brand
+                universe you want to live in. They’re a ragtag team of
+                multi-faceted, multi-format makers that know their way around a
+                brief.
               </ServicesDesc>
-              <ServicesDesc>See More > </ServicesDesc>
             </TextBox>
-          </Group>,
-          <Group height="100vh">
-            <FullImage src={Slide4} alt="placeholder" />
-            <TextBox>
-              <ServicesBigTitle> Title </ServicesBigTitle>
-              <ServicesDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
-              </ServicesDesc>
-              <ServicesDesc>See More > </ServicesDesc>
-            </TextBox>
+            <CreativeAnimation id="creative-animation">
+              <Ball id="creative-ball1" color="#FE9B96" zIndex={9} />
+              <Ball id="creative-ball2" color="#FFFCF2">
+                2
+              </Ball>
+              <Ball id="creative-ball3" color="#FFFCF2">
+                3
+              </Ball>
+              <Ball id="creative-ball4" color="#FFFCF2">
+                4
+              </Ball>
+              <Ball id="creative-ball5" color="#FFFCF2">
+                5
+              </Ball>
+              <Ball id="creative-ball6" color="#FFFCF2">
+                6
+              </Ball>
+            </CreativeAnimation>
           </Group>,
           <Group height="100vh" bgc="#0C2340">
             <TextBox>
-              <ServicesBigTitle>
-                Lorem ipsum <br /> About Our Work
-              </ServicesBigTitle>
+              <ServicesSmallTitle>Media </ServicesSmallTitle>
               <ServicesDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
+                We’re the most creative media practitioners in the world. Full
+                stop. We look at the marketplace as a canvas to bring brands to
+                life and believe that media isn’t bought, but built. Our
+                programs help brands punch above their spend and make the market
+                turn its multi-billion dollar head.
               </ServicesDesc>
-              <ServicesDesc>See More > </ServicesDesc>
             </TextBox>
+            <MediaAnimation id="media-animation">
+              <Ball id="media-ball1" color="#B1C3D6" />
+              <Ball id="media-ball2" color="#FFFCF2" />
+              <Ball id="media-ball3" color="#FFFCF2" />
+              <Ball id="media-ball4" color="#FFFCF2" />
+              <Ball id="media-ball5" color="#FFFCF2" />
+              <Ball id="media-ball6" color="#FFFCF2" />
+            </MediaAnimation>
+          </Group>,
+          <Group height="100vh" bgc="#B1C3D6">
+            <TextBox>
+              <ServicesSmallTitle>Production </ServicesSmallTitle>
+              <ServicesDesc>
+                Primo negotiators and artistic collaborators. Our producers have
+                premiered films with Hollywood Heavyweights, made social series
+                with eSports titans, and erected a nearfi ghost town on the
+                outskirts of Texas. This SWAT team of film, experiential, and
+                integrated producers can make our wildest dreams a reality, no
+                matter the size.
+              </ServicesDesc>
+            </TextBox>
+            <ProAnimation id="pro-animation">
+              <Ball id="pro-ball1" color="#0033A0" />
+              <Ball id="pro-ball2" color="#FFFCF2" />
+              <Ball id="pro-ball3" color="#FFFCF2" />
+              <Ball id="pro-ball4" color="#FFFCF2" />
+              <Ball id="pro-ball5" color="#FFFCF2" />
+              <Ball id="pro-ball6" color="#FFFCF2" />
+            </ProAnimation>
+          </Group>,
+          <Group height="100vh" bgc="#B1C3D6">
+            <TextBox>
+              <ServicesSmallTitle>Social </ServicesSmallTitle>
+              <ServicesDesc>
+                We speak your language...whatever that may be. Our social team
+                is stacked with troll slayers, meme masters, and strategic
+                platform hackers who can inject our Spoon-y flair for
+                conversation into your feed to make something remarkable.
+              </ServicesDesc>
+            </TextBox>
+            <SocialAnimation id="social-animation">
+              <Ball id="social-ball1" color="#0033A0" zIndex={9} />
+              <Ball id="social-ball2" color="#FFFCF2" />
+              <Ball id="social-ball3" color="#FFFCF2" />
+              <Ball id="social-ball4" color="#FFFCF2" />
+              <Ball id="social-ball5" color="#FFFCF2" />
+              <Ball id="social-ball6" color="#FFFCF2" />
+            </SocialAnimation>
+          </Group>,
+          <Group height="100vh" bgc="#0C2340">
+            <TextBox>
+              <ServicesSmallTitle>Experiential </ServicesSmallTitle>
+              <ServicesDesc>
+                We build immersive experiences people would pay to attend. What
+                sets us apart is the strategy that sits at the core of our
+                offering -- ensuring every partition or parting gift belongs to
+                the world that we’ve created.
+              </ServicesDesc>
+            </TextBox>
+            <ExpAnimation id="exp-animation">
+              <div className="container" id="container1">
+                <Ball id="exp-ball1" color="#FFFCF2" className="exp-ball">
+                  1
+                </Ball>
+                <Ball id="exp-ball2" color="#FFFCF2" className="exp-ball">
+                  2
+                </Ball>
+                <Ball id="exp-ball3" color="#FFFCF2" className="exp-ball">
+                  3
+                </Ball>
+              </div>
+              <div className="container" id="container2">
+                <Ball id="exp-ball4" color="#FFFCF2" className="exp-ball">
+                  4
+                </Ball>
+                <Ball id="exp-ball5" color="#B1C3D6" className="exp-ball">
+                  5
+                </Ball>
+                <Ball id="exp-ball6" color="#FFFCF2" className="exp-ball">
+                  6
+                </Ball>
+              </div>
+            </ExpAnimation>
           </Group>,
         ]}
       />
