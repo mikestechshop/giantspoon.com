@@ -15,17 +15,28 @@ const TextBox = styled.div`
   text-align: left;
   color: white;
   cursor: pointer;
+  @media (max-width: 1024px) {
+    bottom: 5vh;
+  }
 `;
 
 const NewsImg = styled.img`
   height: 80px;
   margin-bottom: 1rem;
+  @media (max-width: 1024px) {
+    margin-bottom: 0.5rem;
+  }
 `;
 const NewsTitle = styled.h1`
   line-height: 110%;
   font-size: 2rem;
   margin-bottom: 2rem;
   font-weight: 400;
+  @media (max-width: 1024px) {
+    font-weight: 300;
+    margin: 1rem 0rem;
+    width: 70vw;
+  }
 `;
 const NewsDesc = styled.p`
   font-size: 1rem;
@@ -36,6 +47,10 @@ const NewsDesc = styled.p`
   a {
     color: white;
     text-decoration: none;
+  }
+  @media (max-width: 1024px) {
+    width: 70vw;
+    font-size: 0.8rem;
   }
 `;
 
@@ -55,19 +70,24 @@ const News = (props: TNewsProps) => {
       return (
         <Group height="100vh">
           <FullImage
+            className="half"
             src={news.fields.image.fields.file.url}
             alt={news.fields.image.fields.title}
           />
           <TextBox>
-            <NewsImg
-              src={news.fields.publicationImage.fields.file.url}
-              alt={news.fields.publicationImage.fields.title}
-            />
+            {news.fields.publicationImage && (
+              <NewsImg
+                src={news.fields.publicationImage.fields.file.url}
+                alt={news.fields.publicationImage.fields.title}
+              />
+            )}
+
             <NewsTitle> {news.fields.title} </NewsTitle>
             <NewsDesc>{news.fields.blurb}</NewsDesc>
             <NewsDesc>
-              {" "}
-              <a href={news.fields.url}>See More > </a>
+              <a href={news.fields.url} target="_blank">
+                See More >
+              </a>
             </NewsDesc>
           </TextBox>
         </Group>

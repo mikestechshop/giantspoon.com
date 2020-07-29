@@ -2,13 +2,14 @@
 
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Image, Group } from "../";
-import Logo from "../../static/logo.png";
+import { Image, Group, FullImage } from "../";
 import LogoVert from "../../static/logo-vert.png";
 import Circle from "../../static/circle.png";
-import Ig from "../../static/ig.png";
-import Twitter from "../../static/twitter.png";
-import Link from "../../static/link.png";
+import Ig from "../../static/Instagram.png";
+import Twitter from "../../static/Twitter.png";
+import Link from "../../static/Linked.png";
+import LA from "../../static/la-placeholder.png";
+import NY from "../../static/ny-placeholder.png";
 import { TweenMax } from "gsap";
 import { useContentful } from "react-contentful";
 
@@ -26,14 +27,23 @@ const MenuDotsWrap = styled.div`
   right: 10px;
   z-index: 999;
   cursor: pointer;
+  img {
+    cursor: pointer !important;
+  }
 `;
 const LogoVertWrap = styled.div`
   position: fixed;
   top: 80px;
   right: 25px;
   z-index: 999;
-  cursor: pointer;
+  cursor: pointer !important;
   transform: rotate(180deg);
+  img {
+    cursor: pointer !important;
+  }
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 const DateWrap = styled.div`
   position: fixed;
@@ -47,10 +57,13 @@ const DateWrap = styled.div`
   line-height: 1.1rem;
   transform: rotate(90deg);
   transform-origin: 50% 50%;
-  z-index: 99;
+  z-index: 989;
   font-family: interstate-mono, monospace;
   font-weight: 400;
   font-style: normal;
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 const NYLAWrap = styled.div`
   position: fixed;
@@ -65,6 +78,10 @@ const NYLAWrap = styled.div`
   font-family: interstate-mono, monospace;
   font-weight: 400;
   font-style: normal;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
 `;
 const SectionTab = styled.div`
   position: fixed;
@@ -74,6 +91,9 @@ const SectionTab = styled.div`
   width: 142px;
   z-index: 999;
   background: #b1c3d6;
+  @media (max-width: 1024px) {
+    left: 50px;
+  }
 `;
 const SmallText = styled.div`
   position: absolute;
@@ -99,6 +119,10 @@ const MenuWrap = styled.div`
   background-color: #0033a0;
   pointer-events: none;
   opacity: 0;
+  @media (max-width: 1024px) {
+    left: 0;
+    bottom: 0;
+  }
 `;
 
 const LinkWrap = styled.h1`
@@ -114,11 +138,20 @@ const LinkWrap = styled.h1`
   cursor: pointer;
   opacity: 0;
   transform: translateY(1rem);
+  @media (max-width: 1024px) {
+    font-size: 9.5vh;
+    line-height: 10.5vh;
+    margin-left: 3rem;
+  }
 `;
 const SmallLinks = styled.div`
   transform: rotate(270deg) translateY(100%);
   align-self: flex-start;
   transform-origin: 0% 100%;
+
+  @media (max-width: 1024px) {
+    transform: rotate(0deg) translateY(0%);
+  }
 `;
 
 const SmallLinkWrap = styled.div`
@@ -129,16 +162,27 @@ const SmallLinkWrap = styled.div`
   letter-spacing: 5px;
   text-transform: uppercase;
   margin-bottom: 5vw;
+  font-family: "interstate-mono";
+  cursor: pointer;
+
+  @media (max-width: 1024px) {
+    margin-left: 3rem;
+    font-size: 0.8rem;
+  }
 `;
 const LogoWrap = styled.div`
-  height: 20px;
-  width: 20px;
+  height: 16px;
+  width: 16px;
   margin-right: 1rem;
   align-self: flex-start;
-  margin-bottom: 10px;
+  margin-top: 2rem;
+  cursor: pointer;
   img {
     height: 100%;
     width: 100%;
+  }
+  @media (max-width: 1024px) {
+    display: none;
   }
 `;
 const NavWrap = styled.div`
@@ -151,7 +195,7 @@ const NavWrap = styled.div`
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 40%,
-    rgba(0, 0, 0, 0.5340511204481793) 100%
+    rgba(0, 0, 0, 0.3) 100%
   );
   z-index: 9;
   pointer-events: none;
@@ -182,6 +226,23 @@ const ThoughtOfTheDay = styled.div`
     font-weight: 300;
     width: 70%;
     margin-top: 0;
+  }
+`;
+const TransitMap = styled.div`
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: white;
+  pointer-events: none;
+  opacity: 0;
+
+  .text {
+    padding: 4rem 4rem;
+    font-family: "interstate-mono";
+    color: #fffcf2;
   }
 `;
 
@@ -231,6 +292,27 @@ const handleThoughtOpen = (open) => {
     });
   }
 };
+const handleTransitOpen = (open) => {
+  if (!open) {
+    TweenMax.to("#transit", 0.4, {
+      opacity: 1,
+      ease: "power3.inOut",
+    });
+    TweenMax.to("#date", 0.4, {
+      color: "#0C2340",
+      ease: "power3.inOut",
+    });
+  } else {
+    TweenMax.to("#transit", 0.4, {
+      opacity: 0,
+      ease: "power3.inOut",
+    });
+    TweenMax.to("#date", 0.4, {
+      color: "#FE9B96",
+      ease: "power3.inOut",
+    });
+  }
+};
 const resetMenu = () => {
   TweenMax.set(".menu-wrap", {
     opacity: 0,
@@ -249,6 +331,7 @@ const resetMenu = () => {
 const Nav = (props: TStyledNavProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [thoughtOpen, setThoughtOpen] = useState(false);
+  const [transitOpen, setTransitOpen] = useState(false);
   const { data, error, fetched, loading } = useContentful({
     contentType: "thoughtOfTheDay",
   });
@@ -304,20 +387,50 @@ const Nav = (props: TStyledNavProps) => {
       >
         {todaysDate}
       </DateWrap>
-      <NYLAWrap id="ny-la" className="bottom-links">
+      <NYLAWrap
+        id="ny-la"
+        className="bottom-links"
+        onClick={() => {
+          handleTransitOpen(transitOpen);
+          setTransitOpen(!transitOpen);
+        }}
+      >
         NY <br /> LA
       </NYLAWrap>
       <ThoughtOfTheDay id="thought">
         <h2> Here's a thought </h2>
         <h1>{items[0].fields.thought}</h1>
       </ThoughtOfTheDay>
-
+      <TransitMap id="transit">
+        <Group height="100vh" flexDirection="row">
+          <Group width="50%" bgc="#FE9B96">
+            <Group height="60vh">
+              <FullImage src={LA} alt="los angeles map" />
+            </Group>
+            <Group height="40vh" flexAlign="flex-start">
+              <div className="text">LA TRANSIT INFORMATION HERE</div>
+            </Group>
+          </Group>
+          <Group width="50%" bgc="#0033A0">
+            <Group height="60vh">
+              <FullImage src={NY} alt="los angeles map" />
+            </Group>
+            <Group height="40vh" flexAlign="flex-start">
+              <div className="text">NY TRANSIT INFORMATION HERE</div>
+            </Group>
+          </Group>
+        </Group>
+      </TransitMap>
       <SectionTab>
         <SmallText id="section-tab"> Welcome </SmallText>
       </SectionTab>
       <MenuWrap className="menu-wrap">
-        <Group flexDirection="row">
-          <Group width="50%" height="100vh" mt="10vh">
+        <Group flexDirection={window.innerWidth > 1025 ? "row" : "column"}>
+          <Group
+            width={window.innerWidth > 1025 ? "50%" : "100%"}
+            height={window.innerWidth > 1025 ? "100vh" : "auto"}
+            mt="10vh"
+          >
             <LinkWrap
               className="link-wrap"
               onClick={() => {
@@ -359,10 +472,31 @@ const Nav = (props: TStyledNavProps) => {
               contact
             </LinkWrap>
           </Group>
-          <Group width="50%" height="100vh" ml="10vw">
+          <Group
+            width={window.innerWidth > 1025 ? "50%" : "100%"}
+            height={window.innerWidth > 1025 ? "100vh" : "auto"}
+            ml={window.innerWidth > 1025 ? "10vw" : "0"}
+            mt={window.innerWidth > 1025 ? "0" : "5vh"}
+          >
             <SmallLinks flexDirection="row">
-              <SmallLinkWrap>SERVICES</SmallLinkWrap>
-              <SmallLinkWrap>CAREERS</SmallLinkWrap>
+              <SmallLinkWrap
+                onClick={() => {
+                  handleLinkChange("/about#services");
+                  resetMenu();
+                  setMenuOpen(false);
+                }}
+              >
+                SERVICES
+              </SmallLinkWrap>
+              <SmallLinkWrap
+                onClick={() => {
+                  handleLinkChange("/culture#careers");
+                  resetMenu();
+                  setMenuOpen(false);
+                }}
+              >
+                CAREERS
+              </SmallLinkWrap>
               <SmallLinkWrap>TERMS OF USE</SmallLinkWrap>
               <SmallLinkWrap>PRIVACY POLICY</SmallLinkWrap>
             </SmallLinks>

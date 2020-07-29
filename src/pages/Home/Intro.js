@@ -18,6 +18,10 @@ const LargeTextWrap = styled.h1`
   transform: translateY(-90%);
   position: absolute;
   margin: 0;
+  @media (max-width: 1024px) {
+    font-size: 5rem;
+    line-height: 5.5rem;
+  }
 `;
 const Text = styled.div`
   color: ${(props) => props.color || "white"};
@@ -34,6 +38,12 @@ const Paragraph = styled.p`
   left: 8rem;
   bottom: 15vh;
   margin: 0;
+
+  @media (max-width: 1024px) {
+    font-size: 0.9rem;
+    width: 70%;
+    left: 2rem;
+  }
 `;
 
 const Intro = () => {
@@ -50,14 +60,12 @@ const Intro = () => {
         <div ref={ref}></div>
         <LargeTextWrap className="intro-large-text">
           <Text color="#B1C3D6">the post-advertising</Text>
-          <Text color="#B1C3D6">has arrived</Text>
+          <Text color="#B1C3D6">era has arrived</Text>
         </LargeTextWrap>
         <Paragraph className="intro-p-text">
-          But advertising is not dead. It’s become something better. The new
-          possibilities to connect brands with people are endless. <br />
-          <br /> We are a full-service agency built for this new era by
-          combining creativity and media innovation to unlock a brand’s full
-          potential.
+          And we built Giant Spoon for what comes next. We’re a full service
+          agency that combines creativity and media innovation to unlock a
+          brand’s full potential.
         </Paragraph>
       </Group>
     </Wrapper>

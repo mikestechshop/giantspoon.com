@@ -11,14 +11,13 @@ const LargeTextWrap = styled.h1`
   font-family: Baskerville;
   font-style: normal;
   font-weight: normal;
-  font-size: 8rem;
-  line-height: 9rem;
+  font-size: 7rem;
+  line-height: 7.5rem;
   top: 50%;
   left: -1rem;
   transform: translateY(-70%);
   position: absolute;
   margin: 0;
-  display: none;
 `;
 const Text = styled.div`
   color: ${(props) => props.color || "white"};
@@ -30,12 +29,11 @@ const Paragraph = styled.p`
   font-weight: 300;
   font-size: 1rem;
   line-height: 140%;
-  width: 400px;
+  width: 500px;
   position: absolute;
   left: 8rem;
-  top: 75vh;
+  bottom: 10vh;
   margin: 0;
-  display: none;
 `;
 
 const Intro = () => {
@@ -44,29 +42,25 @@ const Intro = () => {
   });
   const [animationRun, setAnimationRun] = useState(false);
   if (inView && !animationRun) {
-    TweenMax.fromTo(
-      ".intro-large-text",
-      { opacity: 0, y: "+=20", display: "initial" },
-      { opacity: 1, y: "-=20", delay: 0.5 }
-    );
-    TweenMax.fromTo(
-      ".intro-p-text",
-      { opacity: 0, y: "+=20", display: "initial" },
-      { opacity: 1, y: "-=20", delay: 0.7 }
-    );
     setAnimationRun(true);
   }
   return (
     <Wrapper>
       <div ref={ref}></div>
       <LargeTextWrap className="intro-large-text">
-        <Text color="#B1C3D6">since you asked</Text>
-        <Text color="#B1C3D6">here's a little</Text>
-        <Text color="#B1C3D6">more about us</Text>
+        <Text color="#B1C3D6">We believe ideas</Text>
+        <Text color="#B1C3D6">can come from everywhere</Text>
       </LargeTextWrap>
       <Paragraph className="intro-p-text">
-        We are a full-service agency that combines creative and media innovation
-        to unlock a brand’s potential.
+        We’re a full-service agency and our secret sauce is that we’ve always
+        been that way. We weren’t a creative agency that decided to break into
+        media or an experiential upstart that sprouted a strategy arm. Every
+        service had a seat at the table from the beginning. We built our agency
+        so that the best brains from every discipline could collaborate and lend
+        their own brand of problem solving to the brief. We find that’s where
+        the best ideas come from -- not from one department or another, but the
+        magic in between. Hover at right for what we do or click to find out
+        more about how we do it.
       </Paragraph>
     </Wrapper>
   );

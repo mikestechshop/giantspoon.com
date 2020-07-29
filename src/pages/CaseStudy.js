@@ -32,6 +32,12 @@ const TextBox = styled.div`
   text-align: left;
   color: white;
   cursor: pointer;
+  @media (max-width: 1024px) {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+    left: 15%;
+  }
 `;
 
 const CampaignType = styled.div`
@@ -39,6 +45,11 @@ const CampaignType = styled.div`
   font-weight: bold;
   line-height: 140%;
   text-transform: uppercase;
+  text-transform: uppercase;
+  font-family: interstate-mono, monospace;
+  @media (max-width: 1024px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const NewsTitle = styled.h1`
@@ -46,6 +57,11 @@ const NewsTitle = styled.h1`
   font-size: 2rem;
   margin-bottom: 1rem;
   font-weight: ${(props) => props.fw || 300};
+  @media (max-width: 1024px) {
+    font-weight: 300;
+    margin: 1rem 0rem;
+    width: 70vw;
+  }
 `;
 const NewsDesc = styled.p`
   font-size: 1rem;
@@ -54,6 +70,10 @@ const NewsDesc = styled.p`
   margin-bottom: 1rem;
   width: 400px;
   max-width: 90%;
+  @media (max-width: 1024px) {
+    width: 70vw;
+    font-size: 0.8rem;
+  }
 `;
 
 const CaseStudy = (props: TCaseStudyProps) => {
@@ -66,6 +86,7 @@ const CaseStudy = (props: TCaseStudyProps) => {
     campaignType,
     clientTitle,
     pageBlurb,
+    url,
   } = props.caseStudy;
   console.log(pageGallery);
   const [breadcrumbs, setBreadcrumbs] = useState(0);
@@ -116,44 +137,95 @@ const CaseStudy = (props: TCaseStudyProps) => {
               </SectionWrap>
               <SectionWrap className="section">
                 <Slider
-                  slideId={`${campaignTitle}-slider`}
-                  slides={pageGallery.map((image, index) => {
-                    if (index === 0) {
-                      return (
-                        <Group height="100vh" flexDirection="row" key={index}>
-                          <Group width="40%" height="100vh" bgc="#0C2340">
-                            <TextBox>
-                              <CampaignType> {campaignType}</CampaignType>
-                              <NewsTitle>
-                                {clientTitle} <br />{" "}
-                                <strong>{campaignTitle} </strong>
-                              </NewsTitle>
-                              <NewsDesc>{pageBlurb}</NewsDesc>
-                            </TextBox>
-                          </Group>
-                          <Group width="60%" height="100vh">
-                            <FullImage
-                              src={image.fields.file.url}
-                              alt={image.fields.title}
-                            />
-                          </Group>
-                        </Group>
-                      );
-                    } else {
-                      return (
-                        <Group height="100vh" key={index}>
-                          <FullImage
-                            src={image.fields.file.url}
-                            alt={image.fields.title}
-                          />
-                        </Group>
-                      );
-                    }
-                  })}
+                  slideId={`${url}-slider`}
+                  slides={
+                    window.innerWidth < 1025
+                      ? [
+                          <Group height="100vh" flexDirection="row">
+                            <Group width="100%" height="100vh" bgc="#0C2340">
+                              <TextBox>
+                                <CampaignType> {campaignType}</CampaignType>
+                                <NewsTitle>
+                                  {clientTitle} <br />
+                                  <strong>{campaignTitle} </strong>
+                                </NewsTitle>
+                                <NewsDesc>{pageBlurb}</NewsDesc>
+                              </TextBox>
+                            </Group>
+                          </Group>,
+                          ...pageGallery.map((image, index) => {
+                            if (index === 0) {
+                              return (
+                                <Group height="100vh" key={index}>
+                                  <FullImage
+                                    src={image.fields.file.url}
+                                    alt={image.fields.title}
+                                  />
+                                </Group>
+                              );
+                            } else {
+                              return (
+                                <Group height="100vh" key={index}>
+                                  <FullImage
+                                    src={image.fields.file.url}
+                                    alt={image.fields.title}
+                                  />
+                                </Group>
+                              );
+                            }
+                          }),
+                        ]
+                      : [
+                          ...pageGallery.map((image, index) => {
+                            if (index === 0) {
+                              return (
+                                <Group
+                                  height="100vh"
+                                  flexDirection="row"
+                                  key={index}
+                                >
+                                  <Group
+                                    width="40%"
+                                    height="100vh"
+                                    bgc="#0C2340"
+                                  >
+                                    <TextBox>
+                                      <CampaignType>
+                                        {campaignType}
+                                      </CampaignType>
+                                      <NewsTitle>
+                                        {clientTitle} <br />
+                                        <strong>{campaignTitle} </strong>
+                                      </NewsTitle>
+                                      <NewsDesc>{pageBlurb}</NewsDesc>
+                                    </TextBox>
+                                  </Group>
+                                  <Group width="60%" height="100vh">
+                                    <FullImage
+                                      src={image.fields.file.url}
+                                      alt={image.fields.title}
+                                    />
+                                  </Group>
+                                </Group>
+                              );
+                            } else {
+                              return (
+                                <Group height="100vh" key={index}>
+                                  <FullImage
+                                    src={image.fields.file.url}
+                                    alt={image.fields.title}
+                                  />
+                                </Group>
+                              );
+                            }
+                          }),
+                        ]
+                  }
                 />
               </SectionWrap>
               <SectionWrap className="section" bgc="#0C2340">
                 <MoreProjects
+                  handleLinkChange={props.handleLinkChange}
                   projects={props.projects.filter((project) => {
                     return project.fields.campaignTitle !== campaignTitle;
                   })}

@@ -8,6 +8,7 @@ import Slide1 from "../../static/slide1.png";
 
 type TWorkProps = {
   caseStudyItems: Array<Object>,
+  handleLinkChange: Function,
 };
 const TextBox = styled.div`
   position: absolute;
@@ -22,6 +23,14 @@ const WorkTitle = styled.h1`
   font-size: 8rem;
   margin-bottom: 2rem;
   font-weight: 400;
+  @media (max-width: 1024px) {
+    font-size: 3rem;
+    font-weight: 300;
+    word-wrap: break-word;
+    &.smaller {
+      font-size: 2rem;
+    }
+  }
 `;
 const WorkDesc = styled.p`
   font-size: 1rem;
@@ -29,6 +38,14 @@ const WorkDesc = styled.p`
   font-weight: 300;
   margin-bottom: 1rem;
   width: 30vw;
+
+  @media (max-width: 1024px) {
+    font-size: 0.8rem;
+    width: 70%;
+    &.desc {
+      display: none;
+    }
+  }
 `;
 
 const Work = (props: TWorkProps) => {
@@ -45,6 +62,7 @@ const Work = (props: TWorkProps) => {
       return caseStudy.fields.featured;
     })
     .map((caseStudy, index) => {
+      console.log(caseStudy);
       return (
         <Group height="100vh">
           <FullImage
@@ -53,8 +71,16 @@ const Work = (props: TWorkProps) => {
           />
           <TextBox>
             <WorkTitle> {caseStudy.fields.campaignTitle} </WorkTitle>
-            <WorkDesc>{caseStudy.fields.previewBlurb}</WorkDesc>
-            <WorkDesc>See More > </WorkDesc>
+            <WorkDesc className="desc">
+              {caseStudy.fields.previewBlurb}
+            </WorkDesc>
+            <WorkDesc
+              onClick={() => {
+                props.handleLinkChange(`work/${caseStudy.fields.url}`);
+              }}
+            >
+              See More >{" "}
+            </WorkDesc>
           </TextBox>
         </Group>
       );
@@ -72,16 +98,18 @@ const Work = (props: TWorkProps) => {
           ...featuredCaseStudies,
           <Group height="100vh" bgc="#0C2340">
             <TextBox>
-              <WorkTitle>
-                Lorem ipsum <br /> About Our Work
-              </WorkTitle>
+              <WorkTitle className="smaller">Want to See More?</WorkTitle>
               <WorkDesc>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. At
-                commodo, bibendum id interdum lobortis praesent lectus.
-                Ullamcorper non pretium tincidunt felis amet. A eget tellus et,
-                amet, accumsan.
+                Wow you really love case studies. Click here to look at more of
+                what we’ve made.
               </WorkDesc>
-              <WorkDesc>See More > </WorkDesc>
+              <WorkDesc
+                onClick={() => {
+                  props.handleLinkChange(`work/`);
+                }}
+              >
+                See More >
+              </WorkDesc>
             </TextBox>
           </Group>,
         ]}

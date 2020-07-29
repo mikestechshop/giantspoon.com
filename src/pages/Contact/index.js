@@ -27,8 +27,12 @@ const ScrollEffect = styled.div`
 const LargeText = styled.div`
   font-weight: 300;
   font-size: 4rem;
-  padding-left: 20%;
+  padding-left: 10%;
   margin-top: 20vh;
+  @media (max-width: 1024px) {
+    font-size: 2rem;
+    margin-top: 15vh;
+  }
 `;
 const SmallText = styled.div`
   font-weight: 300;
@@ -38,6 +42,9 @@ const SmallText = styled.div`
   color: ${(props) => props.color || "#B1C3D6"};
   width: 400px;
   marin-left: 20%;
+  @media (max-width: 1024px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const ScrollEffectDiv = styled.div`
@@ -58,7 +65,7 @@ const Contact = (props: TContactProps) => (
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper>
-          <SectionWrap className="section">
+          <SectionWrap className="section" bgc="#0C2340">
             <Intro />
             <ScrollEffect bottom="0%" id="scroll0Down">
               <ScrollEffectDiv color="#FE9B96" />
@@ -68,20 +75,60 @@ const Contact = (props: TContactProps) => (
             </ScrollEffect>
           </SectionWrap>
           <SectionWrap className="section" bgc="#0C2340">
-            <Group height="100vh" flexDirection="row">
-              <Group width="50%" height="100vh" flexAlign="start">
-                <LargeText mt="20vh"> Contact </LargeText>
+            <Group
+              flexDirection={window.innerWidth > 1025 ? "row" : "column"}
+              flexAlign="start"
+              height="100vh"
+            >
+              <Group
+                width={window.innerWidth > 1025 ? "50%" : "100%"}
+                flexAlign="start"
+              >
+                <LargeText mt={window.innerWidth > 1025 ? "20vh" : "0"}>
+                  Lorem Ipsum <br />
+                  Five or Six Words
+                </LargeText>
+                <Group
+                  width={window.innerWidth > 1025 ? "100%" : "80%"}
+                  flexDirection="row"
+                  ml="10%"
+                  flexAlign="start"
+                >
+                  <Group
+                    width="50%"
+                    flexAlign="start"
+                    mt={window.innerWidth > 1025 ? "20vh" : "4vh"}
+                  >
+                    <SmallText flexAlign="start">
+                      <strong>
+                        Phone <br />
+                        General Inquires <br />
+                        New Business <br /> Careers
+                      </strong>
+                    </SmallText>
+                  </Group>
+                  <Group
+                    width="50%"
+                    flexAlign="start"
+                    mt={window.innerWidth > 1025 ? "20vh" : "4vh"}
+                  >
+                    <SmallText flexAlign="start">
+                      (888) SPOON-50 <br />
+                      hello@giantspoon.com <br /> newbiz@giantspoon.com <br />
+                      careers@giantspoon.com
+                    </SmallText>
+                  </Group>
+                </Group>
               </Group>
-              <Group width="50%" height="100vh" flexDirection="row">
-                <Group width="50%" flexAlign="start" height="100vh">
-                  <SmallText mt="20vh">
-                    <strong>
-                      Phone <br /> <br />
-                      General Inquires <br /> <br /> New Business <br /> <br />{" "}
-                      Careers
-                    </strong>
-                  </SmallText>
-                  <SmallText mt="2.5rem">
+              <Group
+                wrap="wrap"
+                width={window.innerWidth > 1025 ? "50%" : "80%"}
+                flexDirection="row"
+                flexAlign="flex-start"
+                ml={window.innerWidth > 1025 ? "0%" : "10%"}
+              >
+                <Group width="50%" flexAlign="start">
+                  <SmallText mt={window.innerWidth > 1025 ? "20vh" : "6vh"}>
                     <strong>Los Angeles</strong>
                     <br />
                     6100 Wilshire Blvd. <br />
@@ -92,14 +139,8 @@ const Contact = (props: TContactProps) => (
                     View Map >
                   </SmallText>
                 </Group>
-                <Group width="50%" flexAlign="start" height="100vh">
-                  <SmallText mt="20vh">
-                    (888) SPOON-50 <br /> <br />
-                    hello@giantspoon.com <br /> <br /> newbiz@giantspoon.com{" "}
-                    <br /> <br />
-                    careers@giantspoon.com
-                  </SmallText>
-                  <SmallText mt="2.5rem">
+                <Group width="50%" flexAlign="start">
+                  <SmallText mt={window.innerWidth > 1025 ? "20vh" : "6vh"}>
                     <strong>New York</strong>
                     <br />
                     Wall Street. <br />
@@ -109,6 +150,13 @@ const Contact = (props: TContactProps) => (
                   <SmallText mt="1.5rem" color="#FE9B96">
                     View Map >
                   </SmallText>
+                </Group>
+                <Group
+                  width="100%"
+                  flexAlign="start"
+                  mt={window.innerWidth > 1025 ? "20vh" : "2vh"}
+                >
+                  form goes here
                 </Group>
               </Group>
             </Group>

@@ -16,6 +16,7 @@ type TWrapperProps = {
   width?: string,
   bgc?: string,
   flexWrap?: string,
+  wrap?: string,
 };
 
 const StyledGroup = styled.div`
@@ -33,6 +34,7 @@ const StyledGroup = styled.div`
   margin-left: ${(props) => props.ml || "0"};
   margin-right: ${(props) => props.mr || "0"};
   background-color: ${(props) => props.bgc || ""};
+  flex-wrap: ${(props) => props.wrap || "nowrap"};
 `;
 
 const Wrapper = (props: TWrapperProps) => {
@@ -48,6 +50,7 @@ const Wrapper = (props: TWrapperProps) => {
     flexAlign,
     flexDirection,
     flexWrap,
+    wrap,
   } = props;
   return (
     <StyledGroup
@@ -61,6 +64,7 @@ const Wrapper = (props: TWrapperProps) => {
       flexWrap={flexWrap}
       bgc={bgc}
       width={width}
+      wrap={wrap}
     >
       {children}
     </StyledGroup>
