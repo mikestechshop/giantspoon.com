@@ -17,12 +17,20 @@ const LargeText = styled.h1`
   font-size: 2rem;
   margin-bottom: 2rem;
   font-weight: 400;
+
+  @media (max-width: 1024px) {
+    font-size: 1.5rem;
+  }
 `;
 const SmallText = styled.p`
   font-size: 1rem;
   line-height: 140%;
   font-weight: 300;
   width: 30vw;
+  @media (max-width: 1024px) {
+    font-size: 0.8rem;
+    width: 75%;
+  }
 `;
 const PartnersWrap = styled.div`
   height: 62vh;
@@ -30,12 +38,18 @@ const PartnersWrap = styled.div`
   box-sizing: border-box;
   margin: 10vh 5vw;
   position: relative;
+  @media (max-width: 1024px) {
+    height: 80vh;
+  }
 `;
 const TextBox = styled.div`
   position: absolute;
   bottom: 5vh;
   left: 5vw;
   width: 50%;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 const PartnerImg = styled.div`
   width: 20%;
@@ -62,6 +76,9 @@ const PartnerImg = styled.div`
     img.hover {
       opacity: 1;
     }
+  }
+  @media (max-width: 1024px) {
+    width: 33%;
   }
 `;
 

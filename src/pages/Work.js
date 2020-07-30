@@ -8,6 +8,7 @@ import { useContentful } from "react-contentful";
 import Video from "../static/video.mp4";
 import playButton from "../static/playButton.png";
 import ReactPlayer from "react-player";
+import { TweenMax } from "gsap";
 
 type TWorkProps = {
   handleLinkChange: Function,
@@ -32,11 +33,6 @@ const ScrollEffectDiv = styled.div`
   height: 25%;
   background-color: ${(props) => props.color || "auto"};
 `;
-// const scrollAni = (id: string, html: string) => {
-//   TweenMax.to(id, 0.35, { height: "35vh" });
-//   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
-//   document.querySelector("#section-tab").innerHTML = html;
-// };
 
 const TextBox = styled.div`
   position: absolute;
@@ -90,6 +86,10 @@ const Vid = styled.video`
   min-width: 100%;
   min-height: 56.25vw; /* 100 * 9 / 16 */
 `;
+const scrollAni = (id: string) => {
+  TweenMax.to(id, 0.35, { height: "35vh" });
+  TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
+};
 const Work = (props: TWorkProps) => {
   const { data, error, fetched, loading } = useContentful({
     contentType: "caseStudy",
@@ -104,12 +104,20 @@ const Work = (props: TWorkProps) => {
   }
 
   const { items } = data;
-  console.log(items);
+  const featItemsLength = items.filter((item) => {
+    return item.fields.featured;
+  }).length;
   return (
     <ReactFullpage
       //fullpage options
       licenseKey={"YOUR_KEY_HERE"}
       scrollingSpeed={800} /* Options here */
+      onLeave={function (origin, destination, direction) {
+        console.log(origin);
+        scrollAni(
+          `#scroll${origin.index}${direction === "down" ? "Down" : "Up"}`
+        );
+      }}
       render={({ state, fullpageApi }) => {
         return (
           <ReactFullpage.Wrapper>
@@ -160,6 +168,18 @@ const Work = (props: TWorkProps) => {
                         View Project >{" "}
                       </NewsDesc>
                     </TextBox>
+                    <ScrollEffect bottom="0%" id={`scroll${i + 1}Down`}>
+                      <ScrollEffectDiv color="#FE9B96" />
+                      <ScrollEffectDiv color="#B1C3D6" />
+                      <ScrollEffectDiv color="#FFFCF2" />
+                      <ScrollEffectDiv color="#0C2340" />
+                    </ScrollEffect>
+                    <ScrollEffect top="0%" id={`scroll${i + 1}Up`}>
+                      <ScrollEffectDiv color="#FE9B96" />
+                      <ScrollEffectDiv color="#B1C3D6" />
+                      <ScrollEffectDiv color="#FFFCF2" />
+                      <ScrollEffectDiv color="#0C2340" />
+                    </ScrollEffect>
                   </SectionWrap>
                 );
               })}
@@ -170,6 +190,12 @@ const Work = (props: TWorkProps) => {
                   return !item.fields.featured;
                 })}
               />
+              <ScrollEffect top="0%" id={`scroll${featItemsLength + 1}Up`}>
+                <ScrollEffectDiv color="#FE9B96" />
+                <ScrollEffectDiv color="#B1C3D6" />
+                <ScrollEffectDiv color="#FFFCF2" />
+                <ScrollEffectDiv color="#0C2340" />
+              </ScrollEffect>
             </SectionWrap>
             <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
               <Footer handleLinkChange={props.handleLinkChange} />

@@ -11,16 +11,23 @@ import { TimelineMax } from "gsap";
 const TextBox = styled.div`
   position: absolute;
   left: 10%;
-  bottom: 15%;
+  bottom: 10%;
   text-align: left;
   color: white;
   cursor: pointer;
+  @media (max-width: 1024px) {
+  }
 `;
 const ServicesBigTitle = styled.h1`
   line-height: 110%;
   font-size: 8rem;
   margin-bottom: 2rem;
   font-weight: 400;
+  @media (max-width: 1024px) {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
 `;
 const ServicesSmallTitle = styled.h1`
   line-height: 110%;
@@ -34,10 +41,17 @@ const ServicesDesc = styled.p`
   font-weight: 300;
   margin-bottom: 1rem;
   width: 30vw;
+  @media (max-width: 1024px) {
+    font-size: 0.8rem;
+    font-weight: 300;
+    width: 70%;
+  }
 `;
 const Ball = styled.div`
-  height: 16vh;
-  width: 16vh;
+  height: 10vw;
+  width: 10vw;
+  min-width: 100px;
+  min-height: 100px;
   background-color: ${(props) => props.color || "white"};
   border-radius: 50%;
   position: absolute;
@@ -54,13 +68,28 @@ const IntroAnimation = styled.div`
   .ball {
     opacity: 0;
   }
+  @media (max-width: 1024px) {
+    right: 34vw;
+  }
 `;
 const ServicesAnimation = styled.div`
-  height: 100vh;
+  height: 50vw;
   position: absolute;
   width: 50vw;
+  top: 50%;
+  transform: translateY(-50%);
   right: 5vw;
   background: none;
+  @media (max-width: 1024px) {
+    width: 80vw;
+    height: 80vw;
+    right: 10vw;
+    top: 30%;
+    .ball(
+      max-height: 75px;
+      max-width: 75px;
+    )
+  }
 `;
 const CreativeAnimation = styled.div`
   height: 60vh;
@@ -73,6 +102,10 @@ const CreativeAnimation = styled.div`
     width: 10vw;
     height: 10vw;
   }
+  @media (max-width: 1024px) {
+    top: 5vh;
+    right: 20%;
+  }
 `;
 
 const MediaAnimation = styled.div`
@@ -82,6 +115,11 @@ const MediaAnimation = styled.div`
   top: 0;
   left: 40vw;
   background: none;
+
+  @media (max-width: 1024px) {
+    left: 0;
+    top: -20vh;
+  }
 `;
 const ExpAnimation = styled.div`
   height: 50vh;
@@ -223,19 +261,64 @@ const Work = () => {
 
     var tl2 = new TimelineMax({ repeat: -1 });
     tl2
-      .set("#service-ball1", { y: "20vh", x: "12vw" })
-      .set("#service-ball2", { y: "20vh", x: "30vw" })
-      .set("#service-ball3", { y: "42.5vh", x: "3vw" })
-      .set("#service-ball4", { y: "42.5vh", x: "38vw" })
-      .set("#service-ball5", { y: "65vh", x: "12vw" })
-      .set("#service-ball6", { y: "65vh", x: "30vw" })
-      .set("#service-ball7", { y: "20vh", x: "12vw" })
-      .to("#service-ball1", 1.5, { y: "20vh", x: "30vw" })
-      .to("#service-ball1", 1.5, { y: "42.5vh", x: "3vw" })
-      .to("#service-ball1", 1.5, { y: "42.5vh", x: "38vw" })
-      .to("#service-ball1", 1.5, { y: "65vh", x: "12vw" })
-      .to("#service-ball1", 1.5, { y: "65vh", x: "30vw" })
-      .to("#service-ball1", 1.5, { y: "20vh", x: "12vw" })
+      .set("#service-ball1", { top: "50%", left: "50%", y: "-50%", x: "100%" })
+      .set("#service-ball2", { top: "50%", left: "50%", y: "-50%", x: "100%" })
+      .set("#service-ball3", {
+        top: "50%",
+        left: "50%",
+        y: "-50%",
+        x: "-200%",
+      })
+      .set("#service-ball4", {
+        top: "50%",
+        left: "50%",
+        y: "-200%",
+        x: "-150%",
+      })
+      .set("#service-ball5", { top: "50%", left: "50%", y: "-200%", x: "50%" })
+      .set("#service-ball6", { top: "50%", left: "50%", y: "100%", x: "50%" })
+      .set("#service-ball7", {
+        top: "50%",
+        left: "50%",
+        y: "100%",
+        x: "-150%",
+      })
+      .to("#service-ball1", 1.5, {
+        top: "50%",
+        left: "50%",
+        y: "-50%",
+        x: "-200%",
+      })
+      .to("#service-ball1", 1.5, {
+        top: "50%",
+        left: "50%",
+        y: "-200%",
+        x: "-150%",
+      })
+      .to("#service-ball1", 1.5, {
+        top: "50%",
+        left: "50%",
+        y: "-200%",
+        x: "50%",
+      })
+      .to("#service-ball1", 1.5, {
+        top: "50%",
+        left: "50%",
+        y: "100%",
+        x: "50%",
+      })
+      .to("#service-ball1", 1.5, {
+        top: "50%",
+        left: "50%",
+        y: "100%",
+        x: "-150%",
+      })
+      .to("#service-ball1", 1.5, {
+        top: "50%",
+        left: "50%",
+        y: "-50%",
+        x: "100%",
+      })
       .fromTo(
         "#services-animation",
         1.5,

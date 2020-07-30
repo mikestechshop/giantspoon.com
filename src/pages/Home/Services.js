@@ -5,7 +5,7 @@ import { Wrapper, Group, FullImage } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import { TweenMax } from "gsap";
-import Crane from "../../static/Crane.png";
+import ServicesBg from "../../static/services-bg.png";
 
 type TServicesProps = {
   blurbs: {
@@ -125,7 +125,7 @@ const Services = (props: TServicesProps) => {
     <Wrapper>
       <div ref={ref}></div>
       <Group height="100vh">
-        <FullImage src={Crane} alt="services background" />
+        <FullImage src={ServicesBg} alt="services background" />
         <TextBox>
           <ServicesTitle id="service-title">
             {" "}

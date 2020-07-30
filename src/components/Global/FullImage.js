@@ -21,6 +21,11 @@ const StyledFullImage = styled.div`
   background-repeat: no-repeat;
   background-position: center center;
 
+  &.flip {
+    transform: scaleX(-1);
+    left: 0;
+  }
+
   @media (max-width: 1024px) {
     &.half {
       height: 45vh;

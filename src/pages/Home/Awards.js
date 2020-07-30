@@ -57,7 +57,7 @@ const Awards = (props: TAwardsProps) => {
     <Wrapper>
       <div ref={ref}></div>
       <Group height="100vh">
-        <FullImage src={AwardsBg} alt="awards image" />
+        <FullImage className="flip" src={AwardsBg} alt="awards image" />
         <TextBox>
           <AwardsTitle> {awardsTitle} </AwardsTitle>
           <AwardsDesc>{awardsBlurb}</AwardsDesc>
