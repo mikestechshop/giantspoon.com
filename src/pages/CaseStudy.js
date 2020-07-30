@@ -24,6 +24,20 @@ const SectionWrap = styled.div`
   position: relative;
   background-color: ${(props) => props.bgc || "#0033a0"};
 `;
+const ScrollEffect = styled.div`
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: ${(props) => props.top || "initial"};
+  bottom: ${(props) => props.bottom || "initial"};
+  height: 0%;
+`;
+
+const ScrollEffectDiv = styled.div`
+  width: 100%;
+  height: 25%;
+  background-color: ${(props) => props.color || "auto"};
+`;
 
 const TextBox = styled.div`
   position: absolute;
@@ -75,7 +89,10 @@ const NewsDesc = styled.p`
     font-size: 0.8rem;
   }
 `;
-
+const scrollAni = (id: string) => {
+  TweenMax.to(id, 0.35, { height: "35vh" });
+  TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
+};
 const CaseStudy = (props: TCaseStudyProps) => {
   console.log(props);
   const {
@@ -104,6 +121,9 @@ const CaseStudy = (props: TCaseStudyProps) => {
           } else {
             TweenMax.set("#breadcrumbs", { display: "block" });
           }
+          scrollAni(
+            `#scroll${origin.index}${direction === "down" ? "Down" : "Up"}`
+          );
         }}
         render={({ state, fullpageApi }) => {
           return (
@@ -134,6 +154,12 @@ const CaseStudy = (props: TCaseStudyProps) => {
                     alt={pageSplashImage.fields.file.title}
                   />
                 )}
+                <ScrollEffect bottom="0%" id="scroll0Down">
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
               </SectionWrap>
               <SectionWrap className="section">
                 <Slider
@@ -222,6 +248,18 @@ const CaseStudy = (props: TCaseStudyProps) => {
                         ]
                   }
                 />
+                <ScrollEffect bottom="0%" id={`scroll1Down`}>
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
+                <ScrollEffect top="0%" id={`scroll1Up`}>
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
               </SectionWrap>
               <SectionWrap className="section" bgc="#0C2340">
                 <MoreProjects
@@ -230,6 +268,12 @@ const CaseStudy = (props: TCaseStudyProps) => {
                     return project.fields.campaignTitle !== campaignTitle;
                   })}
                 />
+                <ScrollEffect top="0%" id={`scroll2Up`}>
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
               </SectionWrap>
               <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
                 <Footer handleLinkChange={props.handleLinkChange} />

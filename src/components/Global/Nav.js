@@ -245,8 +245,13 @@ const TransitMap = styled.div`
     color: #fffcf2;
   }
 `;
-
+const addPointers = () => {
+  console.log("hello");
+  TweenMax.set(".menu-link", { pointerEvents: "all" });
+};
 const handleMenuOpen = (open) => {
+  addPointers();
+  TweenMax.set(".menu-link", { pointerEvents: "none" });
   if (!open) {
     TweenMax.to(".menu-wrap", 0.4, {
       opacity: 1,
@@ -256,11 +261,20 @@ const handleMenuOpen = (open) => {
     TweenMax.staggerTo(
       ".link-wrap",
       0.4,
-      { opacity: 1, y: 0, delay: 0.4, ease: "power1.in" },
+      {
+        opacity: 1,
+        y: 0,
+        delay: 0.4,
+        ease: "power1.in",
+      },
       0.3
     );
     TweenMax.to(".bottom-links", 0.4, {
       y: "-=10vh",
+      onComplete: addPointers,
+    });
+    TweenMax.to("#menu", 0.4, {
+      rotation: 90,
     });
   } else {
     TweenMax.to(".menu-wrap", 0.4, {
@@ -268,6 +282,10 @@ const handleMenuOpen = (open) => {
       pointerEvents: "none",
       ease: "power3.inOut",
       onComplete: resetMenu,
+    });
+    TweenMax.to("#menu", 0.4, {
+      rotation: 0,
+      onComplete: addPointers,
     });
   }
 };
@@ -327,6 +345,9 @@ const resetMenu = () => {
     y: "+=10vh",
   });
   TweenMax.set(".link-wrap", { opacity: 0, y: 16 });
+  TweenMax.set("#menu", {
+    rotation: 0,
+  });
 };
 const Nav = (props: TStyledNavProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -360,6 +381,7 @@ const Nav = (props: TStyledNavProps) => {
       <NavWrap></NavWrap>
       <MenuDotsWrap
         className="menu-link"
+        id="menu"
         onClick={() => {
           handleMenuOpen(menuOpen);
           setMenuOpen(!menuOpen);
@@ -371,7 +393,9 @@ const Nav = (props: TStyledNavProps) => {
         className="menu-link"
         onClick={() => {
           handleLinkChange("/");
-          resetMenu();
+          if (menuOpen) {
+            resetMenu();
+          }
           setMenuOpen(false);
         }}
       >

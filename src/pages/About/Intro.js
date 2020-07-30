@@ -18,6 +18,13 @@ const LargeTextWrap = styled.h1`
   transform: translateY(-70%);
   position: absolute;
   margin: 0;
+  @media (max-width: 1024px) {
+    font-size: 4rem;
+    line-height: 4.5rem;
+    br {
+      display: none;
+    }
+  }
 `;
 const Text = styled.div`
   color: ${(props) => props.color || "white"};
@@ -34,6 +41,11 @@ const Paragraph = styled.p`
   left: 8rem;
   bottom: 10vh;
   margin: 0;
+  @media (max-width: 1024px) {
+    font-size: 0.9rem;
+    width: 70%;
+    left: 2rem;
+  }
 `;
 
 const Intro = () => {

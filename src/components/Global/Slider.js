@@ -21,7 +21,7 @@ const SlideWrap = styled.div`
 `;
 const Slide = styled.div`
   height: 100%;
-  width: ${(props) => props.width || "90vw"};
+  width: ${(props) => props.width || "100vw"};
   position: relative;
   overflow: hidden;
   @media (max-width: 1024px) {
@@ -51,7 +51,11 @@ const slideRight = (count, slidesLegnth, id) => {
   if (window.innerWidth < 1025) {
     TweenMax.to(id, 0.5, { x: "-=100vw" });
   } else {
-    TweenMax.to(id, 0.5, { x: "-=90vw" });
+    if (count === 0) {
+      TweenMax.to(id, 0.5, { x: "-=95vw" });
+    } else {
+      TweenMax.to(id, 0.5, { x: "-=100vw" });
+    }
   }
   console.log(count);
   if (count + 2 >= slidesLegnth) {
@@ -65,13 +69,21 @@ const slideRight = (count, slidesLegnth, id) => {
       autoAlpha: 1,
       pointerEvents: "all",
     });
+    TweenMax.to("#breadcrumbs", 0.5, {
+      autoAlpha: 0,
+      pointerEvents: "all",
+    });
   }
 };
 const slideLeft = (count, slidesLegnth, id) => {
   if (window.innerWidth < 1025) {
     TweenMax.to(id, 0.5, { x: "+=100vw" });
   } else {
-    TweenMax.to(id, 0.5, { x: "+=90vw" });
+    if (count - 1 <= 0) {
+      TweenMax.to(id, 0.5, { x: "+=95vw" });
+    } else {
+      TweenMax.to(id, 0.5, { x: "+=100vw" });
+    }
   }
   if (count + 1 === slidesLegnth) {
     TweenMax.to(id + "-arrow-right", 0.5, {
@@ -83,6 +95,10 @@ const slideLeft = (count, slidesLegnth, id) => {
     TweenMax.to(id + "-arrow-left", 0.5, {
       autoAlpha: 0,
       pointerEvents: "none",
+    });
+    TweenMax.to("#breadcrumbs", 0.5, {
+      autoAlpha: 1,
+      pointerEvents: "all",
     });
   }
 };
@@ -108,7 +124,7 @@ const Work = (props: TSliderProps) => {
     <div>
       <SlideWrap id={slideId}>
         {slides.map((slide, i) => {
-          if (i === 0 || i === slides.length - 1) {
+          if (i === 0) {
             return (
               <Slide width="95vw" key={i}>
                 {slide}

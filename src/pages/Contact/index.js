@@ -5,6 +5,7 @@ import ReactFullpage from "@fullpage/react-fullpage";
 import styled from "styled-components";
 import Intro from "./Intro";
 import { Footer, Group } from "../../components";
+import { TweenMax } from "gsap";
 
 type TContactProps = {
   handleLinkChange: Function,
@@ -52,16 +53,20 @@ const ScrollEffectDiv = styled.div`
   height: 25%;
   background-color: ${(props) => props.color || "auto"};
 `;
-// const scrollAni = (id: string, html: string) => {
-//   TweenMax.to(id, 0.35, { height: "35vh" });
-//   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
-//   document.querySelector("#section-tab").innerHTML = html;
-// };
+const scrollAni = (id: string) => {
+  TweenMax.to(id, 0.35, { height: "35vh" });
+  TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
+};
 const Contact = (props: TContactProps) => (
   <ReactFullpage
     //fullpage options
     licenseKey={"YOUR_KEY_HERE"}
     scrollingSpeed={800} /* Options here */
+    onLeave={function (origin, destination, direction) {
+      scrollAni(
+        `#scroll${origin.index}${direction === "down" ? "Down" : "Up"}`
+      );
+    }}
     render={({ state, fullpageApi }) => {
       return (
         <ReactFullpage.Wrapper>
@@ -160,12 +165,7 @@ const Contact = (props: TContactProps) => (
                 </Group>
               </Group>
             </Group>
-            <ScrollEffect bottom="0%" id="scroll1Down">
-              <ScrollEffectDiv color="#FE9B96" />
-              <ScrollEffectDiv color="#B1C3D6" />
-              <ScrollEffectDiv color="#FFFCF2" />
-              <ScrollEffectDiv color="#0C2340" />
-            </ScrollEffect>
+
             <ScrollEffect top="0%" id="scroll1Up">
               <ScrollEffectDiv color="#FE9B96" />
               <ScrollEffectDiv color="#B1C3D6" />

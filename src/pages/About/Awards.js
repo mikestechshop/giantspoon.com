@@ -15,12 +15,19 @@ const LargeText = styled.h1`
   font-size: 2rem;
   margin-bottom: 2rem;
   font-weight: 400;
+  @media (max-width: 1024px) {
+    font-size: 1.5rem;
+  }
 `;
 const SmallText = styled.p`
   font-size: 1rem;
   line-height: 140%;
   font-weight: 300;
   width: 30vw;
+  @media (max-width: 1024px) {
+    font-size: 0.8rem;
+    width: 75%;
+  }
 `;
 const AwardsWrap = styled.div`
   height: 80vh;
@@ -28,12 +35,18 @@ const AwardsWrap = styled.div`
   box-sizing: border-box;
   margin: 20vh 10vw;
   position: relative;
+  @media (max-width: 1024px) {
+    height: 80vh;
+  }
 `;
 const TextBox = styled.div`
   position: absolute;
   bottom: 25vh;
   left: 5vw;
   width: 50%;
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
 `;
 const AwardImg = styled.div`
   width: 25%;

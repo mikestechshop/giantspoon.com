@@ -56,11 +56,9 @@ const onMouseExit = () => {
   TweenMax.set(".hoverable", { cursor: "default" });
 };
 
-const scrollAni = (id: string, html: string) => {
+const scrollAni = (id: string) => {
   TweenMax.to(id, 0.35, { height: "35vh" });
   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
-  // $FlowFixMe
-  document.querySelector("#section-tab").innerHTML = html;
 };
 const Home = (props: TAboutProps) => {
   const { hash } = useLocation();
@@ -103,32 +101,27 @@ const Home = (props: TAboutProps) => {
         console.log(origin.index);
         console.log(direction);
         if (origin.index === 0) {
-          scrollAni("#scroll0Down", "CASE STUDIES");
+          scrollAni("#scroll0Down");
         }
         if (origin.index === 1) {
           if (direction === "down") {
-            scrollAni("#scroll1Down", "services");
+            scrollAni("#scroll1Down");
             console.log("run");
           } else if (direction === "up") {
-            scrollAni("#scroll1Up", "welcome");
+            scrollAni("#scroll1Up");
           }
         }
         if (origin.index === 2) {
           if (direction === "down") {
-            scrollAni("#scroll2Down", "awards");
+            scrollAni("#scroll2Down");
           } else if (direction === "up") {
-            scrollAni("#scroll2Up", "CASE STUDIES");
+            scrollAni("#scroll2Up");
           }
         }
         if (origin.index === 3) {
-          if (direction === "down") {
-            scrollAni("#scroll3Down", "news");
-          } else if (direction === "up") {
-            scrollAni("#scroll3Up", "awards");
+          if (direction === "up") {
+            scrollAni("#scroll3Up");
           }
-        }
-        if (origin.index === 4) {
-          scrollAni("#scroll4Up", "news");
         }
       }}
       render={({ state, fullpageApi }) => {
@@ -170,9 +163,27 @@ const Home = (props: TAboutProps) => {
             </SectionWrap>
             <SectionWrap className="section">
               <Partners partners={partnersItems} />
+              <ScrollEffect bottom="0%" id="scroll2Down">
+                <ScrollEffectDiv color="#FE9B96" />
+                <ScrollEffectDiv color="#B1C3D6" />
+                <ScrollEffectDiv color="#FFFCF2" />
+                <ScrollEffectDiv color="#0C2340" />
+              </ScrollEffect>
+              <ScrollEffect top="0%" id="scroll2Up">
+                <ScrollEffectDiv color="#FE9B96" />
+                <ScrollEffectDiv color="#B1C3D6" />
+                <ScrollEffectDiv color="#FFFCF2" />
+                <ScrollEffectDiv color="#0C2340" />
+              </ScrollEffect>
             </SectionWrap>
             <SectionWrap className="section" bgc="#0C2340">
               <Awards awards={awardsItems} />
+              <ScrollEffect top="0%" id="scroll3Up">
+                <ScrollEffectDiv color="#FE9B96" />
+                <ScrollEffectDiv color="#B1C3D6" />
+                <ScrollEffectDiv color="#FFFCF2" />
+                <ScrollEffectDiv color="#0C2340" />
+              </ScrollEffect>
             </SectionWrap>
 
             <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
