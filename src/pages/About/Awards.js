@@ -15,6 +15,7 @@ const LargeText = styled.h1`
   font-size: 2rem;
   margin-bottom: 1rem;
   font-weight: 400;
+
   @media (max-width: 1024px) {
     font-size: 1.5rem;
   }
