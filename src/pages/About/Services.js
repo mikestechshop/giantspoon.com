@@ -1,11 +1,9 @@
 // @flow
 
 import React, { useState } from "react";
-import { Wrapper, Slider, Group, FullImage } from "../../components";
+import { Wrapper, Slider, Group } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import Slide3 from "../../static/slide3.png";
-import Slide4 from "../../static/slide4.png";
 import { TimelineMax } from "gsap";
 
 const TextBox = styled.div`
@@ -722,7 +720,7 @@ const Work = () => {
         slides={[
           <Group height="100vh" bgc="#0C2340">
             <TextBox>
-              <ServicesBigTitle> Our Services </ServicesBigTitle>
+              <ServicesSmallTitle> Our Services </ServicesSmallTitle>
               <ServicesDesc>
                 We aren’t like everyone else and neither are our services. Take
                 a scroll to check out what we do differently to build our
@@ -833,7 +831,7 @@ const Work = () => {
               <Ball id="pro-ball6" color="#FFFCF2" />
             </ProAnimation>
           </Group>,
-          <Group height="100vh" bgc="#B1C3D6">
+          <Group height="100vh" bgc="#0033A0">
             <TextBox>
               <ServicesSmallTitle>Social </ServicesSmallTitle>
               <ServicesDesc>

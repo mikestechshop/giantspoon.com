@@ -37,6 +37,9 @@ const AwardsDesc = styled.p`
   font-weight: 300;
   margin-bottom: 1rem;
   width: 30vw;
+  &.see {
+    font-weight: 400;
+  }
 
   @media (max-width: 1024px) {
     width: 70vw;
@@ -65,8 +68,9 @@ const Awards = (props: TAwardsProps) => {
             onClick={() => {
               props.handleLinkChange("about#awards");
             }}
+            className="see"
           >
-            See More >{" "}
+            See More >
           </AwardsDesc>
         </TextBox>
       </Group>

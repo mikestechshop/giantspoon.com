@@ -19,10 +19,11 @@ const TextBox = styled.div`
   cursor: pointer;
 `;
 const WorkTitle = styled.h1`
-  line-height: 110%;
-  font-size: 8rem;
+  line-height: 16vh;
+  font-size: 12vh;
+  font-weight: 300;
   margin-bottom: 2rem;
-  font-weight: 400;
+
   @media (max-width: 1024px) {
     font-size: 3rem;
     font-weight: 300;
@@ -38,6 +39,9 @@ const WorkDesc = styled.p`
   font-weight: 300;
   margin-bottom: 1rem;
   width: 30vw;
+  &.see {
+    font-weight: 400;
+  }
 
   @media (max-width: 1024px) {
     font-size: 0.8rem;
@@ -78,8 +82,9 @@ const Work = (props: TWorkProps) => {
               onClick={() => {
                 props.handleLinkChange(`work/${caseStudy.fields.url}`);
               }}
+              className="see"
             >
-              See More >{" "}
+              See More >
             </WorkDesc>
           </TextBox>
         </Group>
@@ -107,6 +112,7 @@ const Work = (props: TWorkProps) => {
                 onClick={() => {
                   props.handleLinkChange(`work/`);
                 }}
+                className="see"
               >
                 See More >
               </WorkDesc>

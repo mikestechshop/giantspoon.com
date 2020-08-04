@@ -52,7 +52,7 @@ const ScrollEffectDiv = styled.div`
 
 const TextBox = styled.div`
   position: absolute;
-  left: 10%;
+  left: 10vw;
   bottom: 15%;
   text-align: left;
   color: white;
@@ -60,7 +60,11 @@ const TextBox = styled.div`
 `;
 const Title = styled.h1`
   line-height: 110%;
-  font-size: 8rem;
+  font-family: Baskerville;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 9rem;
+  line-height: 9.5rem;
   margin-bottom: 2rem;
   font-weight: 300;
   margin-top: 0;
@@ -85,6 +89,9 @@ const Desc = styled.p`
   position: relative;
   margin: ${(props) => props.margin || 0};
   color: ${(props) => props.color || "#FFFCF2"};
+  &.see {
+    font-weight: 400;
+  }
   @media (max-width: 1024px) {
     font-size: 0.8rem;
     width: 70%;
@@ -100,6 +107,7 @@ const OurValues = styled.div`
   margin-bottom: 2rem;
   font-family: "interstate-mono";
   color: #fffcf2;
+  text-transform: uppercase;
 
   @media (max-width: 1024px) {
     font-size: 0.8rem;
@@ -211,6 +219,7 @@ const Info = styled.div`
     a {
       text-decoration: none;
       color: #fffcf2;
+      font-weight: 400;
     }
   }
 
@@ -316,7 +325,6 @@ const Culture = (props: TCultureProps) => {
                         lectus. Ullamcorper non pretium tincidunt felis amet. A
                         eget tellus et, amet, accumsan.
                       </Desc>
-                      <Desc>See More > </Desc>
                     </TextBox>
                   </Group>,
                   <Group height="100vh">
@@ -330,7 +338,6 @@ const Culture = (props: TCultureProps) => {
                         lectus. Ullamcorper non pretium tincidunt felis amet. A
                         eget tellus et, amet, accumsan.
                       </Desc>
-                      <Desc>See More > </Desc>
                     </TextBox>
                   </Group>,
                   <Group height="100vh">
@@ -346,7 +353,6 @@ const Culture = (props: TCultureProps) => {
                         lectus. Ullamcorper non pretium tincidunt felis amet. A
                         eget tellus et, amet, accumsan.
                       </Desc>
-                      <Desc>See More > </Desc>
                     </TextBox>
                   </Group>,
                 ]}
@@ -371,7 +377,7 @@ const Culture = (props: TCultureProps) => {
                 </Vid>
                 <MediumText margin="10vh 10vw 30vh">
                   We love that everyone’s <br /> strange and personal <br />
-                  journey brought them here
+                  journey brought them here.
                 </MediumText>
                 <Desc color="#FFFCF2" margin="0 10vw 0">
                   We hire playwrights, former politicos, and pro gamers. The

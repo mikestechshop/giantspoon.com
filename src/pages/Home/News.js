@@ -43,7 +43,10 @@ const NewsDesc = styled.p`
   line-height: 140%;
   font-weight: 300;
   margin-bottom: 1rem;
-  width: 30vw;
+  width: 100%;
+  &.see {
+    font-weight: 400;
+  }
   a {
     color: white;
     text-decoration: none;
@@ -84,7 +87,7 @@ const News = (props: TNewsProps) => {
 
             <NewsTitle> {news.fields.title} </NewsTitle>
             <NewsDesc>{news.fields.blurb}</NewsDesc>
-            <NewsDesc>
+            <NewsDesc className="see">
               <a href={news.fields.url} target="_blank">
                 See More >
               </a>
