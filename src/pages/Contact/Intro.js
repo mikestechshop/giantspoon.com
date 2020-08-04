@@ -23,12 +23,13 @@ const TextBox = styled.div`
 
 const LargeTextWrap = styled.h1`
   font-style: normal;
+  line-height: 110%;
+  font-size: 6rem;
+  margin-bottom: 2rem;
   font-weight: 300;
-  font-size: 2rem;
-  line-height: 2.5rem;
 `;
 const Text = styled.div`
-  color: ${(props) => props.color || "white"};
+  color: ${(props) => props.color || "#FFFCF2"};
 `;
 
 const Paragraph = styled.p`
@@ -66,8 +67,8 @@ const Intro = () => {
 
       <TextBox>
         <LargeTextWrap>
-          <Text color="#FE9B96">We’d Love to</Text>
-          <Text color="#FE9B96">Hear from you</Text>
+          <Text>We’d Love to</Text>
+          <Text>Hear from you</Text>
         </LargeTextWrap>
         <Paragraph className="intro-p-text">
           (888) SPOON-50 or email hello@giantspoon.com

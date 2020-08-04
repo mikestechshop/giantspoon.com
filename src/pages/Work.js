@@ -59,9 +59,10 @@ const CampaignType = styled.div`
 `;
 
 const NewsTitle = styled.h1`
-  line-height: 140%;
+  line-height: 120%;
   font-size: 2rem;
   margin-bottom: 1rem;
+  margin-top: 0.8rem;
   font-weight: ${(props) => props.fw || 300};
   @media (max-width: 1024px) {
     font-weight: 300;

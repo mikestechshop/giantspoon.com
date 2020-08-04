@@ -161,7 +161,7 @@ const Home = (props: THomeProps) => {
                 onMouseEnter={() => onHover("#FE9B96")}
                 onMouseLeave={() => onMouseExit()}
               >
-                <Intro />
+                <Intro onHover={onHover} />
                 <ScrollEffect bottom="0%" id="scroll0Down">
                   <ScrollEffectDiv color="#FE9B96" />
                   <ScrollEffectDiv color="#B1C3D6" />

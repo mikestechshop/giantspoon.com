@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState } from "react";
+import React from "react";
 import { Wrapper, Group } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
@@ -13,7 +13,7 @@ type TAwardProps = {
 const LargeText = styled.h1`
   line-height: 110%;
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-weight: 400;
   @media (max-width: 1024px) {
     font-size: 1.5rem;
@@ -30,7 +30,7 @@ const SmallText = styled.p`
   }
 `;
 const AwardsWrap = styled.div`
-  height: 80vh;
+  height: 55vw;
   width: 80vw;
   box-sizing: border-box;
   margin: 20vh 10vw;

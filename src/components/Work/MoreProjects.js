@@ -15,14 +15,16 @@ const CampaignType = styled.div`
   line-height: 140%;
   text-transform: uppercase;
   font-family: interstate-mono, monospace;
+  position: relative;
+  left: 1px;
   @media (max-width: 1024px) {
     font-size: 0.7rem;
   }
 `;
 const NewsTitle = styled.div`
   font-size: 4rem;
-  margin-top: 10vh;
-  margin-bottom: 10vh;
+  margin-top: 13vh;
+  margin-bottom: 5vh;
   margin-left: 10vw;
   color: #b1c3d6;
 
@@ -48,7 +50,7 @@ const Info = styled.div`
   }
 
   .text {
-    line-height: 140%;
+    line-height: 110%;
     font-size: 2rem;
     margin-bottom: 1rem;
     font-weight: ${(props) => props.fw || 300};

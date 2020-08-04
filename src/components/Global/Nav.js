@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Image, Group, FullImage } from "../";
 import LogoVert from "../../static/logo-vert.png";
 import Circle from "../../static/circle.png";
@@ -21,12 +21,23 @@ type TStyledNavProps = {
   handleLinkChange: Function,
 };
 
+const wiggle = keyframes` 
+    0% { transform: rotate(0deg); }
+   80% { transform: rotate(0deg); }
+   85% { transform: rotate(15deg); }
+   95% { transform: rotate(-15deg); }
+  100% { transform: rotate(0deg); }
+`;
+
 const MenuDotsWrap = styled.div`
   position: fixed;
   top: 10px;
   right: 10px;
   z-index: 999;
   cursor: pointer;
+  animation-name: ${wiggle};
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
   img {
     cursor: pointer !important;
   }
@@ -55,7 +66,7 @@ const DateWrap = styled.div`
   font-size: 0.75rem;
   letter-spacing: 0.1rem;
   line-height: 1.1rem;
-  transform: rotate(90deg);
+  transform: rotate(270deg);
   transform-origin: 50% 50%;
   z-index: 989;
   font-family: interstate-mono, monospace;
@@ -86,7 +97,7 @@ const NYLAWrap = styled.div`
 const SectionTab = styled.div`
   position: fixed;
   top: 0;
-  left: 130px;
+  left: 10vw;
   height: 17px;
   width: 142px;
   z-index: 999;

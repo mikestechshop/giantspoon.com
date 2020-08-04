@@ -147,28 +147,26 @@ const Services = (props: TServicesProps) => {
             onClick={() => {
               props.handleLinkChange("/about#services");
             }}
+            className="see"
           >
-            See More >{" "}
+            See More >
           </ServicesDesc>
         </TextBox>
-        <ServicesList className="hoverable">
+        <ServicesList className="hoverable" onMouseLeave={() => onMouseExit()}>
           <ServicesSpan
             onMouseEnter={() => onHover("#B1C3D6", "Services", strategyBlurb)}
-            onMouseLeave={() => onMouseExit()}
           >
             Strategy
           </ServicesSpan>
           <br />
           <ServicesSpan
             onMouseEnter={() => onHover("#FE9B96", "Creative", creativeBlurb)}
-            onMouseLeave={() => onMouseExit()}
           >
             Creative
           </ServicesSpan>
           <br />
           <ServicesSpan
             onMouseEnter={() => onHover("#0033A0", "Media", mediaBlurb)}
-            onMouseLeave={() => onMouseExit()}
           >
             Media
           </ServicesSpan>
@@ -177,14 +175,12 @@ const Services = (props: TServicesProps) => {
             onMouseEnter={() =>
               onHover("#B1C3D6", "Production", productionBlurb)
             }
-            onMouseLeave={() => onMouseExit()}
           >
             Production
           </ServicesSpan>
           <br />
           <ServicesSpan
             onMouseEnter={() => onHover("#FE9B96", "Social", socialBlurb)}
-            onMouseLeave={() => onMouseExit()}
           >
             Social
           </ServicesSpan>
@@ -193,7 +189,6 @@ const Services = (props: TServicesProps) => {
             onMouseEnter={() =>
               onHover("#0033A0", "Experiential", experientialBlurb)
             }
-            onMouseLeave={() => onMouseExit()}
           >
             Experiential
           </ServicesSpan>

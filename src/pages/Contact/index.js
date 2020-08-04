@@ -26,8 +26,9 @@ const ScrollEffect = styled.div`
 `;
 
 const LargeText = styled.div`
-  font-weight: 300;
-  font-size: 4rem;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
   padding-left: 10%;
   margin-top: 20vh;
   @media (max-width: 1024px) {
@@ -43,6 +44,9 @@ const SmallText = styled.div`
   color: ${(props) => props.color || "#B1C3D6"};
   width: 400px;
   marin-left: 20%;
+  strong {
+    font-weight: 400;
+  }
   @media (max-width: 1024px) {
     font-size: 0.8rem;
   }
@@ -100,7 +104,7 @@ const Contact = (props: TContactProps) => (
                   flexAlign="start"
                 >
                   <Group
-                    width="50%"
+                    width="30%"
                     flexAlign="start"
                     mt={window.innerWidth > 1025 ? "20vh" : "4vh"}
                   >
@@ -108,18 +112,18 @@ const Contact = (props: TContactProps) => (
                       <strong>
                         Phone <br />
                         General Inquires <br />
-                        New Business <br /> Careers
+                        Careers
                       </strong>
                     </SmallText>
                   </Group>
                   <Group
-                    width="50%"
+                    width="70%"
                     flexAlign="start"
                     mt={window.innerWidth > 1025 ? "20vh" : "4vh"}
                   >
                     <SmallText flexAlign="start">
                       (888) SPOON-50 <br />
-                      hello@giantspoon.com <br /> newbiz@giantspoon.com <br />
+                      hello@giantspoon.com <br />
                       careers@giantspoon.com
                     </SmallText>
                   </Group>
@@ -137,8 +141,7 @@ const Contact = (props: TContactProps) => (
                     <strong>Los Angeles</strong>
                     <br />
                     6100 Wilshire Blvd. <br />
-                    Suite 700 Los Angeles, <br />
-                    CA 90048
+                    Suite 700 <br /> Los Angeles, CA 90048
                   </SmallText>
                   <SmallText mt="1.5rem" color="#FE9B96">
                     View Map >
@@ -148,9 +151,9 @@ const Contact = (props: TContactProps) => (
                   <SmallText mt={window.innerWidth > 1025 ? "20vh" : "6vh"}>
                     <strong>New York</strong>
                     <br />
-                    Wall Street. <br />
-                    3rd floor New York, <br />
-                    NY 10005
+                    44 Wall Street. <br />
+                    3rd floor
+                    <br /> New York, NY 10005
                   </SmallText>
                   <SmallText mt="1.5rem" color="#FE9B96">
                     View Map >

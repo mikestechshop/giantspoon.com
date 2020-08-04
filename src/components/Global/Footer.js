@@ -54,7 +54,10 @@ const TextWrap = styled.p`
 
 const LargeText = styled.div`
   font-size: 2rem;
-  line-height: 150%;
+  line-height: 120%;
+  .regular {
+    font-weight: 400;
+  }
   @media (max-width: 1024px) {
     font-size: 1.5rem;
     margin-top: 3rem;
@@ -92,7 +95,7 @@ const Footer = (props: TStyledFooterProps) => {
             <Box width={window.innerWidth > 1025 ? "50%" : "100%"}>
               <LargeText>
                 Like what you see? <br />
-                Get In Touch
+                <span className="regular">Get In Touch.</span>
               </LargeText>
             </Box>
             <Box
@@ -124,7 +127,7 @@ const Footer = (props: TStyledFooterProps) => {
                 <Box width="50%" margin="0 1rem 0 0 ">
                   <TextWrap>
                     <strong>New York</strong> <br />
-                    44 Wall Street, <br />
+                    44 Wall Street <br />
                     3rd floor <br />
                     New York, NY <br />
                     10005

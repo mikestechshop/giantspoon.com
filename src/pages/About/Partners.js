@@ -1,11 +1,9 @@
 // @flow
 
-import React, { useState } from "react";
+import React from "react";
 import { Wrapper, Group } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import { TweenMax } from "gsap";
-import Partner1 from "../../static/partner1.png";
 import "gsap/TextPlugin";
 
 type TPartnerProps = {
@@ -15,7 +13,7 @@ type TPartnerProps = {
 const LargeText = styled.h1`
   line-height: 110%;
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   font-weight: 400;
 
   @media (max-width: 1024px) {
@@ -33,7 +31,7 @@ const SmallText = styled.p`
   }
 `;
 const PartnersWrap = styled.div`
-  height: 62vh;
+  height: 38vw;
   width: 90vw;
   box-sizing: border-box;
   margin: 10vh 5vw;
@@ -44,9 +42,12 @@ const PartnersWrap = styled.div`
 `;
 const TextBox = styled.div`
   position: absolute;
-  bottom: 5vh;
+  bottom: 0vh;
   left: 5vw;
   width: 50%;
+  p {
+    margin-bottom: 0;
+  }
   @media (max-width: 1024px) {
     width: 100%;
   }
