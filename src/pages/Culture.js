@@ -117,7 +117,7 @@ const OurValues = styled.div`
 `;
 
 const MediumText = styled.div`
-  font-size: 6rem;
+  font-size: 2rem;
   line-height: 110%;
   text-transform: capitalize;
   font-weight: 300;

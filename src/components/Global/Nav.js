@@ -285,6 +285,10 @@ const handleThoughtOpen = (open) => {
       color: "#0C2340",
       ease: "power3.inOut",
     });
+    TweenMax.to("#breadcrumbs", 0.4, {
+      opacity: 0,
+      ease: "power3.inOut",
+    });
   } else {
     TweenMax.to("#thought", 0.4, {
       opacity: 0,
@@ -292,6 +296,10 @@ const handleThoughtOpen = (open) => {
     });
     TweenMax.to("#date", 0.4, {
       color: "#FE9B96",
+      ease: "power3.inOut",
+    });
+    TweenMax.to("#breadcrumbs", 0.4, {
+      opacity: 1,
       ease: "power3.inOut",
     });
   }

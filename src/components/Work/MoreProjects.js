@@ -89,13 +89,12 @@ const MoreProjects = (props: TMoreProjectsProps) => {
                   src={project.fields.previewMedia.fields.file.url}
                   alt={project.fields.previewMedia.fields.title}
                 />
-                <Info>
-                  <div
-                    className="text"
-                    onClick={() => {
-                      props.handleLinkChange(`/work/${project.fields.url}`);
-                    }}
-                  >
+                <Info
+                  onClick={() => {
+                    props.handleLinkChange(`/work/${project.fields.url}`);
+                  }}
+                >
+                  <div className="text">
                     <CampaignType> {project.fields.campaignType} </CampaignType>
                     {project.fields.clientTitle} <br />
                     <strong>{project.fields.campaignTitle} </strong>

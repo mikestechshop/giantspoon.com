@@ -146,7 +146,7 @@ const Work = (props: TWorkProps) => {
             <ReactFullpage.Wrapper>
               <SectionWrap className="section">
                 <Group height="100vh" width="auto">
-                  <Vid id="vid" autoPlay muted loop>
+                  <Vid id="vid" autoPlay muted loop data-keepplaying>
                     <source id="mp4" src={Video} type="video/mp4" />
                   </Vid>
                 </Group>

@@ -25,6 +25,7 @@ const Image = (props: TStyledImageProps) => {
       alt={alt}
       height={height}
       width={width}
+      data-keepplaying
     />
   );
 };

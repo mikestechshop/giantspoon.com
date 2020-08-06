@@ -61,7 +61,7 @@ const Intro = () => {
     <Wrapper>
       <div ref={ref}></div>
 
-      <Vid id="vid" autoPlay muted loop>
+      <Vid id="vid" autoPlay muted loop data-keepplaying>
         <source id="mp4" src={ContactVideo} type="video/mp4" />
       </Vid>
 
