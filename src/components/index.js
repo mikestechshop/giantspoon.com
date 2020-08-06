@@ -17,3 +17,4 @@ export { default as Slider } from "./Global/Slider";
 export { default as SmallSlider } from "./Global/SmallSlider";
 export { default as FullImage } from "./Global/FullImage";
 export { default as Breadcrumbs } from "./Global/Breadcrumbs";
+export { default as SectionTab } from "./Global/SectionTab";

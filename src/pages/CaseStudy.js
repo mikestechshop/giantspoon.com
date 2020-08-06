@@ -8,6 +8,7 @@ import {
   FullImage,
   Breadcrumbs,
   MoreProjects,
+  SectionTab,
 } from "../components";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { TweenMax } from "gsap";
@@ -110,6 +111,7 @@ const CaseStudy = (props: TCaseStudyProps) => {
   const [breadcrumbs, setBreadcrumbs] = useState(0);
   return (
     <>
+      <SectionTab text="Case Study" />
       <Breadcrumbs count={4} active={breadcrumbs} />
       <ReactFullpage
         //fullpage options

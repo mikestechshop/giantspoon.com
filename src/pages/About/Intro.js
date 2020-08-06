@@ -33,7 +33,7 @@ const Paragraph = styled.p`
   font-weight: 300;
   font-size: 1rem;
   line-height: 140%;
-  width: 60%;
+  width: 30vw;
   margin: 0;
   margin-left: calc(10vw + 1rem);
   margin-top: 4rem;
@@ -57,18 +57,16 @@ const Intro = () => {
       <Group height="100vh">
         <div ref={ref}></div>
         <LargeTextWrap className="intro-large-text">
-          <Text color="#B1C3D6">We believe ideas</Text>
+          <Text color="#B1C3D6">we believe ideas</Text>
           <Text color="#B1C3D6">can come from everywhere.</Text>
           <Paragraph className="intro-p-text">
             We’re a full-service agency and our secret sauce is that we’ve
-            always been that way. We weren’t a creative agency that decided to
+            always been that way. We weren’t a creative shop that decided to
             break into media or an experiential upstart that sprouted a strategy
-            arm. Every service had a seat at the table from the beginning. We
-            built our agency so that the best brains from every discipline could
-            collaborate and lend their own brand of problem solving to the
-            brief. We find that’s where the best ideas come from -- not from one
-            department or another, but the magic in between. Hover at right for
-            what we do or click to find out more about how we do it.
+            arm. We built our agency so that the best brains from every
+            discipline could collaborate to lend their own brand of problem
+            solving to the brief. Because the best ideas aren’t born from one
+            department or another, but the magic in between.
           </Paragraph>
         </LargeTextWrap>
       </Group>

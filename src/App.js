@@ -12,7 +12,17 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import { Home, Work, Contact, About, Culture, CaseStudy } from "./pages";
+import {
+  Home,
+  Work,
+  Contact,
+  About,
+  Culture,
+  CaseStudy,
+  Terms,
+  Privacy,
+  NotFound,
+} from "./pages";
 import { Nav } from "./components";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
@@ -122,6 +132,15 @@ const Routes = () => {
         </Route>
         <Route exact path="/contact">
           <Contact handleLinkChange={handleLinkChange} />
+        </Route>
+        <Route exact path="/terms">
+          <Terms handleLinkChange={handleLinkChange} />
+        </Route>
+        <Route exact path="/privacy">
+          <Privacy />
+        </Route>
+        <Route>
+          <NotFound />
         </Route>
       </Switch>
     </>

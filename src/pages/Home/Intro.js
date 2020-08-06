@@ -37,7 +37,7 @@ const Paragraph = styled.p`
   font-weight: 300;
   font-size: 1rem;
   line-height: 140%;
-  width: 60%;
+  width: 30vw;
   margin: 0;
   margin-left: calc(10vw + 1rem);
   margin-top: 4rem;

@@ -81,12 +81,15 @@ const News = (props: TNewsProps) => {
             {news.fields.publicationImage && (
               <NewsImg
                 src={news.fields.publicationImage.fields.file.url}
-                alt={news.fields.publicationImage.fields.title}
+                alt={news.fields.publicationImage.fields.title.replace(
+                  /'/g,
+                  "\u2019"
+                )}
               />
             )}
 
-            <NewsTitle> {news.fields.title} </NewsTitle>
-            <NewsDesc>{news.fields.blurb}</NewsDesc>
+            <NewsTitle> {news.fields.title.replace(/'/g, "\u2019")} </NewsTitle>
+            <NewsDesc>{news.fields.blurb.replace(/'/g, "\u2019")}</NewsDesc>
             <NewsDesc className="see">
               <a href={news.fields.url} target="_blank">
                 See More >

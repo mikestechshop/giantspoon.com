@@ -9,7 +9,7 @@ import Work from "./Work";
 import Awards from "./Awards";
 import News from "./News";
 import { TweenMax } from "gsap";
-import { Footer, Breadcrumbs } from "../../components";
+import { Footer, Breadcrumbs, SectionTab } from "../../components";
 import { useContentful } from "react-contentful";
 
 type THomeProps = {
@@ -34,11 +34,9 @@ const ScrollEffectDiv = styled.div`
   height: 25%;
   background-color: ${(props) => props.color || "auto"};
 `;
-const scrollAni = (id: string, html: string) => {
+const scrollAni = (id: string) => {
   TweenMax.to(id, 0.35, { height: "35vh" });
   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
-  // $FlowFixMe
-  document.querySelector("#section-tab").innerHTML = html;
 };
 const onHover = (color) => {
   TweenMax.to(".cursor__ball", 0.4, {
@@ -62,6 +60,7 @@ const onMouseExit = () => {
 };
 const Home = (props: THomeProps) => {
   const [breadcrumbs, setBreadcrumbs] = useState(0);
+  const [tabText, setTabText] = useState("Welcome");
   const caseStudy = useContentful({
     contentType: "caseStudy",
   });
@@ -113,6 +112,7 @@ const Home = (props: THomeProps) => {
   return (
     <>
       <Breadcrumbs hideFirst={true} count={5} active={breadcrumbs} />
+      <SectionTab text={tabText} />
       <ReactFullpage
         //fullpage options
         licenseKey={"YOUR_KEY_HERE"}
@@ -124,33 +124,47 @@ const Home = (props: THomeProps) => {
           } else {
             TweenMax.set("#breadcrumbs", { display: "block" });
           }
+          if (destination.index === 0) {
+            setTabText("Welcome");
+          } else if (destination.index === 1) {
+            setTabText("Work");
+          }
+          if (destination.index === 2) {
+            setTabText("Services");
+          }
+          if (destination.index === 3) {
+            setTabText("Awards");
+          }
+          if (destination.index === 4) {
+            setTabText("News");
+          }
           if (origin.index === 0) {
-            scrollAni("#scroll0Down", "CASE STUDIES");
+            scrollAni("#scroll0Down");
           }
           if (origin.index === 1) {
             if (direction === "down") {
-              scrollAni("#scroll1Down", "services");
+              scrollAni("#scroll1Down");
               console.log("run");
             } else if (direction === "up") {
-              scrollAni("#scroll1Up", "welcome");
+              scrollAni("#scroll1Up");
             }
           }
           if (origin.index === 2) {
             if (direction === "down") {
-              scrollAni("#scroll2Down", "awards");
+              scrollAni("#scroll2Down");
             } else if (direction === "up") {
-              scrollAni("#scroll2Up", "CASE STUDIES");
+              scrollAni("#scroll2Up");
             }
           }
           if (origin.index === 3) {
             if (direction === "down") {
-              scrollAni("#scroll3Down", "news");
+              scrollAni("#scroll3Down");
             } else if (direction === "up") {
-              scrollAni("#scroll3Up", "awards");
+              scrollAni("#scroll3Up");
             }
           }
           if (origin.index === 4) {
-            scrollAni("#scroll4Up", "news");
+            scrollAni("#scroll4Up");
           }
         }}
         render={({ state, fullpageApi }) => {

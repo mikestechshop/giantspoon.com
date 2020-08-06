@@ -128,9 +128,11 @@ const Partners = (props: TPartnerProps) => {
         <TextBox>
           <LargeText>The Company We Keep</LargeText>
           <SmallText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. At commodo,
-            bibendum id interdum lobortis praesent lectus. Ullamcorper non
-            pretium tincidunt felis amet. A eget tellus et, amet, accumsan.
+            Our partners pick us because they want to do things differently. We
+            work with Fortune 50 giants looking to flip the tables on tradition
+            and Silicon Valley darlings ready to rattle the status quo.
+            Regardless of size or specialty, our clients come to us for our take
+            on how to prepare their brand for the future.
           </SmallText>
         </TextBox>
         <Group width="100%" flexDirection="row">

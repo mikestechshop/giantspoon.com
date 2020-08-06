@@ -16,17 +16,7 @@ const TextBox = styled.div`
   @media (max-width: 1024px) {
   }
 `;
-const ServicesBigTitle = styled.h1`
-  line-height: 110%;
-  font-size: 8rem;
-  margin-bottom: 2rem;
-  font-weight: 400;
-  @media (max-width: 1024px) {
-    font-size: 2rem;
-    font-weight: 300;
-    margin-bottom: 1rem;
-  }
-`;
+
 const ServicesSmallTitle = styled.h1`
   line-height: 110%;
   font-size: 2rem;
@@ -487,7 +477,7 @@ const Work = () => {
         "start2"
       )
       .add("start3")
-      .to("#container1", 1, { rotation: "+=120deg" }, "start3")
+      .to("#container1", 1, { rotation: "+=123deg" }, "start3")
       .to(
         "#container2",
         1,
@@ -856,7 +846,7 @@ const Work = () => {
               <ServicesDesc>
                 We build immersive experiences people would pay to attend. What
                 sets us apart is the strategy that sits at the core of our
-                offering -- ensuring every partition or parting gift belongs to
+                offering - ensuring every partition or parting gift belongs to
                 the world that we’ve created.
               </ServicesDesc>
             </TextBox>

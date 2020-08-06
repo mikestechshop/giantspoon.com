@@ -59,6 +59,7 @@ const Info = styled.div`
     top: 50%;
     transform: translateY(-50%);
     left: 2rem;
+    width: 80%;
   }
 
   @media (max-width: 1024px) {

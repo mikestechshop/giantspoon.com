@@ -25,7 +25,7 @@ const AwardsTitle = styled.h1`
   font-size: 6rem;
   margin-bottom: 2rem;
   font-weight: 300;
-  width: 70vw;
+  width: 50vw;
 
   @media (max-width: 1024px) {
     font-size: 2.5rem;
@@ -62,7 +62,7 @@ const Awards = (props: TAwardsProps) => {
       <Group height="100vh">
         <FullImage className="flip" src={AwardsBg} alt="awards image" />
         <TextBox>
-          <AwardsTitle> {awardsTitle} </AwardsTitle>
+          <AwardsTitle> {awardsTitle.replace(/'/g, "\u2019")} </AwardsTitle>
           <AwardsDesc>{awardsBlurb}</AwardsDesc>
           <AwardsDesc
             onClick={() => {

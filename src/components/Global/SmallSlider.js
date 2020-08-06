@@ -68,6 +68,7 @@ const slideRight = (count, slidesLegnth, id) => {
       autoAlpha: 1,
       pointerEvents: "all",
     });
+    TweenMax.set("#breadcrumbs", { display: "none" });
   }
 };
 const slideLeft = (count, slidesLegnth, id) => {
@@ -88,6 +89,7 @@ const slideLeft = (count, slidesLegnth, id) => {
       autoAlpha: 0,
       pointerEvents: "none",
     });
+    TweenMax.set("#breadcrumbs", { display: "block" });
   }
 };
 

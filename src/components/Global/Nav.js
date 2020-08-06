@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { Image, Group, FullImage } from "../";
 import LogoVert from "../../static/logo-vert.png";
-import Circle from "../../static/circle.png";
+import MenuDots from "../../static/MenuDots.svg";
 import Ig from "../../static/Instagram.png";
 import Twitter from "../../static/Twitter.png";
 import Link from "../../static/Linked.png";
@@ -93,31 +93,6 @@ const NYLAWrap = styled.div`
   @media (max-width: 1024px) {
     display: none;
   }
-`;
-const SectionTab = styled.div`
-  position: fixed;
-  top: 0;
-  left: 10vw;
-  height: 17px;
-  width: 142px;
-  z-index: 999;
-  background: #b1c3d6;
-  @media (max-width: 1024px) {
-    left: 50px;
-  }
-`;
-const SmallText = styled.div`
-  position: absolute;
-  left: 14px;
-  top: -3px;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 0.75rem;
-  line-height: 140%;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-
-  color: #0c2340;
 `;
 
 const MenuWrap = styled.div`
@@ -208,14 +183,14 @@ const NavWrap = styled.div`
     rgba(255, 255, 255, 0) 40%,
     rgba(0, 0, 0, 0.3) 100%
   );
-  z-index: 9;
+  z-index: 0;
   pointer-events: none;
   background-blend-mode: multiply;
 `;
 
 const ThoughtOfTheDay = styled.div`
   position: fixed;
-  top: 220px;
+  bottom: 106px;
   left: 0;
   background: #fffcf2;
   height: 60vh;
@@ -281,7 +256,7 @@ const handleMenuOpen = (open) => {
       0.3
     );
     TweenMax.to(".bottom-links", 0.4, {
-      y: "-=10vh",
+      opacity: 0,
       onComplete: addPointers,
     });
     TweenMax.to("#menu", 0.4, {
@@ -353,7 +328,7 @@ const resetMenu = () => {
     delay: 0.5,
   });
   TweenMax.to(".bottom-links", 0.4, {
-    y: "+=10vh",
+    opacity: 1,
   });
   TweenMax.set(".link-wrap", { opacity: 0, y: 16 });
   TweenMax.set("#menu", {
@@ -398,7 +373,7 @@ const Nav = (props: TStyledNavProps) => {
           setMenuOpen(!menuOpen);
         }}
       >
-        <Image src={Circle} alt="menu nav" width="45px" height="45px" />
+        <Image src={MenuDots} alt="menu nav" width="45px" height="45px" />
       </MenuDotsWrap>
       <LogoVertWrap
         className="menu-link"
@@ -456,9 +431,7 @@ const Nav = (props: TStyledNavProps) => {
           </Group>
         </Group>
       </TransitMap>
-      <SectionTab>
-        <SmallText id="section-tab"> Welcome </SmallText>
-      </SectionTab>
+
       <MenuWrap className="menu-wrap">
         <Group flexDirection={window.innerWidth > 1025 ? "row" : "column"}>
           <Group
@@ -532,18 +505,46 @@ const Nav = (props: TStyledNavProps) => {
               >
                 CAREERS
               </SmallLinkWrap>
-              <SmallLinkWrap>TERMS OF USE</SmallLinkWrap>
-              <SmallLinkWrap>PRIVACY POLICY</SmallLinkWrap>
+              <SmallLinkWrap
+                onClick={() => {
+                  handleLinkChange("/terms");
+                  resetMenu();
+                  setMenuOpen(false);
+                }}
+              >
+                TERMS OF USE
+              </SmallLinkWrap>
+              <SmallLinkWrap
+                onClick={() => {
+                  handleLinkChange("/privacy");
+                  resetMenu();
+                  setMenuOpen(false);
+                }}
+              >
+                PRIVACY POLICY
+              </SmallLinkWrap>
             </SmallLinks>
             <Group mt="5vh">
               <LogoWrap>
-                <Image src={Link} alt="linkedIn logo" />
+                <a
+                  href="https://www.linkedin.com/company/giant-spoon-llc"
+                  target="_blank"
+                >
+                  <Image src={Link} alt="linkedIn logo" />
+                </a>
               </LogoWrap>
               <LogoWrap>
-                <Image src={Ig} alt="insta logo" />
+                <a
+                  href="https://www.instagram.com/giant_spoon/"
+                  target="_blank"
+                >
+                  <Image src={Ig} alt="insta logo" />
+                </a>
               </LogoWrap>
               <LogoWrap>
-                <Image src={Twitter} alt="twitter logo" />
+                <a href="https://twitter.com/giant_spoon" target="_blank">
+                  <Image src={Twitter} alt="twitter logo" />
+                </a>
               </LogoWrap>
             </Group>
           </Group>

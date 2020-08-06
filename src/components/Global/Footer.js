@@ -204,10 +204,22 @@ const Footer = (props: TStyledFooterProps) => {
                 >
                   Careers
                 </TextWrap>
-                <TextWrap className="mono" width="33%">
+                <TextWrap
+                  className="mono"
+                  width="33%"
+                  onClick={() => {
+                    handleLinkChange("/terms");
+                  }}
+                >
                   Terms of use
                 </TextWrap>
-                <TextWrap className="mono" width="33%">
+                <TextWrap
+                  className="mono"
+                  width="33%"
+                  onClick={() => {
+                    handleLinkChange("/privacy");
+                  }}
+                >
                   Privacy Policy
                 </TextWrap>
               </Box>

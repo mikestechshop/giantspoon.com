@@ -11,6 +11,7 @@ import {
   FullImage,
   Image,
   SmallSlider,
+  SectionTab,
 } from "../components";
 import Enjoy from "../static/enjoy.png";
 import Damn from "../static/damn.png";
@@ -116,8 +117,8 @@ const OurValues = styled.div`
 `;
 
 const MediumText = styled.div`
-  font-size: 4rem;
-  line-height: 4.7rem;
+  font-size: 6rem;
+  line-height: 110%;
   text-transform: capitalize;
   font-weight: 300;
   margin: ${(props) => props.margin || 0};
@@ -140,7 +141,14 @@ const MediumText = styled.div`
     }
   }
 `;
-
+const MediumTextBox = styled.div`
+  position: absolute;
+  left: 10%;
+  bottom: 15%;
+  text-align: left;
+  color: white;
+  cursor: pointer;
+`;
 const CareersBox = styled.div`
   width: 80vw;
   margin-left: 10vw;
@@ -173,8 +181,8 @@ const JobInfo = styled.div`
 
 const NewsTitle = styled.div`
   font-size: 4rem;
-  margin-top: 10vh;
-  margin-bottom: 10vh;
+  margin-top: 13vh;
+  margin-bottom: 5vh;
   margin-left: 10vw;
   color: #b1c3d6;
 `;
@@ -290,227 +298,250 @@ const Culture = (props: TCultureProps) => {
           fullpageApi.moveTo(4);
         }
         return (
-          <ReactFullpage.Wrapper>
-            <SectionWrap className="section" bgc="#0C2340">
-              <Group height="100vh" flexDirection="row" wrap="wrap">
-                {spoonsItems[0].fields.headshot.map((x, i) => {
-                  return (
-                    <HeadshotImg
-                      src={x.fields.file.url}
-                      alt={x.fields.title}
-                      key={i}
-                    />
-                  );
-                })}
-              </Group>
-              <ScrollEffect bottom="0%" id="scroll0Down">
-                <ScrollEffectDiv color="#FE9B96" />
-                <ScrollEffectDiv color="#B1C3D6" />
-                <ScrollEffectDiv color="#FFFCF2" />
-                <ScrollEffectDiv color="#0C2340" />
-              </ScrollEffect>
-            </SectionWrap>
-            <SectionWrap className="section" bgc="#0C2340">
-              <Slider
-                slideId="work-slider"
-                slides={[
-                  <Group height="100vh">
-                    <FullImage src={Try} alt="slide image" />
-                    <TextBox>
-                      <OurValues>Our Values</OurValues>
-                      <Title> Try Anything </Title>
-                      <Desc>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        At commodo, bibendum id interdum lobortis praesent
-                        lectus. Ullamcorper non pretium tincidunt felis amet. A
-                        eget tellus et, amet, accumsan.
-                      </Desc>
-                    </TextBox>
-                  </Group>,
-                  <Group height="100vh">
-                    <FullImage src={Damn} alt="slide image" />
-                    <TextBox>
-                      <OurValues>Our Values</OurValues>
-                      <Title> Give A Damn </Title>
-                      <Desc>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        At commodo, bibendum id interdum lobortis praesent
-                        lectus. Ullamcorper non pretium tincidunt felis amet. A
-                        eget tellus et, amet, accumsan.
-                      </Desc>
-                    </TextBox>
-                  </Group>,
-                  <Group height="100vh">
-                    <FullImage src={Enjoy} alt="slide image" />
-                    <TextBox>
-                      <OurValues>Our Values</OurValues>
-                      <Title>
-                        Enjoy <br /> Each Other
-                      </Title>
-                      <Desc>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        At commodo, bibendum id interdum lobortis praesent
-                        lectus. Ullamcorper non pretium tincidunt felis amet. A
-                        eget tellus et, amet, accumsan.
-                      </Desc>
-                    </TextBox>
-                  </Group>,
-                ]}
-              />
-              <ScrollEffect bottom="0%" id={`scroll1Down`}>
-                <ScrollEffectDiv color="#FE9B96" />
-                <ScrollEffectDiv color="#B1C3D6" />
-                <ScrollEffectDiv color="#FFFCF2" />
-                <ScrollEffectDiv color="#0C2340" />
-              </ScrollEffect>
-              <ScrollEffect top="0%" id={`scroll1Up`}>
-                <ScrollEffectDiv color="#FE9B96" />
-                <ScrollEffectDiv color="#B1C3D6" />
-                <ScrollEffectDiv color="#FFFCF2" />
-                <ScrollEffectDiv color="#0C2340" />
-              </ScrollEffect>
-            </SectionWrap>
-            <SectionWrap className="section" bgc="#0C2340">
-              <Group height="100vh" flexAlign="flex-start">
-                <Vid id="vid" autoPlay muted loop>
-                  <source id="mp4" src={Careers} type="video/mp4" />
-                </Vid>
-                <MediumText margin="10vh 10vw 30vh">
-                  We love that everyone’s <br /> strange and personal <br />
-                  journey brought them here.
-                </MediumText>
-                <Desc color="#FFFCF2" margin="0 10vw 0">
-                  We hire playwrights, former politicos, and pro gamers. The
-                  humans we hire are what makes the work so damn good. Take a
-                  look at some of the Spoons in our drawer and the weird stuff
-                  they’re into.
-                </Desc>
-              </Group>
-              <ScrollEffect bottom="0%" id={`scroll2Down`}>
-                <ScrollEffectDiv color="#FE9B96" />
-                <ScrollEffectDiv color="#B1C3D6" />
-                <ScrollEffectDiv color="#FFFCF2" />
-                <ScrollEffectDiv color="#0C2340" />
-              </ScrollEffect>
-              <ScrollEffect top="0%" id={`scroll2Up`}>
-                <ScrollEffectDiv color="#FE9B96" />
-                <ScrollEffectDiv color="#B1C3D6" />
-                <ScrollEffectDiv color="#FFFCF2" />
-                <ScrollEffectDiv color="#0C2340" />
-              </ScrollEffect>
-            </SectionWrap>
-            <SectionWrap className="section" bgc="#0033A0">
-              <Group height="100vh" flexAlign="flex-start">
-                <MediumText
-                  margin="10vh 10vw "
-                  color="#B1C3D6"
-                  className="careers"
-                >
-                  Who we’re currently looking for
-                </MediumText>
-                <CareersBox>
-                  <Group
-                    flexDirection={window.innerWidth > 1025 ? "row" : "column"}
-                  >
-                    <Group
-                      width={window.innerWidth > 1025 ? "30%" : "100%"}
-                      flexAlign="flex-start"
-                    >
-                      <JobTitle> Senior Anaylst </JobTitle>
-                    </Group>
-                    <Group
-                      width={window.innerWidth > 1025 ? "25%" : "100%"}
-                      flexAlign="flex-start"
-                    >
-                      <JobInfo>
-                        Media <br /> Los Angeles, CA
-                      </JobInfo>
-                    </Group>
-                    <Group
-                      width={window.innerWidth > 1025 ? "45%" : "100%"}
-                      flexAlign="flex-start"
-                    >
-                      <JobInfo>
-                        Giant Spoon is looking for a Senior Analyst with a track
-                        record for teasing insights from data. Someone who knows
-                        the story lies between the lines — a combination of
-                        qualitative and quantitative, art and science analysis.
-                        See More>
-                      </JobInfo>
-                    </Group>
-                  </Group>
-                </CareersBox>
-              </Group>
-              <ScrollEffect bottom="0%" id={`scroll3Down`}>
-                <ScrollEffectDiv color="#FE9B96" />
-                <ScrollEffectDiv color="#B1C3D6" />
-                <ScrollEffectDiv color="#FFFCF2" />
-                <ScrollEffectDiv color="#0C2340" />
-              </ScrollEffect>
-              <ScrollEffect top="0%" id={`scroll3Up`}>
-                <ScrollEffectDiv color="#FE9B96" />
-                <ScrollEffectDiv color="#B1C3D6" />
-                <ScrollEffectDiv color="#FFFCF2" />
-                <ScrollEffectDiv color="#0C2340" />
-              </ScrollEffect>
-            </SectionWrap>
-            <SectionWrap className="section" bgc="#0C2340">
-              <Group height="100vh" flexAlign="flex-start">
-                <NewsTitle> News </NewsTitle>
-                <Group height={window.innerWidth > 1025 ? "50vh" : "80vh"}>
-                  <SmallSlider
-                    slideId="news-slide"
-                    slides={newsItems.map((news) => {
-                      console.log(news.fields);
-                      return (
-                        <Group height="100%">
-                          <Image
-                            height="50vh"
-                            width="auto"
-                            src={news.fields.image.fields.file.url}
-                            alt={news.fields.image.fields.title}
-                          />
-                          <Info>
-                            <div className="text">
-                              {news.fields.publicationImage && (
-                                <NewsImg
-                                  src={
-                                    news.fields.publicationImage.fields.file.url
-                                  }
-                                  alt={
-                                    news.fields.publicationImage.fields.title
-                                  }
-                                />
-                              )}
-
-                              <div>
-                                <strong> {news.fields.title} </strong>{" "}
-                              </div>
-                              <div>{news.fields.blurb}</div>
-                              <div>
-                                <a href={news.fields.url} target="_blank">
-                                  See More >
-                                </a>
-                              </div>
-                            </div>
-                          </Info>
-                        </Group>
-                      );
-                    })}
-                  />
+          <>
+            <SectionTab text="Spoons" />
+            <ReactFullpage.Wrapper>
+              <SectionWrap className="section" bgc="#0C2340">
+                <Group height="100vh" flexDirection="row" wrap="wrap">
+                  {spoonsItems[0].fields.headshot.map((x, i) => {
+                    return (
+                      <HeadshotImg
+                        src={x.fields.file.url}
+                        alt={x.fields.title}
+                        key={i}
+                      />
+                    );
+                  })}
                 </Group>
-              </Group>
-              <ScrollEffect top="0%" id={`scroll4Up`}>
-                <ScrollEffectDiv color="#FE9B96" />
-                <ScrollEffectDiv color="#B1C3D6" />
-                <ScrollEffectDiv color="#FFFCF2" />
-                <ScrollEffectDiv color="#0C2340" />
-              </ScrollEffect>
-            </SectionWrap>
-            <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
-              <Footer handleLinkChange={props.handleLinkChange} />
-            </SectionWrap>
-          </ReactFullpage.Wrapper>
+                <ScrollEffect bottom="0%" id="scroll0Down">
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
+              </SectionWrap>
+              <SectionWrap className="section" bgc="#0C2340">
+                <Slider
+                  slideId="work-slider"
+                  slides={[
+                    <Group height="100vh">
+                      <FullImage src={Try} alt="slide image" />
+                      <TextBox>
+                        <OurValues>Our Values</OurValues>
+                        <Title>
+                          try <br />
+                          anything
+                        </Title>
+                        <Desc>
+                          Some people say it, but we really mean it. We were
+                          born out of a startup culture. We fail fast, break
+                          things, then dust ourselves off to start again. Our
+                          best work was built because someone was dumb, brave,
+                          or brilliant enough to try it. Be like that person.
+                        </Desc>
+                      </TextBox>
+                    </Group>,
+                    <Group height="100vh">
+                      <FullImage src={Damn} alt="slide image" />
+                      <TextBox>
+                        <OurValues>Our Values</OurValues>
+                        <Title>
+                          give <br />a damn
+                        </Title>
+                        <Desc>
+                          We care. Like a lot. Maybe even too much. We sweat
+                          every detail and punch up every line. We roll up our
+                          sleeves and go to bat for better every day. We give a
+                          damn and hope you do too.
+                        </Desc>
+                      </TextBox>
+                    </Group>,
+                    <Group height="100vh">
+                      <FullImage src={Enjoy} alt="slide image" />
+                      <TextBox>
+                        <OurValues>Our Values</OurValues>
+                        <Title>
+                          enjoy <br /> each other
+                        </Title>
+                        <Desc>
+                          As a company founded by friends, we’ve always had a
+                          strong foundation of fun. You’d be surprised how many
+                          business problems we’ve solved while cracking a joke,
+                          a beer, or a smile. While we care deeply about the
+                          work, we also care deeply about enjoying the people we
+                          work with.
+                        </Desc>
+                      </TextBox>
+                    </Group>,
+                  ]}
+                />
+                <ScrollEffect bottom="0%" id={`scroll1Down`}>
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
+                <ScrollEffect top="0%" id={`scroll1Up`}>
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
+              </SectionWrap>
+              <SectionWrap className="section" bgc="#0C2340">
+                <Group height="100vh" flexAlign="flex-start">
+                  <Vid id="vid" autoPlay muted loop>
+                    <source id="mp4" src={Careers} type="video/mp4" />
+                  </Vid>
+                  <MediumTextBox>
+                    <MediumText margin="10vh 0vw 2rem">
+                      We love that everyone’s <br /> strange and personal <br />
+                      journey brought them here.
+                    </MediumText>
+                    <Desc color="#FFFCF2" margin="0">
+                      We hire playwrights, former politicos, and pro gamers. The
+                      humans we hire are what makes the work so damn good. Take
+                      a look at some of the Spoons in our drawer and the weird
+                      stuff they’re into.
+                    </Desc>
+                  </MediumTextBox>
+                </Group>
+                <ScrollEffect bottom="0%" id={`scroll2Down`}>
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
+                <ScrollEffect top="0%" id={`scroll2Up`}>
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
+              </SectionWrap>
+              <SectionWrap className="section" bgc="#0033A0">
+                <Group height="100vh" flexAlign="flex-start">
+                  <MediumText
+                    margin="10vh 10vw "
+                    color="#B1C3D6"
+                    className="careers"
+                  >
+                    Our Open Positions
+                  </MediumText>
+                  <CareersBox>
+                    <Group
+                      flexDirection={
+                        window.innerWidth > 1025 ? "row" : "column"
+                      }
+                    >
+                      <Group
+                        width={window.innerWidth > 1025 ? "30%" : "100%"}
+                        flexAlign="flex-start"
+                      >
+                        <JobTitle> Senior Anaylst </JobTitle>
+                      </Group>
+                      <Group
+                        width={window.innerWidth > 1025 ? "25%" : "100%"}
+                        flexAlign="flex-start"
+                      >
+                        <JobInfo>
+                          Media <br /> Los Angeles, CA
+                        </JobInfo>
+                      </Group>
+                      <Group
+                        width={window.innerWidth > 1025 ? "45%" : "100%"}
+                        flexAlign="flex-start"
+                      >
+                        <JobInfo>
+                          Giant Spoon is looking for a Senior Analyst with a
+                          track record for teasing insights from data. Someone
+                          who knows the story lies between the lines — a
+                          combination of qualitative and quantitative, art and
+                          science analysis. See More>
+                        </JobInfo>
+                      </Group>
+                    </Group>
+                  </CareersBox>
+                  <TextBox>
+                    <Desc>
+                      Take a scroll to see if we’re hiring. Don’t see what
+                      you’re looking for? We’re always searching for new Spoons
+                      in the drawer – send us your info.
+                    </Desc>
+                  </TextBox>
+                </Group>
+                <ScrollEffect bottom="0%" id={`scroll3Down`}>
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
+                <ScrollEffect top="0%" id={`scroll3Up`}>
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
+              </SectionWrap>
+              <SectionWrap className="section" bgc="#0C2340">
+                <Group height="100vh" flexAlign="flex-start">
+                  <NewsTitle> News </NewsTitle>
+                  <Group height={window.innerWidth > 1025 ? "50vh" : "80vh"}>
+                    <SmallSlider
+                      slideId="news-slide"
+                      slides={newsItems.map((news) => {
+                        console.log(news.fields);
+                        return (
+                          <Group height="100%">
+                            <Image
+                              height="50vh"
+                              width="auto"
+                              src={news.fields.image.fields.file.url}
+                              alt={news.fields.image.fields.title}
+                            />
+                            <Info>
+                              <div className="text">
+                                {news.fields.publicationImage && (
+                                  <NewsImg
+                                    src={
+                                      news.fields.publicationImage.fields.file
+                                        .url
+                                    }
+                                    alt={
+                                      news.fields.publicationImage.fields.title
+                                    }
+                                  />
+                                )}
+
+                                <div>
+                                  <strong> {news.fields.title} </strong>
+                                </div>
+                                <div>{news.fields.blurb}</div>
+                                <div>
+                                  <a href={news.fields.url} target="_blank">
+                                    See More >
+                                  </a>
+                                </div>
+                              </div>
+                            </Info>
+                          </Group>
+                        );
+                      })}
+                    />
+                  </Group>
+                </Group>
+                <ScrollEffect top="0%" id={`scroll4Up`}>
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
+              </SectionWrap>
+              <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
+                <Footer handleLinkChange={props.handleLinkChange} />
+              </SectionWrap>
+            </ReactFullpage.Wrapper>
+          </>
         );
       }}
     />

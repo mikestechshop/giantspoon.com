@@ -67,16 +67,12 @@ const Intro = () => {
 
       <TextBox>
         <LargeTextWrap>
-          <Text>We’d Love to</Text>
-          <Text>Hear from you</Text>
+          <Text>Drop Us a Line</Text>
         </LargeTextWrap>
         <Paragraph className="intro-p-text">
-          (888) SPOON-50 or email hello@giantspoon.com
-          <br />
-          <br />
-          Send us fan mail. Maybe even snail mail. Stalk us,
-          <br />
-          praise us, work with us. Heck, all of the above.
+          In the market for a really cool agency or looking to send along your
+          resume? Give us a call at 888-SPOON-50 or shoot us an email at
+          hello@giantspoon.com and we’ll take it from there.
         </Paragraph>
       </TextBox>
     </Wrapper>

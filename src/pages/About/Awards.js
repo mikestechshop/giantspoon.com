@@ -110,14 +110,10 @@ const Awards = (props: TAwardProps) => {
     <Wrapper>
       <AwardsWrap>
         <TextBox>
-          <LargeText>
-            Lorem Ipsum <br />
-            About Awards
-          </LargeText>
+          <LargeText>We’ve Won Some Stuff</LargeText>
           <SmallText>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. At commodo,
-            bibendum id interdum lobortis praesent lectus. Ullamcorper non
-            pretium tincidunt felis amet. A eget tellus et, amet, accumsan.
+            We feel weird about posting our awards too, but we have to put this
+            page here so procurement says you can hire us.
           </SmallText>
         </TextBox>
         <Group width="100%" flexDirection="row">

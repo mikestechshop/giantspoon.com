@@ -47,6 +47,9 @@ const ServicesDesc = styled.p`
   font-weight: 300;
   margin-bottom: 1rem;
   width: 30vw;
+  &.see {
+    font-weight: 400;
+  }
   @media (max-width: 1024px) {
     width: 70vw;
     font-size: 0.8rem;
@@ -100,10 +103,11 @@ const onMouseExit = () => {
   // $FlowFixMe
   document.querySelector("#see-more").innerHTML = "See More >";
   // $FlowFixMe
-  document.querySelector("#service-title").innerHTML = "Title";
+  document.querySelector("#service-title").innerHTML =
+    "Now, what can we do for you?";
   // $FlowFixMe
   document.querySelector("#service-desc").innerHTML =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. At commodo, bibendum id interdum lobortis praesent lectus. Ullamcorper non pretium tincidunt felis amet. A eget tellus et, amet, accumsan.";
+    "We’re a full-service agency and our secret sauce is that we’ve always been that way. We weren’t a creative agency that decided to break into media or an experiential upstart that sprouted a strategy arm. Every service had a seat at the table from the beginning. We built our agency so that the best brains from every discipline could collaborate and lend their own brand of problem solving to the brief. We find that’s where the best ideas come from -- not from one department or another, but the magic in between. Hover at right for what we do or click to find out more about how we do it.";
 };
 
 const Services = (props: TServicesProps) => {
@@ -154,7 +158,7 @@ const Services = (props: TServicesProps) => {
         </TextBox>
         <ServicesList className="hoverable" onMouseLeave={() => onMouseExit()}>
           <ServicesSpan
-            onMouseEnter={() => onHover("#B1C3D6", "Services", strategyBlurb)}
+            onMouseEnter={() => onHover("#B1C3D6", "Strategy", strategyBlurb)}
           >
             Strategy
           </ServicesSpan>

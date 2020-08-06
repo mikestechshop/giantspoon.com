@@ -1,13 +1,18 @@
 // @flow
 
-import React from "react";
+import React, { useState } from "react";
 import ReactFullpage from "@fullpage/react-fullpage";
 import styled from "styled-components";
-import { Footer, FullImage, MoreProjects, Group, Image } from "../components";
+import {
+  Footer,
+  FullImage,
+  MoreProjects,
+  Group,
+  SectionTab,
+  Breadcrumbs,
+} from "../components";
 import { useContentful } from "react-contentful";
 import Video from "../static/video.mp4";
-import playButton from "../static/playButton.png";
-import ReactPlayer from "react-player";
 import { TweenMax } from "gsap";
 
 type TWorkProps = {
@@ -76,6 +81,9 @@ const NewsDesc = styled.p`
   font-weight: 300;
   margin-bottom: 1rem;
   width: 400px;
+  &.view {
+    font-weight: 400;
+  }
   @media (max-width: 1024px) {
     width: 70vw;
     font-size: 0.8rem;
@@ -92,6 +100,7 @@ const scrollAni = (id: string) => {
   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
 };
 const Work = (props: TWorkProps) => {
+  const [breadcrumbs, setBreadcrumbs] = useState(0);
   const { data, error, fetched, loading } = useContentful({
     contentType: "caseStudy",
   });
@@ -108,103 +117,118 @@ const Work = (props: TWorkProps) => {
   const featItemsLength = items.filter((item) => {
     return item.fields.featured;
   }).length;
+
   return (
-    <ReactFullpage
-      //fullpage options
-      licenseKey={"YOUR_KEY_HERE"}
-      scrollingSpeed={800} /* Options here */
-      onLeave={function (origin, destination, direction) {
-        console.log(origin);
-        scrollAni(
-          `#scroll${origin.index}${direction === "down" ? "Down" : "Up"}`
-        );
-      }}
-      render={({ state, fullpageApi }) => {
-        return (
-          <ReactFullpage.Wrapper>
-            <SectionWrap className="section">
-              <Group height="100vh" width="auto">
-                <Vid id="vid" autoPlay muted loop>
-                  <source id="mp4" src={Video} type="video/mp4" />
-                </Vid>
-              </Group>
-              <ScrollEffect bottom="0%" id="scroll0Down">
-                <ScrollEffectDiv color="#FE9B96" />
-                <ScrollEffectDiv color="#B1C3D6" />
-                <ScrollEffectDiv color="#FFFCF2" />
-                <ScrollEffectDiv color="#0C2340" />
-              </ScrollEffect>
-            </SectionWrap>
-            {items
-              .filter((item) => {
-                return item.fields.featured;
-              })
-              .map((item, i) => {
-                const {
-                  campaignTitle,
-                  campaignType,
-                  clientTitle,
-                  previewBlurb,
-                  previewMedia,
-                  url,
-                } = item.fields;
-                return (
-                  <SectionWrap key={i} className="section" bgc="#0C2340">
-                    <FullImage
-                      className="half"
-                      src={previewMedia.fields.file.url}
-                      alt={previewMedia.fields.title}
-                    />
-                    <TextBox>
-                      <CampaignType> {campaignType}</CampaignType>
-                      <NewsTitle>
-                        {clientTitle} <br /> <strong>{campaignTitle} </strong>
-                      </NewsTitle>
-                      <NewsDesc>{previewBlurb}</NewsDesc>
-                      <NewsDesc
-                        onClick={() => {
-                          props.handleLinkChange(`work/${url}`);
-                        }}
-                      >
-                        View Project >{" "}
-                      </NewsDesc>
-                    </TextBox>
-                    <ScrollEffect bottom="0%" id={`scroll${i + 1}Down`}>
-                      <ScrollEffectDiv color="#FE9B96" />
-                      <ScrollEffectDiv color="#B1C3D6" />
-                      <ScrollEffectDiv color="#FFFCF2" />
-                      <ScrollEffectDiv color="#0C2340" />
-                    </ScrollEffect>
-                    <ScrollEffect top="0%" id={`scroll${i + 1}Up`}>
-                      <ScrollEffectDiv color="#FE9B96" />
-                      <ScrollEffectDiv color="#B1C3D6" />
-                      <ScrollEffectDiv color="#FFFCF2" />
-                      <ScrollEffectDiv color="#0C2340" />
-                    </ScrollEffect>
-                  </SectionWrap>
-                );
-              })}
-            <SectionWrap className="section" bgc="#0C2340">
-              <MoreProjects
-                handleLinkChange={props.handleLinkChange}
-                projects={items.filter((item) => {
-                  return !item.fields.featured;
+    <>
+      <SectionTab text="work" />
+      <Breadcrumbs
+        hideFirst={true}
+        count={2 + featItemsLength}
+        active={breadcrumbs}
+      />
+      <ReactFullpage
+        //fullpage options
+        licenseKey={"YOUR_KEY_HERE"}
+        scrollingSpeed={800} /* Options here */
+        onLeave={function (origin, destination, direction) {
+          setBreadcrumbs(destination.index);
+          if (destination.isLast || destination.isFirst) {
+            TweenMax.set("#breadcrumbs", { display: "none" });
+          } else {
+            TweenMax.set("#breadcrumbs", { display: "block" });
+          }
+          scrollAni(
+            `#scroll${origin.index}${direction === "down" ? "Down" : "Up"}`
+          );
+        }}
+        render={({ state, fullpageApi }) => {
+          return (
+            <ReactFullpage.Wrapper>
+              <SectionWrap className="section">
+                <Group height="100vh" width="auto">
+                  <Vid id="vid" autoPlay muted loop>
+                    <source id="mp4" src={Video} type="video/mp4" />
+                  </Vid>
+                </Group>
+                <ScrollEffect bottom="0%" id="scroll0Down">
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
+              </SectionWrap>
+              {items
+                .filter((item) => {
+                  return item.fields.featured;
+                })
+                .map((item, i) => {
+                  const {
+                    campaignTitle,
+                    campaignType,
+                    clientTitle,
+                    previewBlurb,
+                    previewMedia,
+                    url,
+                  } = item.fields;
+                  return (
+                    <SectionWrap key={i} className="section" bgc="#0C2340">
+                      <FullImage
+                        className="half"
+                        src={previewMedia.fields.file.url}
+                        alt={previewMedia.fields.title}
+                      />
+                      <TextBox>
+                        <CampaignType> {campaignType}</CampaignType>
+                        <NewsTitle>
+                          {clientTitle} <br /> <strong>{campaignTitle} </strong>
+                        </NewsTitle>
+                        <NewsDesc>{previewBlurb}</NewsDesc>
+                        <NewsDesc
+                          onClick={() => {
+                            props.handleLinkChange(`work/${url}`);
+                          }}
+                          className="view"
+                        >
+                          View Project >
+                        </NewsDesc>
+                      </TextBox>
+                      <ScrollEffect bottom="0%" id={`scroll${i + 1}Down`}>
+                        <ScrollEffectDiv color="#FE9B96" />
+                        <ScrollEffectDiv color="#B1C3D6" />
+                        <ScrollEffectDiv color="#FFFCF2" />
+                        <ScrollEffectDiv color="#0C2340" />
+                      </ScrollEffect>
+                      <ScrollEffect top="0%" id={`scroll${i + 1}Up`}>
+                        <ScrollEffectDiv color="#FE9B96" />
+                        <ScrollEffectDiv color="#B1C3D6" />
+                        <ScrollEffectDiv color="#FFFCF2" />
+                        <ScrollEffectDiv color="#0C2340" />
+                      </ScrollEffect>
+                    </SectionWrap>
+                  );
                 })}
-              />
-              <ScrollEffect top="0%" id={`scroll${featItemsLength + 1}Up`}>
-                <ScrollEffectDiv color="#FE9B96" />
-                <ScrollEffectDiv color="#B1C3D6" />
-                <ScrollEffectDiv color="#FFFCF2" />
-                <ScrollEffectDiv color="#0C2340" />
-              </ScrollEffect>
-            </SectionWrap>
-            <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
-              <Footer handleLinkChange={props.handleLinkChange} />
-            </SectionWrap>
-          </ReactFullpage.Wrapper>
-        );
-      }}
-    />
+              <SectionWrap className="section" bgc="#0C2340">
+                <MoreProjects
+                  handleLinkChange={props.handleLinkChange}
+                  projects={items.filter((item) => {
+                    return !item.fields.featured;
+                  })}
+                />
+                <ScrollEffect top="0%" id={`scroll${featItemsLength + 1}Up`}>
+                  <ScrollEffectDiv color="#FE9B96" />
+                  <ScrollEffectDiv color="#B1C3D6" />
+                  <ScrollEffectDiv color="#FFFCF2" />
+                  <ScrollEffectDiv color="#0C2340" />
+                </ScrollEffect>
+              </SectionWrap>
+              <SectionWrap className="section fp-auto-height" bgc="#FE9B96">
+                <Footer handleLinkChange={props.handleLinkChange} />
+              </SectionWrap>
+            </ReactFullpage.Wrapper>
+          );
+        }}
+      />
+    </>
   );
 };
 
