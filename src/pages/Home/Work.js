@@ -105,8 +105,8 @@ const Work = (props: TWorkProps) => {
             <TextBox>
               <WorkTitle className="smaller">Want to See More?</WorkTitle>
               <WorkDesc>
-                Wow you really love case studies. Click here to look at more of
-                what we’ve made.
+                Wow, you really love case studies. Take a look at more of what
+                we’ve made.
               </WorkDesc>
               <WorkDesc
                 onClick={() => {
