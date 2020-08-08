@@ -25,6 +25,9 @@ const LargeTextWrap = styled.h1`
 `;
 const Text = styled.div`
   color: ${(props) => props.color || "white"};
+  .coral {
+    color: #fe9b96;
+  }
 `;
 
 const Paragraph = styled.p`
@@ -57,8 +60,12 @@ const Intro = () => {
       <Group height="100vh">
         <div ref={ref}></div>
         <LargeTextWrap className="intro-large-text">
-          <Text color="#B1C3D6">we believe ideas</Text>
-          <Text color="#B1C3D6">can come from everywhere.</Text>
+          <Text color="#B1C3D6">
+            we believe <span class="coral"> ideas </span>
+          </Text>
+          <Text color="#B1C3D6">
+            can come from <span class="coral">anywhere.</span>
+          </Text>
           <Paragraph className="intro-p-text">
             We’re a full-service agency and our secret sauce is that we’ve
             always been that way. We weren’t a creative shop that decided to

@@ -28,7 +28,7 @@ const TextBox = styled.div`
   cursor: pointer;
 
   @media (max-width: 1024px) {
-    bottom: 10vh;
+    display: none;
   }
 `;
 const ServicesTitle = styled.h1`

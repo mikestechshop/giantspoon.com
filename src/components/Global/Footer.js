@@ -47,8 +47,8 @@ const TextWrap = styled.p`
     text-transform: uppercase;
   }
   @media (max-width: 1024px) {
-    font-size: 0.8rem;
-    line-height: 1.2rem;
+    font-size: 0.6rem;
+    line-height: 1rem;
   }
 `;
 
@@ -60,8 +60,8 @@ const LargeText = styled.div`
   }
   @media (max-width: 1024px) {
     font-size: 1.5rem;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 `;
 
@@ -230,13 +230,25 @@ const Footer = (props: TStyledFooterProps) => {
                 margin={window.innerWidth > 1025 ? "3rem 0 0 0" : "0"}
               >
                 <LogoWrap>
-                  <Image src={Link} alt="linkedIn logo" />
+                  <a
+                    href="https://www.linkedin.com/company/giant-spoon-llc"
+                    target="_blank"
+                  >
+                    <Image src={Link} alt="linkedIn logo" />
+                  </a>
                 </LogoWrap>
                 <LogoWrap>
-                  <Image src={Ig} alt="insta logo" />
+                  <a
+                    href="https://www.instagram.com/giant_spoon/"
+                    target="_blank"
+                  >
+                    <Image src={Ig} alt="insta logo" />
+                  </a>
                 </LogoWrap>
                 <LogoWrap>
-                  <Image src={Twitter} alt="twitter logo" />
+                  <a href="https://twitter.com/giant_spoon" target="_blank">
+                    <Image src={Twitter} alt="twitter logo" />
+                  </a>
                 </LogoWrap>
               </Box>
             </Box>

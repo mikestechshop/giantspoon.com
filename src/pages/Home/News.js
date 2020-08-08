@@ -16,7 +16,7 @@ const TextBox = styled.div`
   color: white;
   cursor: pointer;
   @media (max-width: 1024px) {
-    bottom: 5vh;
+    bottom: 0vh;
   }
 `;
 
@@ -24,7 +24,7 @@ const NewsImg = styled.img`
   height: 80px;
   margin-bottom: 1rem;
   @media (max-width: 1024px) {
-    margin-bottom: 0.5rem;
+    display: none;
   }
 `;
 const NewsTitle = styled.h1`
@@ -101,7 +101,7 @@ const News = (props: TNewsProps) => {
     });
 
   return (
-    <Wrapper height="100vh">
+    <Wrapper height="calc(100vh - calc(100vh - 100%))">
       <div ref={ref}></div>
       <Slider slideId="news-slider" slides={newsItemsArray} />
     </Wrapper>

@@ -1,7 +1,13 @@
 // @flow
 
 import React from "react";
-import { Wrapper, Slider, Group, FullImage } from "../../components";
+import {
+  Wrapper,
+  Slider,
+  Group,
+  FullImage,
+  VimeoPlayer,
+} from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import Slide1 from "../../static/slide1.png";
@@ -9,6 +15,7 @@ import Slide1 from "../../static/slide1.png";
 type TWorkProps = {
   caseStudyItems: Array<Object>,
   handleLinkChange: Function,
+  vimeoId: string,
 };
 const TextBox = styled.div`
   position: absolute;
@@ -27,6 +34,8 @@ const WorkTitle = styled.h1`
   @media (max-width: 1024px) {
     font-size: 3rem;
     font-weight: 300;
+    line-height: 3.5rem;
+    margin-bottom: 1rem;
     word-wrap: break-word;
     &.smaller {
       font-size: 2rem;
@@ -59,7 +68,7 @@ const Work = (props: TWorkProps) => {
     triggerOnce: true,
   });
 
-  const { caseStudyItems } = props;
+  const { caseStudyItems, vimeoId } = props;
 
   const featuredCaseStudies = caseStudyItems
     .filter((caseStudy) => {
@@ -98,7 +107,7 @@ const Work = (props: TWorkProps) => {
         slideId="work-slider"
         slides={[
           <Group height="100vh">
-            <FullImage src={Slide1} alt="slide image" />
+            <VimeoPlayer id={vimeoId} />
           </Group>,
           ...featuredCaseStudies,
           <Group height="100vh" bgc="#0C2340">

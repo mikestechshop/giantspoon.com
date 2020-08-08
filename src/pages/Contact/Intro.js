@@ -10,35 +10,34 @@ import ContactVideo from "../../static/videos/contact-video.mp4";
 
 const TextBox = styled.div`
   position: absolute;
-  bottom: 10%;
-  right: 15%;
-
-  @media (max-width: 1024px) {
-    right: initial;
-    bottom: initial;
-    left: 2rem;
-    top: 55vh;
-  }
+  left: 10%;
+  bottom: 15%;
+  text-align: left;
+  color: white;
+  cursor: pointer;
 `;
 
 const LargeTextWrap = styled.h1`
-  font-style: normal;
   line-height: 110%;
   font-size: 6rem;
   margin-bottom: 2rem;
   font-weight: 300;
+  width: 50vw;
+
+  @media (max-width: 1024px) {
+    font-size: 2.5rem;
+  }
 `;
 const Text = styled.div`
   color: ${(props) => props.color || "#FFFCF2"};
 `;
 
 const Paragraph = styled.p`
-  font-family: interstate;
-  font-style: normal;
-  font-weight: 300;
   font-size: 1rem;
   line-height: 140%;
-  color: #fffcf2;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  width: 30vw;
 `;
 const Vid = styled.video`
   height: 100%;

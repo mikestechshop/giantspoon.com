@@ -70,7 +70,7 @@ const PartnerImg = styled.div`
     top: 0;
     left: 0;
     transition: all 0.5s;
-    padding: 0 5vw;
+    padding: 0 4vw;
     box-sizing: border-box;
   }
   &:hover {

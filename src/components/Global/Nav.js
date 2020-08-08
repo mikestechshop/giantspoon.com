@@ -2,14 +2,12 @@
 
 import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
-import { Image, Group, FullImage } from "../";
+import { Image, Group } from "../";
 import LogoVert from "../../static/logo-vert.png";
 import MenuDots from "../../static/MenuDots.svg";
 import Ig from "../../static/Instagram.png";
 import Twitter from "../../static/Twitter.png";
 import Link from "../../static/Linked.png";
-import LA from "../../static/la-placeholder.png";
-import NY from "../../static/ny-placeholder.png";
 import { TweenMax } from "gsap";
 import { useContentful } from "react-contentful";
 
@@ -24,8 +22,8 @@ type TStyledNavProps = {
 const wiggle = keyframes` 
     0% { transform: rotate(0deg); }
    80% { transform: rotate(0deg); }
-   85% { transform: rotate(15deg); }
-   95% { transform: rotate(-15deg); }
+   85% { transform: rotate(5deg); }
+   95% { transform: rotate(-5deg); }
   100% { transform: rotate(0deg); }
 `;
 
@@ -36,8 +34,11 @@ const MenuDotsWrap = styled.div`
   z-index: 999;
   cursor: pointer;
   animation-name: ${wiggle};
-  animation-duration: 2.5s;
+  animation-duration: 4s;
   animation-iteration-count: infinite;
+  &.ani-off {
+    animation: none;
+  }
   img {
     cursor: pointer !important;
   }
@@ -218,22 +219,42 @@ const TransitMap = styled.div`
   position: fixed;
   z-index: 99;
   top: 0;
-  left: 0;
-  bottom: 0;
+  left: 10vh;
+  bottom: 10vh;
   right: 0;
   background: white;
   pointer-events: none;
   opacity: 0;
-
+  #la-map {
+    height: 100%;
+    width: 100%;
+  }
+  #ny-map {
+    height: 100%;
+    width: 100%;
+  }
   .text {
     padding: 4rem 4rem;
     font-family: "interstate-mono";
     color: #fffcf2;
   }
+  .largeText {
+    color: ##fffcf2;
+    font-size: 4vh;
+    line-height: 10vh;
+    align-self: flex-start;
+    margin-left: 5rem;
+    .coral {
+      color: #fe9b96;
+    }
+  }
 `;
 const addPointers = () => {
   console.log("hello");
   TweenMax.set(".menu-link", { pointerEvents: "all" });
+  TweenMax.to("#menu", {
+    pointerEvents: "all",
+  });
 };
 const handleMenuOpen = (open) => {
   addPointers();
@@ -253,14 +274,17 @@ const handleMenuOpen = (open) => {
         delay: 0.4,
         ease: "power1.in",
       },
-      0.3
+      0.3,
+      addPointers
     );
     TweenMax.to(".bottom-links", 0.4, {
       opacity: 0,
-      onComplete: addPointers,
     });
-    TweenMax.to("#menu", 0.4, {
-      rotation: 90,
+    TweenMax.to("#menu img", 0.4, {
+      rotation: 45,
+    });
+    TweenMax.to("#menu", {
+      pointerEvents: "none",
     });
   } else {
     TweenMax.to(".menu-wrap", 0.4, {
@@ -269,9 +293,12 @@ const handleMenuOpen = (open) => {
       ease: "power3.inOut",
       onComplete: resetMenu,
     });
-    TweenMax.to("#menu", 0.4, {
+    TweenMax.to("#menu img", 0.4, {
       rotation: 0,
       onComplete: addPointers,
+    });
+    TweenMax.to("#menu", {
+      pointerEvents: "none",
     });
   }
 };
@@ -339,7 +366,7 @@ const resetMenu = () => {
     opacity: 1,
   });
   TweenMax.set(".link-wrap", { opacity: 0, y: 16 });
-  TweenMax.set("#menu", {
+  TweenMax.set("#menu img", {
     rotation: 0,
   });
 };
@@ -420,23 +447,22 @@ const Nav = (props: TStyledNavProps) => {
         <h1>{items[0].fields.thought}</h1>
       </ThoughtOfTheDay>
       <TransitMap id="transit">
-        <Group height="100vh" flexDirection="row">
+        <Group height="80vh" flexDirection="row">
           <Group width="50%" bgc="#FE9B96">
-            <Group height="60vh">
-              <FullImage src={LA} alt="los angeles map" />
-            </Group>
-            <Group height="40vh" flexAlign="flex-start">
-              <div className="text">LA TRANSIT INFORMATION HERE</div>
+            <Group height="80vh">
+              <div id="la-map" />
             </Group>
           </Group>
           <Group width="50%" bgc="#0033A0">
-            <Group height="60vh">
-              <FullImage src={NY} alt="los angeles map" />
-            </Group>
-            <Group height="40vh" flexAlign="flex-start">
-              <div className="text">NY TRANSIT INFORMATION HERE</div>
+            <Group height="80vh">
+              <div id="ny-map" />
             </Group>
           </Group>
+        </Group>
+        <Group height="10vh" bgc="#0033A0">
+          <div className="largeText">
+            Are we there <span className="coral">yet?</span>
+          </div>
         </Group>
       </TransitMap>
 
@@ -445,6 +471,7 @@ const Nav = (props: TStyledNavProps) => {
           <Group
             width={window.innerWidth > 1025 ? "50%" : "100%"}
             height={window.innerWidth > 1025 ? "100vh" : "auto"}
+            overflow="visible"
             mt="10vh"
           >
             <LinkWrap

@@ -18,3 +18,4 @@ export { default as SmallSlider } from "./Global/SmallSlider";
 export { default as FullImage } from "./Global/FullImage";
 export { default as Breadcrumbs } from "./Global/Breadcrumbs";
 export { default as SectionTab } from "./Global/SectionTab";
+export { default as VimeoPlayer } from "./Global/VimeoPlayer";

@@ -31,6 +31,9 @@ const LargeText = styled.div`
   font-weight: 400;
   padding-left: 10%;
   margin-top: 20vh;
+  .coral {
+    color: #fe9b96;
+  }
   @media (max-width: 1024px) {
     font-size: 2rem;
     margin-top: 15vh;
@@ -44,6 +47,9 @@ const SmallText = styled.div`
   color: ${(props) => props.color || "#B1C3D6"};
   width: 400px;
   marin-left: 20%;
+  &.cta {
+    font-weight: 400;
+  }
   strong {
     font-weight: 400;
   }
@@ -96,7 +102,7 @@ const Contact = (props: TContactProps) => (
                   flexAlign="start"
                 >
                   <LargeText mt={window.innerWidth > 1025 ? "20vh" : "0"}>
-                    All The Info You Could Need.
+                    All The <span class="coral">Info</span> You Could Need.
                   </LargeText>
                   <Group
                     width={window.innerWidth > 1025 ? "100%" : "80%"}
@@ -144,7 +150,7 @@ const Contact = (props: TContactProps) => (
                       6100 Wilshire Blvd. <br />
                       Suite 700 <br /> Los Angeles, CA 90048
                     </SmallText>
-                    <SmallText mt="1.5rem" color="#FE9B96">
+                    <SmallText mt="1.5rem" className="cta">
                       View Map >
                     </SmallText>
                   </Group>
@@ -156,7 +162,7 @@ const Contact = (props: TContactProps) => (
                       3rd floor
                       <br /> New York, NY 10005
                     </SmallText>
-                    <SmallText mt="1.5rem" color="#FE9B96">
+                    <SmallText mt="1.5rem" className="cta">
                       View Map >
                     </SmallText>
                   </Group>

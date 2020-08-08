@@ -5,6 +5,7 @@ import { Wrapper, Slider, Group } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import { TimelineMax } from "gsap";
+import ContactVideo from "../../static/videos/spinning_circles.mp4";
 
 const TextBox = styled.div`
   position: absolute;
@@ -19,9 +20,13 @@ const TextBox = styled.div`
 
 const ServicesSmallTitle = styled.h1`
   line-height: 110%;
-  font-size: 2rem;
+  font-size: 6rem;
   margin-bottom: 2rem;
-  font-weight: 400;
+  font-weight: 300;
+
+  @media (max-width: 1024px) {
+    font-size: 2rem;
+  }
 `;
 const ServicesDesc = styled.p`
   font-size: 1rem;
@@ -170,6 +175,12 @@ const SocialAnimation = styled.div`
   top: 0;
   left: 40vw;
   background: none;
+`;
+const Vid = styled.video`
+  height: 100%;
+  width: 177.77777778vh; /* 100 * 16 / 9 */
+  min-width: 100%;
+  min-height: 56.25vw; /* 100 * 9 / 16 */
 `;
 const Work = () => {
   const [ref, inView] = useInView({
@@ -710,6 +721,15 @@ const Work = () => {
         slides={[
           <Group height="100vh" bgc="#0C2340">
             <TextBox>
+              <ServicesSmallTitle> template </ServicesSmallTitle>
+              <ServicesDesc>Template for video animations</ServicesDesc>
+            </TextBox>
+            <Vid id="vid" autoPlay muted loop data-keepplaying>
+              <source id="mp4" src={ContactVideo} type="video/mp4" />
+            </Vid>
+          </Group>,
+          <Group height="100vh" bgc="#0C2340">
+            <TextBox>
               <ServicesSmallTitle> Our Services </ServicesSmallTitle>
               <ServicesDesc>
                 We aren’t like everyone else and neither are our services. Take
@@ -846,8 +866,8 @@ const Work = () => {
               <ServicesDesc>
                 We build immersive experiences people would pay to attend. What
                 sets us apart is the strategy that sits at the core of our
-                offering - ensuring every partition or parting gift belongs to
-                the world that we’ve created.
+                offering &#8212; ensuring every partition or parting gift
+                belongs to the world that we’ve created.
               </ServicesDesc>
             </TextBox>
             <ExpAnimation id="exp-animation">

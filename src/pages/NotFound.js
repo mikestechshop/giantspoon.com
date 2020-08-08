@@ -31,7 +31,7 @@ const Small = styled.div`
 const NotFound = () => {
   useEffect(() => {
     if (document.querySelector("#section-tab")) {
-      document.querySelector("#section-tab").innerHTML = "NotFound";
+      document.querySelector("#section-tab").innerHTML = "Not Found";
     }
   });
   return (

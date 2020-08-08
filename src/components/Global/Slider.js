@@ -21,6 +21,7 @@ const SlideWrap = styled.div`
 `;
 const Slide = styled.div`
   height: 100%;
+  max-height: calc(100vh - calc(100vh - 100%));
   width: ${(props) => props.width || "100vw"};
   position: relative;
   overflow: hidden;
@@ -48,6 +49,8 @@ const ArrowLeftWrap = styled.div`
   z-index: 999;
 `;
 const slideRight = (count, slidesLegnth, id) => {
+  TweenMax.set(".arrow", { pointerEvents: "none" });
+  TweenMax.set(".arrow", { pointerEvents: "all", delay: 0.5 });
   if (window.innerWidth < 1025) {
     TweenMax.to(id, 0.5, { x: "-=100vw" });
   } else {
@@ -76,6 +79,8 @@ const slideRight = (count, slidesLegnth, id) => {
   }
 };
 const slideLeft = (count, slidesLegnth, id) => {
+  TweenMax.set(".arrow", { pointerEvents: "none" });
+  TweenMax.set(".arrow", { pointerEvents: "all", delay: 0.5 });
   if (window.innerWidth < 1025) {
     TweenMax.to(id, 0.5, { x: "+=100vw" });
   } else {
@@ -136,7 +141,7 @@ const Work = (props: TSliderProps) => {
         })}
       </SlideWrap>
       <ArrowRightWrap
-        className="hoverable"
+        className="hoverable arrow"
         id={`${slideId}-arrow-right`}
         onMouseEnter={() => onHover()}
         onMouseLeave={() => onMouseExit()}
@@ -155,7 +160,7 @@ const Work = (props: TSliderProps) => {
         <Image src={ArrowRight} width="14px" height="auto" alt="arrow right" />
       </ArrowRightWrap>
       <ArrowLeftWrap
-        className="hoverable"
+        className="hoverable arrow"
         id={`${slideId}-arrow-left`}
         onMouseEnter={() => onHover()}
         onMouseLeave={() => onMouseExit()}

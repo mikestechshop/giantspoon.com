@@ -50,10 +50,12 @@ const ArrowLeftWrap = styled.div`
   z-index: 999;
 `;
 const slideRight = (count, slidesLegnth, id) => {
+  TweenMax.set(".arrow", { pointerEvents: "none" });
+  TweenMax.set(".arrow", { pointerEvents: "all", delay: 0.5 });
   if (window.innerWidth < 1025) {
     TweenMax.to(id, 0.5, { x: "-=75vw" });
   } else {
-    TweenMax.to(id, 0.5, { x: "-=30vw" });
+    TweenMax.to(id, 0.5, { x: "-=60vw" });
   }
 
   console.log(count);
@@ -72,10 +74,12 @@ const slideRight = (count, slidesLegnth, id) => {
   }
 };
 const slideLeft = (count, slidesLegnth, id) => {
+  TweenMax.set(".arrow", { pointerEvents: "none" });
+  TweenMax.set(".arrow", { pointerEvents: "all", delay: 0.5 });
   if (window.innerWidth < 1025) {
     TweenMax.to(id, 0.5, { x: "+=75vw" });
   } else {
-    TweenMax.to(id, 0.5, { x: "+=30vw" });
+    TweenMax.to(id, 0.5, { x: "+=60vw" });
   }
 
   if (count + 1 === slidesLegnth) {
@@ -84,7 +88,7 @@ const slideLeft = (count, slidesLegnth, id) => {
       pointerEvents: "all",
     });
   }
-  if (count - 3 <= 0) {
+  if (count - 4 <= 0) {
     TweenMax.to(id + "-arrow-left", 0.5, {
       autoAlpha: 0,
       pointerEvents: "none",
@@ -122,13 +126,13 @@ const Work = (props: TSliderProps) => {
         })}
       </SlideWrap>
       <ArrowRightWrap
-        className="hoverable"
+        className="hoverable arrow"
         id={`${slideId}-arrow-right`}
         onMouseEnter={() => onHover()}
         onMouseLeave={() => onMouseExit()}
         onClick={() => {
           slideRight(count, slides.length, `#${slideId}`);
-          setCount(count + 1);
+          setCount(count + 2);
           TweenMax.to(".cursor__ball", 0.3, {
             scale: 4,
           });
@@ -141,13 +145,13 @@ const Work = (props: TSliderProps) => {
         <Image src={ArrowRight} width="14px" height="auto" alt="arrow right" />
       </ArrowRightWrap>
       <ArrowLeftWrap
-        className="hoverable"
+        className="hoverable arrow"
         id={`${slideId}-arrow-left`}
         onMouseEnter={() => onHover()}
         onMouseLeave={() => onMouseExit()}
         onClick={() => {
           slideLeft(count, slides.length, `#${slideId}`);
-          setCount(count - 1);
+          setCount(count - 2);
           TweenMax.to(".cursor__ball", 0.3, {
             scale: 4,
           });

@@ -10,6 +10,7 @@ import {
   Group,
   SectionTab,
   Breadcrumbs,
+  VimeoPlayer,
 } from "../components";
 import { useContentful } from "react-contentful";
 import Video from "../static/video.mp4";
@@ -104,11 +105,18 @@ const Work = (props: TWorkProps) => {
   const { data, error, fetched, loading } = useContentful({
     contentType: "caseStudy",
   });
-  if (loading || !fetched) {
+  const videos = useContentful({
+    contentType: "videos",
+  });
+  if (loading || !fetched || videos.loading || !videos.fetched) {
     return null;
   }
 
   if (error) {
+    console.error(error);
+    return null;
+  }
+  if (videos.error) {
     console.error(error);
     return null;
   }
@@ -117,6 +125,8 @@ const Work = (props: TWorkProps) => {
   const featItemsLength = items.filter((item) => {
     return item.fields.featured;
   }).length;
+
+  const { workSplashVimeoId } = videos.data.items[0].fields;
 
   return (
     <>
@@ -146,9 +156,7 @@ const Work = (props: TWorkProps) => {
             <ReactFullpage.Wrapper>
               <SectionWrap className="section">
                 <Group height="100vh" width="auto">
-                  <Vid id="vid" autoPlay muted loop data-keepplaying>
-                    <source id="mp4" src={Video} type="video/mp4" />
-                  </Vid>
+                  <VimeoPlayer id={workSplashVimeoId} />
                 </Group>
                 <ScrollEffect bottom="0%" id="scroll0Down">
                   <ScrollEffectDiv color="#FE9B96" />

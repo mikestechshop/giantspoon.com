@@ -65,3 +65,9 @@ body .cursor__ball circle {
 .react-player > div {
   position: absolute;
 }
+
+@media (max-width: 1024px) {
+  .cursor {
+    display: none;
+  }
+}

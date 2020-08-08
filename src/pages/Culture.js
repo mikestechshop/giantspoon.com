@@ -13,6 +13,7 @@ import {
   SmallSlider,
   SectionTab,
   Breadcrumbs,
+  VimeoPlayer,
 } from "../components";
 import Enjoy from "../static/enjoy.png";
 import Damn from "../static/damn.png";
@@ -124,6 +125,11 @@ const MediumText = styled.div`
   margin: ${(props) => props.margin || 0};
   position: relative;
   color: ${(props) => props.color || "#FFFCF2"};
+
+  &.larger {
+    font-size: 4rem;
+    margin-bottom: 5vh;
+  }
 
   @media (max-width: 1024px) {
     font-weight: 300;
@@ -264,8 +270,18 @@ const Culture = (props: TCultureProps) => {
   const spoons = useContentful({
     contentType: "spoons",
   });
+  const videos = useContentful({
+    contentType: "videos",
+  });
 
-  if (spoons.loading || !spoons.fetched || news.loading || !news.fetched) {
+  if (
+    spoons.loading ||
+    !spoons.fetched ||
+    news.loading ||
+    !news.fetched ||
+    videos.loading ||
+    !videos.fetched
+  ) {
     return null;
   }
 
@@ -277,9 +293,14 @@ const Culture = (props: TCultureProps) => {
     console.error(news.error);
     return null;
   }
+  if (videos.error) {
+    console.error(news.error);
+    return null;
+  }
 
   const newsItems = news.data.items;
   const spoonsItems = spoons.data.items;
+  const videosItems = videos.data.items[0].fields;
   return (
     <>
       <SectionTab text="spoons" />
@@ -331,7 +352,7 @@ const Culture = (props: TCultureProps) => {
                     slideId="work-slider"
                     slides={[
                       <Group height="100vh">
-                        <FullImage src={Try} alt="slide image" />
+                        <VimeoPlayer id={videosItems.spoonsValue1VimeoId} />
                         <TextBox>
                           <OurValues>Our Values</OurValues>
                           <Title>
@@ -348,7 +369,7 @@ const Culture = (props: TCultureProps) => {
                         </TextBox>
                       </Group>,
                       <Group height="100vh">
-                        <FullImage src={Damn} alt="slide image" />
+                        <VimeoPlayer id={videosItems.spoonsValue2VimeoId} />
                         <TextBox>
                           <OurValues>Our Values</OurValues>
                           <Title>
@@ -363,7 +384,7 @@ const Culture = (props: TCultureProps) => {
                         </TextBox>
                       </Group>,
                       <Group height="100vh">
-                        <FullImage src={Enjoy} alt="slide image" />
+                        <VimeoPlayer id={videosItems.spoonsValue3VimeoId} />
                         <TextBox>
                           <OurValues>Our Values</OurValues>
                           <Title>
@@ -396,7 +417,7 @@ const Culture = (props: TCultureProps) => {
                 </SectionWrap>
                 <SectionWrap className="section" bgc="#0C2340">
                   <Group height="100vh" flexAlign="flex-start">
-                    <Vid id="vid" autoPlay muted loop>
+                    <Vid id="vid" autoPlay muted loop data-keepplaying>
                       <source id="mp4" src={Careers} type="video/mp4" />
                     </Vid>
                     <MediumTextBox>
@@ -431,7 +452,7 @@ const Culture = (props: TCultureProps) => {
                     <MediumText
                       margin="10vh 10vw "
                       color="#B1C3D6"
-                      className="careers"
+                      className="careers larger"
                     >
                       Our Open Positions
                     </MediumText>

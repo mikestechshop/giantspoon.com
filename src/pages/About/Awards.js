@@ -30,7 +30,7 @@ const SmallText = styled.p`
   }
 `;
 const AwardsWrap = styled.div`
-  height: 55vw;
+  height: 35vw;
   width: 80vw;
   box-sizing: border-box;
   margin: 20vh 10vw;
@@ -41,7 +41,7 @@ const AwardsWrap = styled.div`
 `;
 const TextBox = styled.div`
   position: absolute;
-  bottom: 25vh;
+  bottom: 0vh;
   left: 5vw;
   width: 50%;
   @media (max-width: 1024px) {
@@ -63,7 +63,8 @@ const AwardImg = styled.div`
     opacity: 0;
     pointer-events: none;
     position: absolute;
-    top: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     left: 5vw;
     -webkit-transition: all 0.5s;
     transition: all 0.5s;

@@ -11,6 +11,7 @@ import { TweenMax } from "gsap";
 import { Footer, Breadcrumbs, SectionTab } from "../../components";
 import { useContentful } from "react-contentful";
 import { useLocation } from "react-router-dom";
+import Circles from "../../static/circles.svg";
 
 type TAboutProps = {
   handleLinkChange: Function,
@@ -19,6 +20,13 @@ type TAboutProps = {
 const SectionWrap = styled.div`
   position: relative;
   background-color: ${(props) => props.bgc || "#0033a0"};
+
+  &.circles {
+    background-image: url(${Circles});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
 `;
 const ScrollEffect = styled.div`
   position: absolute;
@@ -141,7 +149,7 @@ const Home = (props: TAboutProps) => {
           return (
             <ReactFullpage.Wrapper>
               <SectionWrap
-                className="section hoverable"
+                className="section hoverable circles"
                 onMouseEnter={() => onHover("#FFFCF2")}
                 onMouseLeave={() => onMouseExit()}
                 bgc="#0C2340"

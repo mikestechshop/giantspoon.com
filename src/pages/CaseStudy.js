@@ -9,6 +9,7 @@ import {
   Breadcrumbs,
   MoreProjects,
   SectionTab,
+  VimeoPlayer,
 } from "../components";
 import ReactFullpage from "@fullpage/react-fullpage";
 import { TweenMax } from "gsap";
@@ -95,11 +96,26 @@ const scrollAni = (id: string) => {
   TweenMax.to(id, 0.35, { height: "35vh" });
   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
 };
+const VimeoHolder = styled.div`
+  padding: 75% 0 0 0;
+  pointer-events: none;
+`;
+const VimeoFrame = styled.iframe`
+  box-sizing: border-box;
+  height: 56.25vw;
+  left: 50%;
+  min-height: 100%;
+  min-width: 100%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  width: 177.77777778vh;
+`;
 const CaseStudy = (props: TCaseStudyProps) => {
   console.log(props);
   const {
     pageSplashImage,
-    pageSplashVideo,
+    pageSplashVimeoLink,
     pageGallery,
     campaignTitle,
     campaignType,
@@ -132,25 +148,10 @@ const CaseStudy = (props: TCaseStudyProps) => {
           return (
             <ReactFullpage.Wrapper>
               <SectionWrap className="section">
-                {pageSplashVideo ? (
-                  {
-                    /* <Group height="90vh">
-                  <ReactPlayer
-                    url={workFields.splash.fields.file.url}
-                    width="100%"
-                    height="100%"
-                    light={workFields.splashPreview.fields.file.url}
-                    playIcon={
-                      <Image
-                        src={playButton}
-                        alt="play button"
-                        height="75px"
-                        width="auto"
-                      />
-                    }
-                  />
-                </Group> */
-                  }
+                {pageSplashVimeoLink ? (
+                  <Group height="100vh">
+                    <VimeoPlayer id={pageSplashVimeoLink} />
+                  </Group>
                 ) : (
                   <FullImage
                     src={pageSplashImage.fields.file.url}

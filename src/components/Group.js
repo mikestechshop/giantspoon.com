@@ -17,18 +17,20 @@ type TWrapperProps = {
   bgc?: string,
   flexWrap?: string,
   wrap?: string,
+  overflow?: string,
 };
 
 const StyledGroup = styled.div`
   display: flex;
   width: ${(props) => props.width || "100%"};
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: ${(props) => props.overflow || "hidden"};
   flex-direction: ${(props) => props.flexDirection || "column"};
   flex-wrap: ${(props) => props.flexWrap || "nowrap"};
   align-items: ${(props) => props.flexAlign || "center"};
   position: relative;
   height: ${(props) => props.height || "auto"};
+  max-height: -webkit-fill-available;
   margin-top: ${(props) => props.mt || "0"};
   margin-bottom: ${(props) => props.mb || "0"};
   margin-left: ${(props) => props.ml || "0"};
@@ -51,6 +53,7 @@ const Wrapper = (props: TWrapperProps) => {
     flexDirection,
     flexWrap,
     wrap,
+    overflow,
   } = props;
   return (
     <StyledGroup
@@ -65,6 +68,7 @@ const Wrapper = (props: TWrapperProps) => {
       bgc={bgc}
       width={width}
       wrap={wrap}
+      overflow={overflow}
     >
       {children}
     </StyledGroup>

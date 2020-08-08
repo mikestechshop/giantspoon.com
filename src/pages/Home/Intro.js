@@ -29,6 +29,9 @@ const LargeTextWrap = styled.h1`
 `;
 const Text = styled.div`
   color: ${(props) => props.color || "white"};
+  .coral {
+    color: #fe9b96;
+  }
 `;
 
 const Paragraph = styled.p`
@@ -67,24 +70,16 @@ const Intro = (props: TIntroProps) => {
             onMouseEnter={() => props.onHover("#B1C3D6")}
             onMouseLeave={() => props.onHover("#FE9B96")}
           >
-            the post-advertising
+            That’s <span class="coral">impossible.</span>
           </Text>
-          <Text
-            color="#B1C3D6"
-            onMouseEnter={() => props.onHover("#B1C3D6")}
-            onMouseLeave={() => props.onHover("#FE9B96")}
-          >
-            era has arrived.
-          </Text>
-
           <Paragraph
             className="intro-p-text"
             onMouseEnter={() => props.onHover("#FFFCF2")}
             onMouseLeave={() => props.onHover("#FE9B96")}
           >
-            And we built Giant Spoon for what comes next. We’re a full service
-            agency that combines creativity and media innovation to unlock a
-            brand’s full potential.
+            We’ve been told that so many times, that we almost believed it.
+            Almost. Giant Spoon is an agency built on the power of possible
+            thinking to shoot for the moon and solve impossible challenges.
           </Paragraph>
         </LargeTextWrap>
       </Group>

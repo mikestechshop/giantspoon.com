@@ -29,6 +29,7 @@ const AwardsTitle = styled.h1`
 
   @media (max-width: 1024px) {
     font-size: 2.5rem;
+    width: 70vw;
   }
 `;
 const AwardsDesc = styled.p`

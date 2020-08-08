@@ -11,6 +11,7 @@ import News from "./News";
 import { TweenMax } from "gsap";
 import { Footer, Breadcrumbs, SectionTab } from "../../components";
 import { useContentful } from "react-contentful";
+import Circles from "../../static/circles.svg";
 
 type THomeProps = {
   handleLinkChange: Function,
@@ -19,6 +20,16 @@ type THomeProps = {
 const SectionWrap = styled.div`
   position: relative;
   background-color: ${(props) => props.bgc || "#0033a0"};
+  max-height: calc(100vh - calc(100vh - 100%));
+
+  overflow: hidden;
+
+  &.circles {
+    background-image: url(${Circles});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
 `;
 const ScrollEffect = styled.div`
   position: absolute;
@@ -35,6 +46,9 @@ const ScrollEffectDiv = styled.div`
   background-color: ${(props) => props.color || "auto"};
 `;
 const scrollAni = (id: string) => {
+  if (window.innerWidth < 1025) {
+    return;
+  }
   TweenMax.to(id, 0.35, { height: "35vh" });
   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
 };
@@ -70,6 +84,9 @@ const Home = (props: THomeProps) => {
   const news = useContentful({
     contentType: "news",
   });
+  const videos = useContentful({
+    contentType: "videos",
+  });
 
   if (
     caseStudy.loading ||
@@ -77,7 +94,9 @@ const Home = (props: THomeProps) => {
     homePage.loading ||
     !homePage.fetched ||
     news.loading ||
-    !news.fetched
+    !news.fetched ||
+    videos.loading ||
+    !videos.fetched
   ) {
     return null;
   }
@@ -94,10 +113,17 @@ const Home = (props: THomeProps) => {
     console.error(news.error);
     return null;
   }
+  if (videos.error) {
+    console.error(videos.error);
+    return null;
+  }
 
   const caseStudyItems = caseStudy.data.items;
   const newsItems = news.data.items;
   const homePageItems = homePage.data.items[0];
+  const videosItems = videos.data.items[0].fields;
+
+  console.log(videosItems);
   console.log(homePageItems);
   const {
     strategyBlurb,
@@ -171,7 +197,7 @@ const Home = (props: THomeProps) => {
           return (
             <ReactFullpage.Wrapper>
               <SectionWrap
-                className="section hoverable"
+                className="section hoverable circles"
                 onMouseEnter={() => onHover("#FE9B96")}
                 onMouseLeave={() => onMouseExit()}
               >
@@ -185,6 +211,7 @@ const Home = (props: THomeProps) => {
               </SectionWrap>
               <SectionWrap className="section" bgc="#E5E5E5">
                 <Work
+                  vimeoId={videosItems.homeWorkVimeoId}
                   caseStudyItems={caseStudyItems}
                   handleLinkChange={props.handleLinkChange}
                 />
