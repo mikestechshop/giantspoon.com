@@ -49,7 +49,9 @@ const TextBox = styled.div`
   cursor: pointer;
 
   @media (max-width: 1024px) {
-    bottom: 5vh;
+    bottom: initial;
+    top: 50vh;
+    left: 50px;
   }
 `;
 

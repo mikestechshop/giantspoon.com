@@ -8,16 +8,12 @@ import {
   Footer,
   Group,
   Slider,
-  FullImage,
   Image,
   SmallSlider,
   SectionTab,
   Breadcrumbs,
   VimeoPlayer,
 } from "../components";
-import Enjoy from "../static/enjoy.png";
-import Damn from "../static/damn.png";
-import Try from "../static/try.png";
 import Careers from "../static/videos/GS_Careers-2.mp4";
 import { useContentful } from "react-contentful";
 import { useLocation } from "react-router-dom";
@@ -60,6 +56,9 @@ const TextBox = styled.div`
   text-align: left;
   color: white;
   cursor: pointer;
+  @media (max-width: 1024px) {
+    left: 50px;
+  }
 `;
 const Title = styled.h1`
   line-height: 110%;
@@ -67,7 +66,6 @@ const Title = styled.h1`
   font-style: normal;
   font-weight: normal;
   font-size: 9rem;
-  line-height: 9.5rem;
   margin-bottom: 2rem;
   font-weight: 300;
   margin-top: 0;
@@ -138,9 +136,11 @@ const MediumText = styled.div`
     font-size: 2rem;
     line-height: 2.2rem;
     margin-top: 50vh;
-    margin-left: 2.5rem;
+    margin-left: 0rem;
     &.careers {
       margin-top: 10vh;
+      margin-left: 50px;
+      font-size: 2rem;
     }
     br {
       display: none;
@@ -154,6 +154,9 @@ const MediumTextBox = styled.div`
   text-align: left;
   color: white;
   cursor: pointer;
+  @media (max-width: 1024px) {
+    left: 50px;
+  }
 `;
 const CareersBox = styled.div`
   width: 80vw;
@@ -161,6 +164,9 @@ const CareersBox = styled.div`
   padding: 2.5rem;
   box-sizing: border-box;
   background-color: #0c2340;
+  @media (max-width: 1024px) {
+    margin-left: 50px;
+  }
 `;
 
 const JobTitle = styled.div`
@@ -191,6 +197,11 @@ const NewsTitle = styled.div`
   margin-bottom: 5vh;
   margin-left: 10vw;
   color: #b1c3d6;
+  @media (max-width: 1024px) {
+    margin-left: 50px;
+    margin-top: 8vh;
+    font-size: 3rem;
+  }
 `;
 
 const NewsImg = styled.img`
@@ -242,8 +253,15 @@ const Info = styled.div`
     background: none;
     margin-bottom: 10vh;
     .text {
-      top: 100%;
+      top: 55vh;
       font-size: 0.8rem;
+      transform: translateY(0);
+      .blurb {
+        display: none;
+      }
+      .see {
+        margin-top: 1rem;
+      }
     }
   }
 `;
@@ -545,8 +563,10 @@ const Culture = (props: TCultureProps) => {
                                   <div>
                                     <strong> {news.fields.title} </strong>
                                   </div>
-                                  <div>{news.fields.blurb}</div>
-                                  <div>
+                                  <div className="blurb">
+                                    {news.fields.blurb}
+                                  </div>
+                                  <div className="see">
                                     <a href={news.fields.url} target="_blank">
                                       See More >
                                     </a>

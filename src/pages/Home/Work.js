@@ -10,7 +10,6 @@ import {
 } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import Slide1 from "../../static/slide1.png";
 
 type TWorkProps = {
   caseStudyItems: Array<Object>,

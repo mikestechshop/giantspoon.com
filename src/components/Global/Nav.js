@@ -53,9 +53,6 @@ const LogoVertWrap = styled.div`
   img {
     cursor: pointer !important;
   }
-  @media (max-width: 1024px) {
-    display: none;
-  }
 `;
 const DateWrap = styled.div`
   position: fixed;

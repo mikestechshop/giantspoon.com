@@ -31,6 +31,8 @@ const NewsTitle = styled.div`
   @media (max-width: 1024px) {
     font-size: 1.5rem;
     margin-bottom: 4vh;
+    margin-left: 50px;
+    margin-top: 8vh;
   }
 `;
 const Info = styled.div`
@@ -67,7 +69,9 @@ const Info = styled.div`
     background: none;
     margin-bottom: 10vh;
     .text {
-      top: 85%;
+      top: 64vh;
+      left: 50px;
+      font-size: 1.5rem;
     }
   }
 `;

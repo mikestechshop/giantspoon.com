@@ -1,10 +1,9 @@
 // @flow
 
 import React, { useState } from "react";
-import { Wrapper, FullImage } from "../../components";
+import { Wrapper } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
-import Contact from "../../static/contact.png";
 import "gsap/TextPlugin";
 import ContactVideo from "../../static/videos/contact-video.mp4";
 
@@ -15,6 +14,9 @@ const TextBox = styled.div`
   text-align: left;
   color: white;
   cursor: pointer;
+  @media (max-width: 1024px) {
+    left: 50px;
+  }
 `;
 
 const LargeTextWrap = styled.h1`
@@ -26,6 +28,7 @@ const LargeTextWrap = styled.h1`
 
   @media (max-width: 1024px) {
     font-size: 2.5rem;
+    width: 70vw;
   }
 `;
 const Text = styled.div`
@@ -38,6 +41,9 @@ const Paragraph = styled.p`
   font-weight: 300;
   margin-bottom: 1rem;
   width: 30vw;
+  @media (max-width: 1024px) {
+    width: 70vw;
+  }
 `;
 const Vid = styled.video`
   height: 100%;

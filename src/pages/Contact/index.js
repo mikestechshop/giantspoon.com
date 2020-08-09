@@ -37,6 +37,8 @@ const LargeText = styled.div`
   @media (max-width: 1024px) {
     font-size: 2rem;
     margin-top: 15vh;
+    width: 70vw;
+    padding-left: 50px;
   }
 `;
 const SmallText = styled.div`
@@ -107,11 +109,11 @@ const Contact = (props: TContactProps) => (
                   <Group
                     width={window.innerWidth > 1025 ? "100%" : "80%"}
                     flexDirection="row"
-                    ml="10%"
+                    ml={window.innerWidth > 1025 ? "10%" : "50px"}
                     flexAlign="start"
                   >
                     <Group
-                      width="30%"
+                      width={window.innerWidth > 1025 ? "30%" : "50%"}
                       flexAlign="start"
                       mt={window.innerWidth > 1025 ? "20vh" : "4vh"}
                     >
@@ -124,7 +126,7 @@ const Contact = (props: TContactProps) => (
                       </SmallText>
                     </Group>
                     <Group
-                      width="70%"
+                      width={window.innerWidth > 1025 ? "70%" : "50%"}
                       flexAlign="start"
                       mt={window.innerWidth > 1025 ? "20vh" : "4vh"}
                     >
@@ -141,7 +143,7 @@ const Contact = (props: TContactProps) => (
                   width={window.innerWidth > 1025 ? "50%" : "80%"}
                   flexDirection="row"
                   flexAlign="flex-start"
-                  ml={window.innerWidth > 1025 ? "0%" : "10%"}
+                  ml={window.innerWidth > 1025 ? "10%" : "50px"}
                 >
                   <Group width="50%" flexAlign="start">
                     <SmallText mt={window.innerWidth > 1025 ? "20vh" : "6vh"}>
