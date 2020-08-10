@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Intro from "./Intro";
 import { Footer, Group, SectionTab } from "../../components";
 import { TweenMax } from "gsap";
+import Mailchimp from "react-mailchimp-form";
 
 type TContactProps = {
   handleLinkChange: Function,
@@ -14,6 +15,40 @@ type TContactProps = {
 const SectionWrap = styled.div`
   position: relative;
   background-color: ${(props) => props.bgc || "#0033a0"};
+
+  input {
+    border: 1px solid #b1c3d6;
+    background: transparent;
+    margin-right: 20px;
+    color: #b1c3d6;
+    font-family: interstate;
+    display: block;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
+  button {
+    border: 1px solid #b1c3d6;
+
+    background: transparent;
+    padding: 0.5rem 1rem;
+    font-family: interstate;
+    border-style: none;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #b1c3d6;
+    color: white;
+  }
+  input::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #b1c3d6;
+    opacity: 1; /* Firefox */
+  }
+  input[type="textbox"] {
+    height: 5rem;
+    width: 20rem;
+    max-width: 70vw;
+  }
 `;
 
 const ScrollEffect = styled.div`
@@ -36,9 +71,10 @@ const LargeText = styled.div`
   }
   @media (max-width: 1024px) {
     font-size: 2rem;
-    margin-top: 15vh;
+    margin-top: 8vh;
     width: 70vw;
     padding-left: 50px;
+    margin-bottom: 0px;
   }
 `;
 const SmallText = styled.div`
@@ -171,9 +207,34 @@ const Contact = (props: TContactProps) => (
                   <Group
                     width="100%"
                     flexAlign="start"
-                    mt={window.innerWidth > 1025 ? "20vh" : "2vh"}
+                    mt={window.innerWidth > 1025 ? "12vh" : "2vh"}
                   >
-                    form goes here
+                    <Mailchimp
+                      action="https://giantspoon.us17.list-manage.com/subscribe/post?u=df3c644d0ffcc72bdb51a361c&amp;id=3db69f1995"
+                      fields={[
+                        {
+                          name: "subject",
+                          placeholder: "Subject",
+                          type: "input",
+                          required: true,
+                        },
+                        {
+                          name: "EMAIL",
+                          placeholder: "email",
+                          type: "email",
+                          required: true,
+                        },
+                        {
+                          name: "message",
+                          placeholder: "message",
+                          type: "textbox",
+                          required: true,
+                        },
+                      ]}
+                      messages={{
+                        button: "Send!",
+                      }}
+                    />
                   </Group>
                 </Group>
               </Group>

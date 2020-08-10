@@ -7,6 +7,7 @@ import Logo from "../../static/logo.png";
 import Ig from "../../static/Instagram.png";
 import Twitter from "../../static/Twitter.png";
 import Link from "../../static/Linked.png";
+import Mailchimp from "react-mailchimp-form";
 
 type TStyledFooterProps = {
   handleLinkChange: Function,
@@ -17,6 +18,28 @@ const FooterWrap = styled.div`
   flex-direction: column;
   background-color: #0033a0;
   padding: 5rem 0 6rem 4rem;
+
+  input {
+    border-style: none;
+    background: transparent;
+    margin-right: 20px;
+    color: white;
+    font-family: interstate;
+    border-radius: 5px;
+  }
+  button {
+    background: #b1c3d6;
+    font-family: interstate;
+    border-style: none;
+    font-weight: 600;
+    border-radius: 5px;
+    color: white;
+  }
+  input::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 1; /* Firefox */
+  }
 
   @media (max-width: 1024px) {
     height: 100vh;
@@ -102,7 +125,17 @@ const Footer = (props: TStyledFooterProps) => {
               width={window.innerWidth > 1025 ? "50%" : "100%"}
               margin="0rem 4rem 2rem 0 "
             >
-              <TextWrap>Newletter sign up goes here</TextWrap>
+              <Mailchimp
+                action="https://giantspoon.us17.list-manage.com/subscribe/post?u=df3c644d0ffcc72bdb51a361c&amp;id=3db69f1995"
+                fields={[
+                  {
+                    name: "EMAIL",
+                    placeholder: "Subscribe Here",
+                    type: "email",
+                    required: true,
+                  },
+                ]}
+              />
             </Box>
           </Box>
         </Box>

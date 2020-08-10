@@ -69,7 +69,7 @@ const Info = styled.div`
     background: none;
     margin-bottom: 10vh;
     .text {
-      top: 64vh;
+      top: 58vh;
       left: 50px;
       font-size: 1.5rem;
     }
@@ -81,7 +81,7 @@ const MoreProjects = (props: TMoreProjectsProps) => {
   return (
     <Group height="100vh" flexAlign="flex-start">
       <NewsTitle> More Projects </NewsTitle>
-      <Group height={window.innerWidth > 1025 ? "50vh" : "80vh"}>
+      <Group height={window.innerWidth > 1025 ? "45vh" : "80vh"}>
         <SmallSlider
           slideId="news-slide"
           slides={props.projects.map((project) => {
