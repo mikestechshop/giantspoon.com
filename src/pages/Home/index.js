@@ -46,9 +46,6 @@ const ScrollEffectDiv = styled.div`
   background-color: ${(props) => props.color || "auto"};
 `;
 const scrollAni = (id: string) => {
-  if (window.innerWidth < 1025) {
-    return;
-  }
   TweenMax.to(id, 0.35, { height: "35vh" });
   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
 };

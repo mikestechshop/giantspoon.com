@@ -16,7 +16,7 @@ const SectionWrap = styled.div`
   position: relative;
   background-color: ${(props) => props.bgc || "#0033a0"};
 
-  input {
+  &.form input {
     border: 1px solid #b1c3d6;
     background: transparent;
     margin-right: 20px;
@@ -48,6 +48,11 @@ const SectionWrap = styled.div`
     height: 5rem;
     width: 20rem;
     max-width: 70vw;
+  }
+  @media (max-width: 1024px) {
+    &.form input {
+      margin-bottom: 1rem;
+    }
   }
 `;
 
@@ -129,7 +134,7 @@ const Contact = (props: TContactProps) => (
                 <ScrollEffectDiv color="#0C2340" />
               </ScrollEffect>
             </SectionWrap>
-            <SectionWrap className="section" bgc="#0C2340">
+            <SectionWrap className="section form" bgc="#0C2340">
               <Group
                 flexDirection={window.innerWidth > 1025 ? "row" : "column"}
                 flexAlign="start"
@@ -182,7 +187,7 @@ const Contact = (props: TContactProps) => (
                   ml={window.innerWidth > 1025 ? "10%" : "50px"}
                 >
                   <Group width="50%" flexAlign="start">
-                    <SmallText mt={window.innerWidth > 1025 ? "20vh" : "6vh"}>
+                    <SmallText mt={window.innerWidth > 1025 ? "20vh" : "1rem"}>
                       <strong>Los Angeles</strong>
                       <br />
                       6100 Wilshire Blvd. <br />
@@ -193,7 +198,7 @@ const Contact = (props: TContactProps) => (
                     </SmallText>
                   </Group>
                   <Group width="50%" flexAlign="start">
-                    <SmallText mt={window.innerWidth > 1025 ? "20vh" : "6vh"}>
+                    <SmallText mt={window.innerWidth > 1025 ? "20vh" : "1rem"}>
                       <strong>New York</strong>
                       <br />
                       44 Wall Street. <br />

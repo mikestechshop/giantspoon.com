@@ -16,7 +16,7 @@ const TextBox = styled.div`
   color: white;
   cursor: pointer;
   @media (max-width: 1024px) {
-    bottom: 0vh;
+    top: 50vh;
   }
 `;
 

@@ -30,7 +30,7 @@ const SmallText = styled.p`
   }
 `;
 const AwardsWrap = styled.div`
-  height: 35vw;
+  height: 40vw;
   width: 80vw;
   box-sizing: border-box;
   margin: 20vh 10vw;
@@ -125,13 +125,7 @@ const Awards = (props: TAwardProps) => {
                 alt={award1.fields.file.title}
               />
             )}
-            {award1Hover && (
-              <img
-                className="hover"
-                src={award1Hover.fields.file.url}
-                alt={award1.fields.file.title}
-              />
-            )}
+            {award1Hover && <div className="hover">{award1Hover}</div>}
           </AwardImg>
           <AwardImg>
             {award2 && (
@@ -149,13 +143,7 @@ const Awards = (props: TAwardProps) => {
                 alt={award3.fields.file.title}
               />
             )}
-            {award3Hover && (
-              <img
-                className="hover"
-                src={award3Hover.fields.file.url}
-                alt={award3.fields.file.title}
-              />
-            )}
+            {award3Hover && <div className="hover">{award3Hover}</div>}
           </AwardImg>
           <AwardImg>
             {award4 && (
@@ -164,13 +152,7 @@ const Awards = (props: TAwardProps) => {
                 alt={award4.fields.file.title}
               />
             )}
-            {award4Hover && (
-              <img
-                className="hover"
-                src={award4Hover.fields.file.url}
-                alt={award4.fields.file.title}
-              />
-            )}
+            {award4Hover && <div className="hover">{award4Hover}</div>}
           </AwardImg>
         </Group>
         <Group width="100%" flexDirection="row-reverse">
@@ -181,13 +163,7 @@ const Awards = (props: TAwardProps) => {
                 alt={award5.fields.file.title}
               />
             )}
-            {award5Hover && (
-              <img
-                className="hover"
-                src={award5Hover.fields.file.url}
-                alt={award5.fields.file.title}
-              />
-            )}
+            {award5Hover && <div className="hover">{award5Hover}</div>}
           </AwardImg>
           <AwardImg>
             {award6 && (
@@ -196,13 +172,7 @@ const Awards = (props: TAwardProps) => {
                 alt={award6.fields.file.title}
               />
             )}
-            {award6Hover && (
-              <img
-                className="hover"
-                src={award6Hover.fields.file.url}
-                alt={award6.fields.file.title}
-              />
-            )}
+            {award6Hover && <div className="hover">{award6Hover}</div>}
           </AwardImg>
         </Group>
         <Group width="100%" flexDirection="row-reverse">
@@ -213,13 +183,7 @@ const Awards = (props: TAwardProps) => {
                 alt={award7.fields.file.title}
               />
             )}
-            {award7Hover && (
-              <img
-                className="hover"
-                src={award7Hover.fields.file.url}
-                alt={award7.fields.file.title}
-              />
-            )}
+            {award7Hover && <div className="hover">{award7Hover}</div>}
           </AwardImg>
           <AwardImg>
             {award8 && (
@@ -228,13 +192,7 @@ const Awards = (props: TAwardProps) => {
                 alt={award8.fields.file.title}
               />
             )}
-            {award8Hover && (
-              <img
-                className="hover"
-                src={award8Hover.fields.file.url}
-                alt={award8.fields.file.title}
-              />
-            )}
+            {award8Hover && <div className="hover">{award8Hover}</div>}
           </AwardImg>
         </Group>
       </AwardsWrap>

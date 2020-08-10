@@ -8,7 +8,12 @@ type TVimeoPlayerProps = {
 };
 const VimeoHolder = styled.div`
   padding: 75% 0 0 0;
-  pointer-events: none;
+  .toggle {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    cursor: pointer;
+  }
 `;
 const VimeoFrame = styled.iframe`
   box-sizing: border-box;
@@ -20,6 +25,7 @@ const VimeoFrame = styled.iframe`
   position: absolute;
   top: 50%;
   width: 177.77777778vh;
+  pointer-events: none;
 `;
 
 const VimeoPlayer = (props: TVimeoPlayerProps) => {
@@ -27,10 +33,28 @@ const VimeoPlayer = (props: TVimeoPlayerProps) => {
   return (
     <VimeoHolder>
       <VimeoFrame
-        src={`https://player.vimeo.com/video/${id}?autoplay=1&autopause=false&loop=1&title=0&byline=0&portrait=0&background=1&muted=1`}
+        src={`https://player.vimeo.com/video/${id}?autoplay=1&autopause=false&loop=1&title=0&byline=0&portrait=0&muted=1`}
         frameBorder="0"
         allow="autoplay"
+        id="video"
       />
+      <div
+        className="toggle"
+        onClick={() => {
+          const video = document.querySelector("#video");
+          console.log(video);
+          // video.contentWindow.postMessage(
+          //   '{"method":"setVolume", "value":0}',
+          //   "*"
+          // );
+          video.contentWindow.postMessage(
+            '{"method":"setVolume", "value":1}',
+            "*"
+          );
+        }}
+      >
+        Sound Off
+      </div>
     </VimeoHolder>
   );
 };

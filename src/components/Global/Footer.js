@@ -43,6 +43,10 @@ const FooterWrap = styled.div`
 
   @media (max-width: 1024px) {
     height: 100vh;
+
+    input {
+      margin-right: 0px;
+    }
   }
 `;
 
