@@ -1,8 +1,7 @@
 // @flow
 
 import React, { useEffect } from "react";
-import NotFoundImg from "../static/not-found.png";
-import { Wrapper, Group, FullImage } from "../components";
+import { Wrapper, Group } from "../components";
 import styled from "styled-components";
 import NotFoundVideo from "../static/videos/not-found.mp4";
 
@@ -39,6 +38,7 @@ const Vid = styled.video`
 const NotFound = () => {
   useEffect(() => {
     if (document.querySelector("#section-tab")) {
+      // $FlowFixMe
       document.querySelector("#section-tab").innerHTML = "Not Found";
     }
   });

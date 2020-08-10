@@ -219,7 +219,7 @@ const TransitMap = styled.div`
   left: 10vh;
   bottom: 10vh;
   right: 0;
-  background: white;
+  background: #fffcf2;
   pointer-events: none;
   opacity: 0;
   #la-map {

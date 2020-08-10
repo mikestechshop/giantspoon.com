@@ -29,7 +29,7 @@ const SimilarProjectWrap = styled.div`
     bottom: 2rem;
     font-size: 3rem;
     font-weight: 300;
-    color: white;
+    color: #fffcf2;
   }
 `;
 

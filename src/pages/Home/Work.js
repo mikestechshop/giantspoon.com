@@ -21,7 +21,7 @@ const TextBox = styled.div`
   left: 10%;
   bottom: 15%;
   text-align: left;
-  color: white;
+  color: #fffcf2;
   cursor: pointer;
 `;
 const WorkTitle = styled.h1`

@@ -50,6 +50,7 @@ const TextBox = styled.div`
   }
   @media (max-width: 1024px) {
     width: 100%;
+    top: 40vh;
   }
 `;
 const PartnerImg = styled.div`
@@ -78,8 +79,20 @@ const PartnerImg = styled.div`
       opacity: 1;
     }
   }
+  &.mobile {
+    display: none;
+  }
   @media (max-width: 1024px) {
-    width: 33%;
+    &.placeholder {
+      display: none;
+    }
+    &.mobile-hide {
+      display: none;
+    }
+    &.mobile {
+      display: block;
+    }
+    width: 25%;
   }
 `;
 
@@ -135,7 +148,7 @@ const Partners = (props: TPartnerProps) => {
             on how to prepare their brand for the future.
           </SmallText>
         </TextBox>
-        <Group width="100%" flexDirection="row">
+        <Group width="100%" flexDirection="row" wrap="wrap">
           <PartnerImg>
             {partner1 && (
               <img
@@ -211,8 +224,6 @@ const Partners = (props: TPartnerProps) => {
               />
             )}
           </PartnerImg>
-        </Group>
-        <Group width="100%" flexDirection="row">
           <PartnerImg>
             {partner6 && (
               <img
@@ -288,9 +299,7 @@ const Partners = (props: TPartnerProps) => {
               />
             )}
           </PartnerImg>
-        </Group>
-        <Group width="100%" flexDirection="row-reverse">
-          <PartnerImg>
+          <PartnerImg className="mobile">
             {partner11 && (
               <img
                 src={partner11.fields.file.url}
@@ -305,7 +314,41 @@ const Partners = (props: TPartnerProps) => {
               />
             )}
           </PartnerImg>
-          <PartnerImg>
+          <PartnerImg className="mobile">
+            {partner12 && (
+              <img
+                src={partner12.fields.file.url}
+                alt={partner12.fields.file.title}
+              />
+            )}
+            {partner12Hover && (
+              <img
+                className="hover"
+                src={partner12Hover.fields.file.url}
+                alt={partner12.fields.file.title}
+              />
+            )}
+          </PartnerImg>
+        </Group>
+        <Group width="100%" flexDirection="flex-start" wrap="wrap">
+          <PartnerImg className="placeholder" />
+          <PartnerImg className="placeholder" />
+          <PartnerImg className="mobile-hide">
+            {partner11 && (
+              <img
+                src={partner11.fields.file.url}
+                alt={partner11.fields.file.title}
+              />
+            )}
+            {partner11Hover && (
+              <img
+                className="hover"
+                src={partner11Hover.fields.file.url}
+                alt={partner11.fields.file.title}
+              />
+            )}
+          </PartnerImg>
+          <PartnerImg className="mobile-hide">
             {partner12 && (
               <img
                 src={partner12.fields.file.url}
@@ -335,8 +378,8 @@ const Partners = (props: TPartnerProps) => {
               />
             )}
           </PartnerImg>
-        </Group>
-        <Group width="100%" flexDirection="row-reverse">
+          <PartnerImg className="placeholder" />
+          <PartnerImg className="placeholder" />
           <PartnerImg>
             {partner14 && (
               <img

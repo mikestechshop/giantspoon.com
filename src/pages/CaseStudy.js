@@ -46,7 +46,7 @@ const TextBox = styled.div`
   left: 10%;
   bottom: 10%;
   text-align: left;
-  color: white;
+  color: #fffcf2;
   cursor: pointer;
   @media (max-width: 1024px) {
     top: 50%;
@@ -96,21 +96,7 @@ const scrollAni = (id: string) => {
   TweenMax.to(id, 0.35, { height: "35vh" });
   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
 };
-const VimeoHolder = styled.div`
-  padding: 75% 0 0 0;
-  pointer-events: none;
-`;
-const VimeoFrame = styled.iframe`
-  box-sizing: border-box;
-  height: 56.25vw;
-  left: 50%;
-  min-height: 100%;
-  min-width: 100%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  top: 50%;
-  width: 177.77777778vh;
-`;
+
 const CaseStudy = (props: TCaseStudyProps) => {
   console.log(props);
   const {
@@ -125,6 +111,8 @@ const CaseStudy = (props: TCaseStudyProps) => {
   } = props.caseStudy;
   console.log(pageGallery);
   const [breadcrumbs, setBreadcrumbs] = useState(0);
+  const [playVideo, setPlayVideo] = useState(true);
+  const [muteVideo, setMuteVideo] = useState(true);
   return (
     <>
       <SectionTab text="Case Study" />
@@ -143,6 +131,16 @@ const CaseStudy = (props: TCaseStudyProps) => {
           scrollAni(
             `#scroll${origin.index}${direction === "down" ? "Down" : "Up"}`
           );
+          if (playVideo && pageSplashVimeoLink) {
+            const video = document.querySelector("#video");
+            const command = {
+              method: "pause",
+              value: "true",
+            };
+            // $FlowFixMe
+            video.contentWindow.postMessage(command, "*");
+            setPlayVideo(false);
+          }
         }}
         render={({ state, fullpageApi }) => {
           return (
@@ -150,7 +148,14 @@ const CaseStudy = (props: TCaseStudyProps) => {
               <SectionWrap className="section">
                 {pageSplashVimeoLink ? (
                   <Group height="100vh">
-                    <VimeoPlayer id={pageSplashVimeoLink} />
+                    <VimeoPlayer
+                      id={pageSplashVimeoLink}
+                      controls={true}
+                      muteVideo={muteVideo}
+                      playVideo={playVideo}
+                      setPlayVideo={setPlayVideo}
+                      setMuteVideo={setMuteVideo}
+                    />
                   </Group>
                 ) : (
                   <FullImage

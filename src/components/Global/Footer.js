@@ -23,7 +23,7 @@ const FooterWrap = styled.div`
     border-style: none;
     background: transparent;
     margin-right: 20px;
-    color: white;
+    color: #fffcf2;
     font-family: interstate;
     border-radius: 5px;
   }
@@ -33,11 +33,11 @@ const FooterWrap = styled.div`
     border-style: none;
     font-weight: 600;
     border-radius: 5px;
-    color: white;
+    color: #fffcf2;
   }
   input::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: white;
+    color: #fffcf2;
     opacity: 1; /* Firefox */
   }
 
@@ -134,7 +134,7 @@ const Footer = (props: TStyledFooterProps) => {
                 fields={[
                   {
                     name: "EMAIL",
-                    placeholder: "Subscribe Here",
+                    placeholder: "Your Email Goes Here",
                     type: "email",
                     required: true,
                   },
@@ -270,6 +270,7 @@ const Footer = (props: TStyledFooterProps) => {
                   <a
                     href="https://www.linkedin.com/company/giant-spoon-llc"
                     target="_blank"
+                    rel="noopner noreferrer"
                   >
                     <Image src={Link} alt="linkedIn logo" />
                   </a>
@@ -278,12 +279,17 @@ const Footer = (props: TStyledFooterProps) => {
                   <a
                     href="https://www.instagram.com/giant_spoon/"
                     target="_blank"
+                    rel="noopner noreferrer"
                   >
                     <Image src={Ig} alt="insta logo" />
                   </a>
                 </LogoWrap>
                 <LogoWrap>
-                  <a href="https://twitter.com/giant_spoon" target="_blank">
+                  <a
+                    href="https://twitter.com/giant_spoon"
+                    target="_blank"
+                    rel="noopner noreferrer"
+                  >
                     <Image src={Twitter} alt="twitter logo" />
                   </a>
                 </LogoWrap>

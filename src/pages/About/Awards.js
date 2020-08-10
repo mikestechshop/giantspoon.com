@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Wrapper, Group } from "../../components";
-import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import "gsap/TextPlugin";
 
@@ -46,6 +45,7 @@ const TextBox = styled.div`
   width: 50%;
   @media (max-width: 1024px) {
     width: 100%;
+    top: 40vh;
   }
 `;
 const AwardImg = styled.div`
@@ -77,18 +77,21 @@ const AwardImg = styled.div`
     background-color: #fffcf2;
     display: flex;
     align-items: center;
+    text-align: center;
   }
   &:hover {
     .hover {
       opacity: 1;
     }
   }
+  @media (max-width: 1024px) {
+    &.placeholder {
+      display: none;
+    }
+  }
 `;
 
 const Awards = (props: TAwardProps) => {
-  const [ref] = useInView({
-    triggerOnce: true,
-  });
   const {
     award1,
     award1Hover,
@@ -117,7 +120,7 @@ const Awards = (props: TAwardProps) => {
             page here so procurement says you can hire us.
           </SmallText>
         </TextBox>
-        <Group width="100%" flexDirection="row">
+        <Group width="100%" flexDirection="row" wrap="wrap">
           <AwardImg>
             {award1 && (
               <img
@@ -155,7 +158,9 @@ const Awards = (props: TAwardProps) => {
             {award4Hover && <div className="hover">{award4Hover}</div>}
           </AwardImg>
         </Group>
-        <Group width="100%" flexDirection="row-reverse">
+        <Group width="100%" flexDirection="row" wrap="wrap">
+          <AwardImg className="placeholder" />
+          <AwardImg className="placeholder" />
           <AwardImg>
             {award5 && (
               <img
@@ -174,8 +179,8 @@ const Awards = (props: TAwardProps) => {
             )}
             {award6Hover && <div className="hover">{award6Hover}</div>}
           </AwardImg>
-        </Group>
-        <Group width="100%" flexDirection="row-reverse">
+          <AwardImg className="placeholder" />
+          <AwardImg className="placeholder" />
           <AwardImg>
             {award7 && (
               <img

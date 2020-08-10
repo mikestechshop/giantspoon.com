@@ -13,7 +13,7 @@ const TextBox = styled.div`
   left: 10%;
   bottom: 15%;
   text-align: left;
-  color: white;
+  color: #fffcf2;
   cursor: pointer;
   @media (max-width: 1024px) {
     top: 50vh;
@@ -48,7 +48,7 @@ const NewsDesc = styled.p`
     font-weight: 400;
   }
   a {
-    color: white;
+    color: #fffcf2;
     text-decoration: none;
   }
   @media (max-width: 1024px) {

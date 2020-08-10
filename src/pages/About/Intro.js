@@ -18,13 +18,13 @@ const LargeTextWrap = styled.h1`
   position: absolute;
   margin: 0;
   @media (max-width: 1024px) {
-    font-size: 5rem;
-    line-height: 5.5rem;
+    font-size: 3rem;
+    line-height: 3.5rem;
     left: 0;
   }
 `;
 const Text = styled.div`
-  color: ${(props) => props.color || "white"};
+  color: ${(props) => props.color || "#FFFCF2"};
   .coral {
     color: #fe9b96;
   }

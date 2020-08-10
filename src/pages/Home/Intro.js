@@ -28,7 +28,7 @@ const LargeTextWrap = styled.h1`
   }
 `;
 const Text = styled.div`
-  color: ${(props) => props.color || "white"};
+  color: ${(props) => props.color || "#FFFCF2"};
   .coral {
     color: #fe9b96;
   }

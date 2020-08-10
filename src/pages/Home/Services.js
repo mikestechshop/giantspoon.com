@@ -24,7 +24,7 @@ const TextBox = styled.div`
   left: 10%;
   bottom: 15%;
   text-align: left;
-  color: white;
+  color: #fffcf2;
   cursor: pointer;
 
   @media (max-width: 1024px) {
@@ -62,7 +62,7 @@ const ServicesList = styled.div`
   line-height: 16vh;
   font-size: 12vh;
   font-weight: 300;
-  color: white;
+  color: #fffcf2;
   @media (max-width: 1024px) {
     line-height: 10vh;
     font-size: 8vh;

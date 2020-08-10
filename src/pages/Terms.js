@@ -7,6 +7,7 @@ import { Wrapper, Group, Image } from "../components";
 const Terms = () => {
   useEffect(() => {
     if (document.querySelector("#section-tab")) {
+      // $FlowFixMe
       document.querySelector("#section-tab").innerHTML = "Terms";
     }
   });

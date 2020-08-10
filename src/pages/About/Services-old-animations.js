@@ -5,14 +5,13 @@ import { Wrapper, Slider, Group } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import { TimelineMax } from "gsap";
-import ContactVideo from "../../static/videos/spinning_circles.mp4";
 
 const TextBox = styled.div`
   position: absolute;
   left: 10%;
   bottom: 10%;
   text-align: left;
-  color: white;
+  color: #fffcf2;
   cursor: pointer;
   @media (max-width: 1024px) {
   }
@@ -45,7 +44,7 @@ const Ball = styled.div`
   width: 10vw;
   min-width: 100px;
   min-height: 100px;
-  background-color: ${(props) => props.color || "white"};
+  background-color: ${(props) => props.color || "#FFFCF2"};
   border-radius: 50%;
   position: absolute;
   z-index: ${(props) => props.zIndex || 0};
@@ -176,12 +175,7 @@ const SocialAnimation = styled.div`
   left: 40vw;
   background: none;
 `;
-const Vid = styled.video`
-  height: 100%;
-  width: 177.77777778vh; /* 100 * 16 / 9 */
-  min-width: 100%;
-  min-height: 56.25vw; /* 100 * 9 / 16 */
-`;
+
 const Work = () => {
   const [ref, inView] = useInView({
     /* Optional options */
@@ -719,15 +713,6 @@ const Work = () => {
       <Slider
         slideId="work-slider"
         slides={[
-          <Group height="100vh" bgc="#0C2340">
-            <TextBox>
-              <ServicesSmallTitle> template </ServicesSmallTitle>
-              <ServicesDesc>Template for video animations</ServicesDesc>
-            </TextBox>
-            <Vid id="vid" autoPlay muted loop data-keepplaying>
-              <source id="mp4" src={ContactVideo} type="video/mp4" />
-            </Vid>
-          </Group>,
           <Group height="100vh" bgc="#0C2340">
             <TextBox>
               <ServicesSmallTitle> Our Services </ServicesSmallTitle>

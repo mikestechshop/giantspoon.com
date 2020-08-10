@@ -7,6 +7,7 @@ import { Wrapper, Group, Image } from "../components";
 const Privacy = () => {
   useEffect(() => {
     if (document.querySelector("#section-tab")) {
+      // $FlowFixMe
       document.querySelector("#section-tab").innerHTML = "Privacy";
     }
   });

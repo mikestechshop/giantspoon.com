@@ -2,17 +2,37 @@
 
 import React from "react";
 import styled from "styled-components";
-
+import SoundOff from "../../static/sound-off.svg";
+import SoundOn from "../../static/sound-on.svg";
+import PlayBtn from "../../static/play-btn.svg";
+import PauseBtn from "../../static/pause-btn.svg";
 type TVimeoPlayerProps = {
   id: string,
+  controls?: boolean,
+  playVideo?: boolean,
+  muteVideo?: boolean,
+  setMuteVideo?: Function,
+  setPlayVideo?: Function,
 };
 const VimeoHolder = styled.div`
   padding: 75% 0 0 0;
-  .toggle {
+  .toggle-video {
     position: absolute;
-    top: 20px;
-    left: 50%;
+    bottom: 20px;
     cursor: pointer;
+    left: 20px;
+    bottom: 50px;
+    /* right: 24.5px; */
+    height: 30px;
+  }
+  .toggle-sound {
+    position: absolute;
+    bottom: 20px;
+    cursor: pointer;
+    left: 60px;
+    bottom: 50px;
+    /* right: 24.5px; */
+    height: 30px;
   }
 `;
 const VimeoFrame = styled.iframe`
@@ -29,7 +49,15 @@ const VimeoFrame = styled.iframe`
 `;
 
 const VimeoPlayer = (props: TVimeoPlayerProps) => {
-  const { id } = props;
+  const {
+    id,
+    controls,
+    playVideo,
+    muteVideo,
+    setMuteVideo,
+    setPlayVideo,
+  } = props;
+  console.log([props]);
   return (
     <VimeoHolder>
       <VimeoFrame
@@ -38,23 +66,59 @@ const VimeoPlayer = (props: TVimeoPlayerProps) => {
         allow="autoplay"
         id="video"
       />
-      <div
-        className="toggle"
-        onClick={() => {
-          const video = document.querySelector("#video");
-          console.log(video);
-          // video.contentWindow.postMessage(
-          //   '{"method":"setVolume", "value":0}',
-          //   "*"
-          // );
-          video.contentWindow.postMessage(
-            '{"method":"setVolume", "value":1}',
-            "*"
-          );
-        }}
-      >
-        Sound Off
-      </div>
+      {controls && (
+        <>
+          <img
+            src={playVideo ? PlayBtn : PauseBtn}
+            alt="sound icon"
+            className="toggle-video"
+            onClick={() => {
+              const video = document.querySelector("#video");
+
+              if (playVideo) {
+                const command = {
+                  method: "pause",
+                  value: "true",
+                };
+                // $FlowFixMe
+                video.contentWindow.postMessage(command, "*");
+              } else {
+                const command = {
+                  method: "play",
+                  value: "true",
+                };
+                // $FlowFixMe
+                video.contentWindow.postMessage(command, "*");
+              }
+              // $FlowFixMe
+              setPlayVideo(!playVideo);
+            }}
+          />
+          <img
+            src={muteVideo ? SoundOff : SoundOn}
+            alt="sound icon"
+            className="toggle-sound"
+            onClick={() => {
+              const video = document.querySelector("#video");
+              if (muteVideo) {
+                // $FlowFixMe
+                video.contentWindow.postMessage(
+                  '{"method":"setVolume", "value":1}',
+                  "*"
+                );
+              } else {
+                // $FlowFixMe
+                video.contentWindow.postMessage(
+                  '{"method":"setVolume", "value":0}',
+                  "*"
+                );
+              }
+              // $FlowFixMe
+              setMuteVideo(!muteVideo);
+            }}
+          />
+        </>
+      )}
     </VimeoHolder>
   );
 };

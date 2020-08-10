@@ -37,7 +37,7 @@ const SectionWrap = styled.div`
     font-weight: 600;
     border-radius: 5px;
     background-color: #b1c3d6;
-    color: white;
+    color: #fffcf2;
   }
   input::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -225,13 +225,13 @@ const Contact = (props: TContactProps) => (
                         },
                         {
                           name: "EMAIL",
-                          placeholder: "email",
+                          placeholder: "Email",
                           type: "email",
                           required: true,
                         },
                         {
                           name: "message",
-                          placeholder: "message",
+                          placeholder: "Message",
                           type: "textbox",
                           required: true,
                         },
