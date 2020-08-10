@@ -43,7 +43,7 @@ const NewsDesc = styled.p`
   line-height: 140%;
   font-weight: 300;
   margin-bottom: 1rem;
-  width: 100%;
+  width: 30vw;
   &.see {
     font-weight: 400;
   }
