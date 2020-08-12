@@ -184,7 +184,9 @@ const JobInfo = styled.div`
   font-weight: 300;
   font-size: 1rem;
   line-height: 140%;
-
+  a {
+    color: #fffcf2;
+  }
   @media (max-width: 1024px) {
     font-size: 0.8rem;
     margin-bottom: 1rem;
@@ -291,6 +293,9 @@ const Culture = (props: TCultureProps) => {
   const videos = useContentful({
     contentType: "videos",
   });
+  const careers = useContentful({
+    contentType: "careers",
+  });
 
   if (
     spoons.loading ||
@@ -298,7 +303,9 @@ const Culture = (props: TCultureProps) => {
     news.loading ||
     !news.fetched ||
     videos.loading ||
-    !videos.fetched
+    !videos.fetched ||
+    careers.loading ||
+    !careers.fetched
   ) {
     return null;
   }
@@ -312,12 +319,16 @@ const Culture = (props: TCultureProps) => {
     return null;
   }
   if (videos.error) {
-    console.error(news.error);
+    console.error(videos.error);
     return null;
   }
-
+  if (careers.error) {
+    console.error(careers.error);
+    return null;
+  }
   const newsItems = news.data.items;
   const spoonsItems = spoons.data.items;
+  const careersItems = careers.data.items;
   const videosItems = videos.data.items[0].fields;
   return (
     <>
@@ -475,38 +486,43 @@ const Culture = (props: TCultureProps) => {
                       Our Open Positions
                     </MediumText>
                     <CareersBox>
-                      <Group
-                        flexDirection={
-                          window.innerWidth > 1025 ? "row" : "column"
-                        }
-                      >
-                        <Group
-                          width={window.innerWidth > 1025 ? "30%" : "100%"}
-                          flexAlign="flex-start"
-                        >
-                          <JobTitle> Senior Anaylst </JobTitle>
-                        </Group>
-                        <Group
-                          width={window.innerWidth > 1025 ? "25%" : "100%"}
-                          flexAlign="flex-start"
-                        >
-                          <JobInfo>
-                            Media <br /> Los Angeles, CA
-                          </JobInfo>
-                        </Group>
-                        <Group
-                          width={window.innerWidth > 1025 ? "45%" : "100%"}
-                          flexAlign="flex-start"
-                        >
-                          <JobInfo>
-                            Giant Spoon is looking for a Senior Analyst with a
-                            track record for teasing insights from data. Someone
-                            who knows the story lies between the lines — a
-                            combination of qualitative and quantitative, art and
-                            science analysis. See More>
-                          </JobInfo>
-                        </Group>
-                      </Group>
+                      {careersItems.map((career, i) => {
+                        return (
+                          <Group
+                            flexDirection={
+                              window.innerWidth > 1025 ? "row" : "column"
+                            }
+                          >
+                            <Group
+                              width={window.innerWidth > 1025 ? "30%" : "100%"}
+                              flexAlign="flex-start"
+                            >
+                              <JobTitle> {career.fields.jobTitle} </JobTitle>
+                            </Group>
+                            <Group
+                              width={window.innerWidth > 1025 ? "25%" : "100%"}
+                              flexAlign="flex-start"
+                            >
+                              <JobInfo>
+                                {career.fields.department} <br />{" "}
+                                {career.fields.location}
+                              </JobInfo>
+                            </Group>
+                            <Group
+                              width={window.innerWidth > 1025 ? "45%" : "100%"}
+                              flexAlign="flex-start"
+                            >
+                              <JobInfo>
+                                {career.fields.description}{" "}
+                                <a href={career.fields.url} target="_blank">
+                                  {" "}
+                                  See More >{" "}
+                                </a>
+                              </JobInfo>
+                            </Group>
+                          </Group>
+                        );
+                      })}
                     </CareersBox>
                     <TextBox>
                       <Desc>
@@ -536,7 +552,6 @@ const Culture = (props: TCultureProps) => {
                       <SmallSlider
                         slideId="news-slide"
                         slides={newsItems.map((news) => {
-                          console.log(news.fields);
                           return (
                             <Group height="100%">
                               <Image

@@ -3,13 +3,20 @@
 import React from "react";
 import { Wrapper, Slider, Group } from "../../components";
 import styled from "styled-components";
-import ServicesVideo from "../../static/videos/services/services-animation.webm";
-import CreativeVideo from "../../static/videos/services/creative-animation.webm";
-import ExperiencialVideo from "../../static/videos/services/experiencial-animation.webm";
-import ProductionVideo from "../../static/videos/services/produciton-animation.webm";
-import SocialVideo from "../../static/videos/services/social-animation.webm";
-import StrategyVideo from "../../static/videos/services/strategy-animation.webm";
-import MediaVideo from "../../static/videos/services/media-animation.webm";
+import ServicesVideo from "../../static/videos/services/ladder.webm";
+import ServicesVideoMobile from "../../static/videos/services/ladder_portrait.webm";
+import StrategyVideo from "../../static/videos/services/carousel.webm";
+import StrategyVideoMobile from "../../static/videos/services/carousel_portrait.webm";
+import CreativeVideo from "../../static/videos/services/origami.webm";
+import CreativeVideoMobile from "../../static/videos/services/origami_portrait.webm";
+import ExperiencialVideo from "../../static/videos/services/triangle.webm";
+import ExperiencialVideoMobile from "../../static/videos/services/triangle_portrait.webm";
+import ProductionVideo from "../../static/videos/services/pyramid.webm";
+import ProductionVideoMobile from "../../static/videos/services/pyramid_portrait.webm";
+import SocialVideo from "../../static/videos/services/pentagon.webm";
+import SocialVideoMobile from "../../static/videos/services/pentagon_portrait.webm";
+import MediaVideo from "../../static/videos/services/pendulum.webm";
+import MediaVideoMobile from "../../static/videos/services/pendulum_portrait.webm";
 
 const TextBox = styled.div`
   position: absolute;
@@ -63,11 +70,17 @@ const Work = () => {
               <ServicesDesc>
                 We aren’t like everyone else and neither are our services. Take
                 a scroll to check out what we do differently to build our
-                Spoonshots
+                Spoonshots.
               </ServicesDesc>
             </TextBox>
             <Vid id="vid" autoPlay muted loop data-keepplaying>
-              <source id="mp4" src={ServicesVideo} type="video/webm" />
+              <source
+                id="mp4"
+                src={
+                  window.innerWidth > 1025 ? ServicesVideo : ServicesVideoMobile
+                }
+                type="video/webm"
+              />
             </Vid>
           </Group>,
           <Group height="100vh" bgc="#B1C3D6">
@@ -83,7 +96,13 @@ const Work = () => {
               </ServicesDesc>
             </TextBox>
             <Vid id="vid" autoPlay muted loop data-keepplaying>
-              <source id="mp4" src={StrategyVideo} type="video/webm" />
+              <source
+                id="mp4"
+                src={
+                  window.innerWidth > 1025 ? StrategyVideo : StrategyVideoMobile
+                }
+                type="video/webm"
+              />
             </Vid>
           </Group>,
 
@@ -99,7 +118,13 @@ const Work = () => {
               </ServicesDesc>
             </TextBox>
             <Vid id="vid" autoPlay muted loop data-keepplaying>
-              <source id="mp4" src={CreativeVideo} type="video/webm" />
+              <source
+                id="mp4"
+                src={
+                  window.innerWidth > 1025 ? CreativeVideo : CreativeVideoMobile
+                }
+                type="video/webm"
+              />
             </Vid>
           </Group>,
           <Group height="100vh" bgc="#0C2340">
@@ -114,7 +139,11 @@ const Work = () => {
               </ServicesDesc>
             </TextBox>
             <Vid id="vid" autoPlay muted loop data-keepplaying>
-              <source id="mp4" src={MediaVideo} type="video/webm" />
+              <source
+                id="mp4"
+                src={window.innerWidth > 1025 ? MediaVideo : MediaVideoMobile}
+                type="video/webm"
+              />
             </Vid>
           </Group>,
           <Group height="100vh" bgc="#B1C3D6">
@@ -130,7 +159,15 @@ const Work = () => {
               </ServicesDesc>
             </TextBox>
             <Vid id="vid" autoPlay muted loop data-keepplaying>
-              <source id="mp4" src={ProductionVideo} type="video/webm" />
+              <source
+                id="mp4"
+                src={
+                  window.innerWidth > 1025
+                    ? ProductionVideo
+                    : ProductionVideoMobile
+                }
+                type="video/webm"
+              />
             </Vid>
           </Group>,
           <Group height="100vh" bgc="#0033A0">
@@ -144,7 +181,11 @@ const Work = () => {
               </ServicesDesc>
             </TextBox>
             <Vid id="vid" autoPlay muted loop data-keepplaying>
-              <source id="mp4" src={SocialVideo} type="video/webm" />
+              <source
+                id="mp4"
+                src={window.innerWidth > 1025 ? SocialVideo : SocialVideoMobile}
+                type="video/webm"
+              />
             </Vid>
           </Group>,
           <Group height="100vh" bgc="#0C2340">
@@ -158,7 +199,15 @@ const Work = () => {
               </ServicesDesc>
             </TextBox>
             <Vid id="vid" autoPlay muted loop data-keepplaying>
-              <source id="mp4" src={ExperiencialVideo} type="video/webm" />
+              <source
+                id="mp4"
+                src={
+                  window.innerWidth > 1025
+                    ? ExperiencialVideo
+                    : ExperiencialVideoMobile
+                }
+                type="video/webm"
+              />
             </Vid>
           </Group>,
         ]}

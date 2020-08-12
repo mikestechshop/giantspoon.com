@@ -77,7 +77,6 @@ const Info = styled.div`
 `;
 
 const MoreProjects = (props: TMoreProjectsProps) => {
-  console.log(props.projects);
   return (
     <Group height="100vh" flexAlign="flex-start">
       <NewsTitle> More Projects </NewsTitle>

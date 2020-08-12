@@ -88,6 +88,9 @@ const Routes = () => {
   };
 
   const handleLinkChange = (url) => {
+    if (history.location.pathname === url) {
+      return;
+    }
     TweenMax.to(".transition-div", 0.5, {
       y: 0,
       onComplete: linkChange,
@@ -137,7 +140,7 @@ const Routes = () => {
           <Terms handleLinkChange={handleLinkChange} />
         </Route>
         <Route exact path="/privacy">
-          <Privacy />
+          <Privacy handleLinkChange={handleLinkChange} />
         </Route>
         <Route>
           <NotFound />

@@ -70,7 +70,7 @@ const Intro = (props: TIntroProps) => {
             onMouseEnter={() => props.onHover("#B1C3D6")}
             onMouseLeave={() => props.onHover("#FE9B96")}
           >
-            That’s <span class="coral">impossible.</span>
+            that’s <span className="coral">impossible.</span>
           </Text>
           <Paragraph
             className="intro-p-text"
@@ -78,6 +78,8 @@ const Intro = (props: TIntroProps) => {
             onMouseLeave={() => props.onHover("#FE9B96")}
           >
             We’ve been told that so many times, that we almost believed it.
+            <br />
+            <br />
             Almost.
             <br />
             <br />

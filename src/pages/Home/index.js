@@ -120,8 +120,6 @@ const Home = (props: THomeProps) => {
   const homePageItems = homePage.data.items[0];
   const videosItems = videos.data.items[0].fields;
 
-  console.log(videosItems);
-  console.log(homePageItems);
   const {
     strategyBlurb,
     creativeBlurb,
@@ -167,7 +165,6 @@ const Home = (props: THomeProps) => {
           if (origin.index === 1) {
             if (direction === "down") {
               scrollAni("#scroll1Down");
-              console.log("run");
             } else if (direction === "up") {
               scrollAni("#scroll1Up");
             }

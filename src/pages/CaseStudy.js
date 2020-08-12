@@ -98,7 +98,6 @@ const scrollAni = (id: string) => {
 };
 
 const CaseStudy = (props: TCaseStudyProps) => {
-  console.log(props);
   const {
     pageSplashImage,
     pageSplashVimeoLink,
@@ -109,14 +108,14 @@ const CaseStudy = (props: TCaseStudyProps) => {
     pageBlurb,
     url,
   } = props.caseStudy;
-  console.log(pageGallery);
+
   const [breadcrumbs, setBreadcrumbs] = useState(0);
   const [playVideo, setPlayVideo] = useState(true);
   const [muteVideo, setMuteVideo] = useState(true);
   return (
     <>
       <SectionTab text="Case Study" />
-      <Breadcrumbs count={4} active={breadcrumbs} />
+      <Breadcrumbs count={3} active={breadcrumbs} />
       <ReactFullpage
         //fullpage options
         licenseKey={"YOUR_KEY_HERE"}

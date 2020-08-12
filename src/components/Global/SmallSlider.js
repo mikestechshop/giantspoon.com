@@ -58,7 +58,6 @@ const slideRight = (count, slidesLegnth, id) => {
     TweenMax.to(id, 0.5, { x: "-=60vw" });
   }
 
-  console.log(count);
   if (count + 2 >= slidesLegnth) {
     TweenMax.to(id + "-arrow-right", 0.5, {
       autoAlpha: 0,
@@ -142,7 +141,7 @@ const Work = (props: TSliderProps) => {
           });
         }}
       >
-        <Image src={ArrowRight} width="14px" height="auto" alt="arrow right" />
+        <Image src={ArrowRight} width="20px" height="auto" alt="arrow right" />
       </ArrowRightWrap>
       <ArrowLeftWrap
         className="hoverable arrow"
@@ -161,7 +160,7 @@ const Work = (props: TSliderProps) => {
           });
         }}
       >
-        <Image src={ArrowLeft} width="14px" height="auto" alt="arrow left" />
+        <Image src={ArrowLeft} width="20px" height="auto" alt="arrow left" />
       </ArrowLeftWrap>
     </div>
   );

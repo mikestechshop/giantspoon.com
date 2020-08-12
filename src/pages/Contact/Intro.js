@@ -6,6 +6,7 @@ import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
 import "gsap/TextPlugin";
 import ContactVideo from "../../static/videos/contact-video.mp4";
+import { TweenMax } from "gsap";
 
 const TextBox = styled.div`
   position: absolute;

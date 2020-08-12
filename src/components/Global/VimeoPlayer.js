@@ -57,11 +57,11 @@ const VimeoPlayer = (props: TVimeoPlayerProps) => {
     setMuteVideo,
     setPlayVideo,
   } = props;
-  console.log([props]);
+
   return (
     <VimeoHolder>
       <VimeoFrame
-        src={`https://player.vimeo.com/video/${id}?autoplay=1&autopause=false&loop=1&title=0&byline=0&portrait=0&muted=1`}
+        src={`https://player.vimeo.com/video/${id}?autoplay=1&autopause=false&loop=1&title=0&byline=0&portrait=0&muted=1&background=1`}
         frameBorder="0"
         allow="autoplay"
         id="video"

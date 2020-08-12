@@ -134,7 +134,7 @@ const Partners = (props: TPartnerProps) => {
     partner16,
     partner16Hover,
   } = props.partners.fields;
-  console.log(partner1);
+
   return (
     <Wrapper>
       <PartnersWrap>

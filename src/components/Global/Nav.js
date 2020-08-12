@@ -5,6 +5,7 @@ import styled, { keyframes } from "styled-components";
 import { Image, Group } from "../";
 import LogoVert from "../../static/logo-vert.png";
 import MenuDots from "../../static/MenuDots.svg";
+import CloseBtn from "../../static/close.svg";
 import Ig from "../../static/Instagram.png";
 import Twitter from "../../static/Twitter.png";
 import Link from "../../static/Linked.png";
@@ -196,7 +197,17 @@ const ThoughtOfTheDay = styled.div`
   z-index: 98;
   padding: 2.5rem 2rem;
   opacity: 0;
-  pointer-events: none;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  .close {
+    position: absolute;
+    top: 36px;
+    right: 36px;
+    height: 30px;
+    width: auto;
+    cursor: pointer;
+  }
   h2 {
     font-size: 16px;
     mb: 1.5rem;
@@ -220,8 +231,17 @@ const TransitMap = styled.div`
   bottom: 10vh;
   right: 0;
   background: #fffcf2;
-  pointer-events: none;
+
   opacity: 0;
+  visibility: hidden;
+  .close {
+    position: absolute;
+    bottom: 27px;
+    right: 20px;
+    height: 30px;
+    width: auto;
+    cursor: pointer;
+  }
   #la-map {
     height: 100%;
     width: 100%;
@@ -247,7 +267,6 @@ const TransitMap = styled.div`
   }
 `;
 const addPointers = () => {
-  console.log("hello");
   TweenMax.set(".menu-link", { pointerEvents: "all" });
   TweenMax.to("#menu", {
     pointerEvents: "all",
@@ -302,7 +321,7 @@ const handleMenuOpen = (open) => {
 const handleThoughtOpen = (open) => {
   if (!open) {
     TweenMax.to("#thought", 0.4, {
-      opacity: 1,
+      autoAlpha: 1,
       ease: "power3.inOut",
     });
     TweenMax.to("#date", 0.4, {
@@ -315,7 +334,7 @@ const handleThoughtOpen = (open) => {
     });
   } else {
     TweenMax.to("#thought", 0.4, {
-      opacity: 0,
+      autoAlpha: 0,
       ease: "power3.inOut",
     });
     TweenMax.to("#date", 0.4, {
@@ -331,20 +350,20 @@ const handleThoughtOpen = (open) => {
 const handleTransitOpen = (open) => {
   if (!open) {
     TweenMax.to("#transit", 0.4, {
-      opacity: 1,
+      autoAlpha: 1,
       ease: "power3.inOut",
     });
     TweenMax.to("#date", 0.4, {
-      color: "#0C2340",
+      autoAlpha: 0,
       ease: "power3.inOut",
     });
   } else {
     TweenMax.to("#transit", 0.4, {
-      opacity: 0,
+      autoAlpha: 0,
       ease: "power3.inOut",
     });
     TweenMax.to("#date", 0.4, {
-      color: "#FE9B96",
+      autoAlpha: 1,
       ease: "power3.inOut",
     });
   }
@@ -442,6 +461,15 @@ const Nav = (props: TStyledNavProps) => {
       <ThoughtOfTheDay id="thought">
         <h2> Here's a thought </h2>
         <h1>{items[0].fields.thought}</h1>
+        <img
+          src={CloseBtn}
+          alt="close button"
+          className="close"
+          onClick={() => {
+            handleThoughtOpen(true);
+            setThoughtOpen(false);
+          }}
+        />
       </ThoughtOfTheDay>
       <TransitMap id="transit">
         <Group height="80vh" flexDirection="row">
@@ -458,9 +486,18 @@ const Nav = (props: TStyledNavProps) => {
         </Group>
         <Group height="10vh" bgc="#0033A0">
           <div className="largeText">
-            Are we there <span className="coral">yet?</span>
+            Are we <span className="coral">there</span> yet?
           </div>
         </Group>
+        <img
+          src={CloseBtn}
+          alt="close button"
+          className="close"
+          onClick={() => {
+            handleTransitOpen(true);
+            setTransitOpen(false);
+          }}
+        />
       </TransitMap>
 
       <MenuWrap className="menu-wrap">

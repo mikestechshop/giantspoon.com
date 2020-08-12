@@ -10,6 +10,8 @@ import {
 } from "../../components";
 import { useInView } from "react-intersection-observer";
 import styled from "styled-components";
+import SeeMoreVideo from "../../static/videos/services/see_more.webm";
+import SeeMoreVideoMobile from "../../static/videos/services/see_more_portrait.webm";
 
 type TWorkProps = {
   caseStudyItems: Array<Object>,
@@ -23,6 +25,7 @@ const TextBox = styled.div`
   text-align: left;
   color: #fffcf2;
   cursor: pointer;
+  z-index: 1;
 `;
 const WorkTitle = styled.h1`
   line-height: 16vh;
@@ -60,6 +63,13 @@ const WorkDesc = styled.p`
   }
 `;
 
+const Vid = styled.video`
+  position: absolute;
+  height: 100%;
+  width: 177.77777778vh; /* 100 * 16 / 9 */
+  min-width: 100%;
+  min-height: 56.25vw; /* 100 * 9 / 16 */
+`;
 const Work = (props: TWorkProps) => {
   const [ref] = useInView({
     /* Optional options */
@@ -74,7 +84,6 @@ const Work = (props: TWorkProps) => {
       return caseStudy.fields.featured;
     })
     .map((caseStudy, index) => {
-      console.log(caseStudy);
       return (
         <Group height="100vh">
           <FullImage
@@ -110,6 +119,15 @@ const Work = (props: TWorkProps) => {
           </Group>,
           ...featuredCaseStudies,
           <Group height="100vh" bgc="#0C2340">
+            <Vid id="vid" autoPlay muted loop data-keepplaying>
+              <source
+                id="mp4"
+                src={
+                  window.innerWidth > 1025 ? SeeMoreVideo : SeeMoreVideoMobile
+                }
+                type="video/webm"
+              />
+            </Vid>
             <TextBox>
               <WorkTitle className="smaller">Want to See More?</WorkTitle>
               <WorkDesc>

@@ -110,6 +110,16 @@ const scrollAni = (id: string) => {
   TweenMax.to(id, 0.35, { height: "35vh" });
   TweenMax.to(id, 0.35, { height: "0vh", delay: 0.4 });
 };
+const handleTransitOpen = () => {
+  TweenMax.to("#transit", 0.4, {
+    autoAlpha: 1,
+    ease: "power3.inOut",
+  });
+  TweenMax.to("#date", 0.4, {
+    autoAlpha: 0,
+    ease: "power3.inOut",
+  });
+};
 const Contact = (props: TContactProps) => (
   <>
     <SectionTab text="Contact" />
@@ -145,7 +155,7 @@ const Contact = (props: TContactProps) => (
                   flexAlign="start"
                 >
                   <LargeText mt={window.innerWidth > 1025 ? "20vh" : "0"}>
-                    All The <span class="coral">Info</span> You Could Need.
+                    All The <span className="coral">Info</span> You Could Need.
                   </LargeText>
                   <Group
                     width={window.innerWidth > 1025 ? "100%" : "80%"}
@@ -162,6 +172,7 @@ const Contact = (props: TContactProps) => (
                         <strong>
                           Phone <br />
                           General Inquires <br />
+                          New Business <br />
                           Careers
                         </strong>
                       </SmallText>
@@ -174,6 +185,7 @@ const Contact = (props: TContactProps) => (
                       <SmallText flexAlign="start">
                         (888) SPOON-50 <br />
                         hello@giantspoon.com <br />
+                        newbiz@giantspoon.com <br />
                         careers@giantspoon.com
                       </SmallText>
                     </Group>
@@ -193,7 +205,13 @@ const Contact = (props: TContactProps) => (
                       6100 Wilshire Blvd. <br />
                       Suite 700 <br /> Los Angeles, CA 90048
                     </SmallText>
-                    <SmallText mt="1.5rem" className="cta">
+                    <SmallText
+                      mt="1.5rem"
+                      className="cta"
+                      onClick={() => {
+                        handleTransitOpen();
+                      }}
+                    >
                       View Map >
                     </SmallText>
                   </Group>
@@ -205,7 +223,13 @@ const Contact = (props: TContactProps) => (
                       3rd floor
                       <br /> New York, NY 10005
                     </SmallText>
-                    <SmallText mt="1.5rem" className="cta">
+                    <SmallText
+                      mt="1.5rem"
+                      className="cta"
+                      onClick={() => {
+                        handleTransitOpen(true);
+                      }}
+                    >
                       View Map >
                     </SmallText>
                   </Group>

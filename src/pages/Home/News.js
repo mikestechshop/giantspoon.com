@@ -63,7 +63,6 @@ const News = (props: TNewsProps) => {
     threshold: 0,
     triggerOnce: true,
   });
-  console.log(props.newsItems);
 
   const newsItemsArray = props.newsItems
     .filter((news, index) => {

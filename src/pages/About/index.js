@@ -71,7 +71,7 @@ const scrollAni = (id: string) => {
 const Home = (props: TAboutProps) => {
   const [breadcrumbs, setBreadcrumbs] = useState(0);
   const { hash } = useLocation();
-  console.log(hash);
+
   const partners = useContentful({
     contentType: "partners",
   });
@@ -97,8 +97,6 @@ const Home = (props: TAboutProps) => {
     return null;
   }
 
-  console.log(partners);
-
   const partnersItems = partners.data.items[0];
   const awardsItems = awards.data.items[0];
   return (
@@ -122,7 +120,6 @@ const Home = (props: TAboutProps) => {
           if (origin.index === 1) {
             if (direction === "down") {
               scrollAni("#scroll1Down");
-              console.log("run");
             } else if (direction === "up") {
               scrollAni("#scroll1Up");
             }

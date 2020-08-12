@@ -63,6 +63,7 @@ const AwardImg = styled.div`
     opacity: 0;
     pointer-events: none;
     position: absolute;
+    padding: 10px;
     top: 50%;
     transform: translateY(-50%);
     left: 5vw;
@@ -86,6 +87,9 @@ const AwardImg = styled.div`
   }
   @media (max-width: 1024px) {
     &.placeholder {
+      display: none;
+    }
+    .hover {
       display: none;
     }
   }
