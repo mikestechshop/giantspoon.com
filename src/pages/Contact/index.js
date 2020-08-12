@@ -20,32 +20,32 @@ const SectionWrap = styled.div`
     border: 1px solid #b1c3d6;
     background: transparent;
     margin-right: 20px;
-    color: #b1c3d6;
+    color: #0c2340;
     font-family: interstate;
     display: block;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     padding: 0.5rem;
-    border-radius: 5px;
+    background: #b1c3d6;
+    width: 20rem;
   }
-  button {
+  &.form button {
     border: 1px solid #b1c3d6;
 
     background: transparent;
-    padding: 0.5rem 1rem;
+    padding: 10px 20px;
     font-family: interstate;
     border-style: none;
     font-weight: 600;
-    border-radius: 5px;
-    background-color: #b1c3d6;
-    color: #fffcf2;
-  }
-  input::placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    background: #0033a0;
     color: #b1c3d6;
+  }
+  &.form input::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #0c2340 !important;
     opacity: 1; /* Firefox */
   }
-  input[type="textbox"] {
-    height: 5rem;
+  &.form input[type="textbox"] {
+    height: 8rem;
     width: 20rem;
     max-width: 70vw;
   }
@@ -157,39 +157,6 @@ const Contact = (props: TContactProps) => (
                   <LargeText mt={window.innerWidth > 1025 ? "20vh" : "0"}>
                     All The <span className="coral">Info</span> You Could Need.
                   </LargeText>
-                  <Group
-                    width={window.innerWidth > 1025 ? "100%" : "80%"}
-                    flexDirection="row"
-                    ml={window.innerWidth > 1025 ? "10%" : "50px"}
-                    flexAlign="start"
-                  >
-                    <Group
-                      width={window.innerWidth > 1025 ? "30%" : "50%"}
-                      flexAlign="start"
-                      mt={window.innerWidth > 1025 ? "20vh" : "4vh"}
-                    >
-                      <SmallText flexAlign="start">
-                        <strong>
-                          Phone <br />
-                          General Inquires <br />
-                          New Business <br />
-                          Careers
-                        </strong>
-                      </SmallText>
-                    </Group>
-                    <Group
-                      width={window.innerWidth > 1025 ? "70%" : "50%"}
-                      flexAlign="start"
-                      mt={window.innerWidth > 1025 ? "20vh" : "4vh"}
-                    >
-                      <SmallText flexAlign="start">
-                        (888) SPOON-50 <br />
-                        hello@giantspoon.com <br />
-                        newbiz@giantspoon.com <br />
-                        careers@giantspoon.com
-                      </SmallText>
-                    </Group>
-                  </Group>
                 </Group>
                 <Group
                   wrap="wrap"
@@ -227,7 +194,7 @@ const Contact = (props: TContactProps) => (
                       mt="1.5rem"
                       className="cta"
                       onClick={() => {
-                        handleTransitOpen(true);
+                        handleTransitOpen();
                       }}
                     >
                       View Map >
@@ -238,32 +205,36 @@ const Contact = (props: TContactProps) => (
                     flexAlign="start"
                     mt={window.innerWidth > 1025 ? "12vh" : "2vh"}
                   >
-                    <Mailchimp
-                      action="https://giantspoon.us17.list-manage.com/subscribe/post?u=df3c644d0ffcc72bdb51a361c&amp;id=3db69f1995"
-                      fields={[
-                        {
-                          name: "subject",
-                          placeholder: "Subject",
-                          type: "input",
-                          required: true,
-                        },
-                        {
-                          name: "EMAIL",
-                          placeholder: "Email",
-                          type: "email",
-                          required: true,
-                        },
-                        {
-                          name: "message",
-                          placeholder: "Message",
-                          type: "textbox",
-                          required: true,
-                        },
-                      ]}
-                      messages={{
-                        button: "Send!",
-                      }}
-                    />
+                    <Group
+                      width={window.innerWidth > 1025 ? "100%" : "80%"}
+                      flexDirection="row"
+                      flexAlign="start"
+                    >
+                      <Group
+                        width={window.innerWidth > 1025 ? "30%" : "50%"}
+                        flexAlign="start"
+                      >
+                        <SmallText flexAlign="start">
+                          <strong>
+                            Phone <br />
+                            General Inquires <br />
+                            New Business <br />
+                            Careers
+                          </strong>
+                        </SmallText>
+                      </Group>
+                      <Group
+                        width={window.innerWidth > 1025 ? "70%" : "50%"}
+                        flexAlign="start"
+                      >
+                        <SmallText flexAlign="start">
+                          (888) SPOON-50 <br />
+                          hello@giantspoon.com <br />
+                          newbiz@giantspoon.com <br />
+                          careers@giantspoon.com
+                        </SmallText>
+                      </Group>
+                    </Group>
                   </Group>
                 </Group>
               </Group>

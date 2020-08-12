@@ -78,8 +78,6 @@ const Intro = (props: TIntroProps) => {
             onMouseLeave={() => props.onHover("#FE9B96")}
           >
             We’ve been told that so many times, that we almost believed it.
-            <br />
-            <br />
             Almost.
             <br />
             <br />

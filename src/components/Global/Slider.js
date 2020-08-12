@@ -48,6 +48,20 @@ const ArrowLeftWrap = styled.div`
   pointer-events: none;
   z-index: 999;
 `;
+const Beginning = styled.div`
+  padding: 1rem;
+  background: #0033a0;
+  color: #b1c3d6;
+  font-weight: 600;
+  font-family: "interstate-mono";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 18px;
+  cursor: pointer;
+  visibility: hidden;
+  opacity: 0;
+`;
 const slideRight = (count, slidesLegnth, id) => {
   TweenMax.set(".arrow", { pointerEvents: "none" });
   TweenMax.set(".arrow", { pointerEvents: "all", delay: 0.5 });
@@ -66,6 +80,9 @@ const slideRight = (count, slidesLegnth, id) => {
       autoAlpha: 0,
       pointerEvents: "none",
     });
+    TweenMax.to(id + "-go-back", 0.5, {
+      autoAlpha: 1,
+    });
   }
   if (count === 0) {
     TweenMax.to(id + "-arrow-left", 0.5, {
@@ -78,9 +95,10 @@ const slideRight = (count, slidesLegnth, id) => {
     });
   }
 };
-const slideLeft = (count, slidesLegnth, id) => {
+const slideLeft = (count, slidesLegnth, id, beginning) => {
   TweenMax.set(".arrow", { pointerEvents: "none" });
   TweenMax.set(".arrow", { pointerEvents: "all", delay: 0.5 });
+
   if (window.innerWidth < 1025) {
     TweenMax.to(id, 0.5, { x: "+=100vw" });
   } else {
@@ -178,6 +196,37 @@ const Work = (props: TSliderProps) => {
       >
         <Image src={ArrowLeft} width="20px" height="auto" alt="arrow left" />
       </ArrowLeftWrap>
+      <Beginning
+        id={`${slideId}-go-back`}
+        onClick={() => {
+          TweenMax.to(`#${slideId}`, 0.5, { x: "0vw" });
+          TweenMax.to(`#${slideId}-arrow-left`, 0.5, {
+            autoAlpha: 0,
+            pointerEvents: "none",
+          });
+          TweenMax.to(`#${slideId}-arrow-right`, 0.5, {
+            autoAlpha: 1,
+            pointerEvents: "all",
+          });
+          TweenMax.to(`#${slideId}-go-back`, 0.5, {
+            autoAlpha: 0,
+          });
+          TweenMax.to("#breadcrumbs", 0.5, {
+            autoAlpha: 1,
+            pointerEvents: "all",
+          });
+          setCount(0);
+          TweenMax.to(".cursor__ball", 0.3, {
+            scale: 4,
+          });
+          TweenMax.to(".cursor__ball", 0.3, {
+            scale: 1,
+            delay: 0.35,
+          });
+        }}
+      >
+        Go Back
+      </Beginning>
     </div>
   );
 };

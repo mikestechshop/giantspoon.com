@@ -1,10 +1,18 @@
 // @flow
 
 import React, { useEffect } from "react";
-import TermsImg from "../static/terms.png";
-import { Wrapper, Group, Image } from "../components";
+import styled from "styled-components";
+import { Wrapper, Group, Footer } from "../components";
 
-const Terms = () => {
+type TTermsProps = {
+  handleLinkChange: Function,
+};
+const UnderLine = styled.span`
+  cursor: pointer;
+  text-decoration: underline;
+`;
+
+const Terms = (props: TTermsProps) => {
   useEffect(() => {
     if (document.querySelector("#section-tab")) {
       // $FlowFixMe
@@ -14,7 +22,7 @@ const Terms = () => {
   return (
     <Wrapper>
       <Group bgc="#0C2340" flexDirection="column">
-        <Group bgc="#0C2340" width="80vw" mt="100px">
+        <Group bgc="#0C2340" width="80vw" mt="100px" mb="100px">
           Giant Spoon Terms of Use Last Updated and Effective as of: January 1,
           2020
           <p>
@@ -275,8 +283,15 @@ const Terms = () => {
             then be submitted to arbitration.
           </p>
           <p>
-            Privacy Policy: Use of the Website is also governed by our Privacy
-            Policy, which is incorporate herein by reference.
+            Privacy Policy: Use of the Website is also governed by our{" "}
+            <UnderLine
+              onClick={() => {
+                props.handleLinkChange("/privacy");
+              }}
+            >
+              Privacy Policy
+            </UnderLine>{" "}
+            which is incorporate herein by reference.
           </p>
           <p>
             Questions: Should you have any questions regarding these Terms of
@@ -284,6 +299,7 @@ const Terms = () => {
           </p>
         </Group>
       </Group>
+      <Footer handleLinkChange={props.handleLinkChange} />
     </Wrapper>
   );
 };

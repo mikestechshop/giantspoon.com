@@ -3,7 +3,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Image } from "../";
-import Logo from "../../static/logo.png";
+import Logo from "../../static/logo-blue.svg";
 import Ig from "../../static/Instagram.png";
 import Twitter from "../../static/Twitter.png";
 import Link from "../../static/Linked.png";
@@ -23,21 +23,23 @@ const FooterWrap = styled.div`
     border-style: none;
     background: transparent;
     margin-right: 20px;
-    color: #fffcf2;
+    color: #0c2340;
     font-family: interstate;
-    border-radius: 5px;
+    background: #b1c3d6;
+    padding: 10px 20px;
   }
   button {
     background: #b1c3d6;
     font-family: interstate;
     border-style: none;
     font-weight: 600;
-    border-radius: 5px;
-    color: #fffcf2;
+    background: #0c2340;
+    color: #b1c3d6;
+    padding: 10px 20px;
   }
   input::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #fffcf2;
+    color: #0c2340 !important;
     opacity: 1; /* Firefox */
   }
 
@@ -116,7 +118,12 @@ const Footer = (props: TStyledFooterProps) => {
             layout={window.innerWidth > 1025 ? "row" : "column"}
             wrap="wrap"
           >
-            <Box width={window.innerWidth > 1025 ? "50%" : "100%"}>
+            <Box
+              width={window.innerWidth > 1025 ? "50%" : "100%"}
+              onClick={() => {
+                handleLinkChange("/");
+              }}
+            >
               <Image src={Logo} alt="logo" width="128px" height="auto" />
             </Box>
             <Box width={window.innerWidth > 1025 ? "50%" : "100%"}>
@@ -129,6 +136,7 @@ const Footer = (props: TStyledFooterProps) => {
               width={window.innerWidth > 1025 ? "50%" : "100%"}
               margin="0rem 4rem 2rem 0 "
             >
+              <p> Sign up for our Newsletter </p>
               <Mailchimp
                 action="https://giantspoon.us17.list-manage.com/subscribe/post?u=df3c644d0ffcc72bdb51a361c&amp;id=3db69f1995"
                 fields={[

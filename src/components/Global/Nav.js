@@ -75,6 +75,29 @@ const DateWrap = styled.div`
     display: none;
   }
 `;
+
+const ContactWrap = styled.div`
+  position: fixed;
+  bottom: 294px;
+  right: 4px;
+  z-index: 999;
+  cursor: pointer;
+  color: #fe9b96;
+  font-size: 0.75rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.1rem;
+  transform: rotate(270deg);
+  transform-origin: 50% 50%;
+  z-index: 989;
+  font-family: interstate-mono, monospace;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: uppercase;
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+`;
 const NYLAWrap = styled.div`
   position: fixed;
   bottom: 50px;
@@ -438,6 +461,15 @@ const Nav = (props: TStyledNavProps) => {
       >
         <Image src={LogoVert} alt="menu nav" />
       </LogoVertWrap>
+      <ContactWrap
+        id="date"
+        onClick={() => {
+          handleLinkChange("/contact");
+        }}
+        className="bottom-links"
+      >
+        Contact
+      </ContactWrap>
       <DateWrap
         id="date"
         onClick={() => {
