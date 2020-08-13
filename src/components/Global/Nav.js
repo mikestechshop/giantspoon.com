@@ -464,7 +464,7 @@ const Nav = (props: TStyledNavProps) => {
       <ContactWrap
         id="date"
         onClick={() => {
-          handleLinkChange("/contact");
+          handleLinkChange("contact#info");
         }}
         className="bottom-links"
       >
