@@ -61,7 +61,7 @@ const Awards = (props: TAwardsProps) => {
     <Wrapper>
       <div ref={ref}></div>
       <Group height="100vh">
-        <FullImage className="flip" src={AwardsBg} alt="awards image" />
+        <FullImage src={AwardsBg} alt="awards image" />
         <TextBox>
           <AwardsTitle> {awardsTitle.replace(/'/g, "\u2019")} </AwardsTitle>
           <AwardsDesc>{awardsBlurb}</AwardsDesc>

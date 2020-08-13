@@ -83,8 +83,8 @@ const Intro = (props: TIntroProps) => {
             Almost.
             <br />
             <br />
-            Giant Spoon is an agency built on the power of possible thinking to
-            – shoot for the moon and solve impossible challenges.
+            Giant Spoon is an agency built on the power of possible thinking –
+            to shoot for the moon and solve impossible challenges.
           </Paragraph>
         </LargeTextWrap>
       </Group>
