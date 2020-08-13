@@ -92,6 +92,11 @@ const SmallText = styled.div`
   marin-left: 20%;
   &.cta {
     font-weight: 400;
+    cursor: pointer;
+  }
+  a {
+    text-decoration: none;
+    color: #b1c3d6;
   }
   strong {
     font-weight: 400;
@@ -239,9 +244,17 @@ const Contact = (props: TContactProps) => {
                         >
                           <SmallText flexAlign="start">
                             (888) SPOON-50 <br />
-                            hello@giantspoon.com <br />
-                            newbiz@giantspoon.com <br />
-                            careers@giantspoon.com
+                            <a href="mailto:hello@giantspoon.com">
+                              hello@giantspoon.com
+                            </a>
+                            <br />
+                            <a href="newbiz@giantspoon.com">
+                              newbiz@giantspoon.com
+                            </a>
+                            <br />
+                            <a href="careers@giantspoon.com">
+                              careers@giantspoon.com
+                            </a>
                           </SmallText>
                         </Group>
                       </Group>

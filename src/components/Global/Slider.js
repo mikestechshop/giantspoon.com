@@ -1,7 +1,7 @@
 // @flow
 
 import React, { useState, type Node } from "react";
-import { Image } from "../../components";
+import { Image, Group } from "../../components";
 import styled from "styled-components";
 import { TweenMax } from "gsap";
 import ArrowRight from "../../static/arrow-right.png";
@@ -49,8 +49,6 @@ const ArrowLeftWrap = styled.div`
   z-index: 999;
 `;
 const Beginning = styled.div`
-  padding: 1rem;
-  background: #0033a0;
   color: #b1c3d6;
   font-weight: 600;
   font-family: "interstate-mono";
@@ -197,6 +195,7 @@ const Work = (props: TSliderProps) => {
         <Image src={ArrowLeft} width="20px" height="auto" alt="arrow left" />
       </ArrowLeftWrap>
       <Beginning
+        className="hoverable "
         id={`${slideId}-go-back`}
         onClick={() => {
           TweenMax.to(`#${slideId}`, 0.5, { x: "0vw" });
@@ -225,7 +224,10 @@ const Work = (props: TSliderProps) => {
           });
         }}
       >
-        Go Back
+        <Group flexDirection="row">
+          <Image src={ArrowLeft} width="20px" alt="arrow left" />
+          <Image src={ArrowLeft} width="20px" alt="arrow left" />
+        </Group>
       </Beginning>
     </div>
   );

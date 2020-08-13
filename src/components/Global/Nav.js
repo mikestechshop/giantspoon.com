@@ -6,9 +6,9 @@ import { Image, Group } from "../";
 import LogoVert from "../../static/logo-vert.png";
 import MenuDots from "../../static/MenuDots.svg";
 import CloseBtn from "../../static/close.svg";
-import Ig from "../../static/Instagram.png";
-import Twitter from "../../static/Twitter.png";
-import Link from "../../static/Linked.png";
+import Ig from "../../static/instagram.png";
+import Twitter from "../../static/twitter.png";
+import Link from "../../static/linked.png";
 import { TweenMax } from "gsap";
 import { useContentful } from "react-contentful";
 

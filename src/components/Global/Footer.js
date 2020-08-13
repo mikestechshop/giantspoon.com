@@ -4,9 +4,9 @@ import React from "react";
 import styled from "styled-components";
 import { Image } from "../";
 import Logo from "../../static/logo-blue.svg";
-import Ig from "../../static/Instagram.png";
-import Twitter from "../../static/Twitter.png";
-import Link from "../../static/Linked.png";
+import Ig from "../../static/instagram.png";
+import Twitter from "../../static/twitter.png";
+import Link from "../../static/linked.png";
 import Mailchimp from "react-mailchimp-form";
 
 type TStyledFooterProps = {
@@ -27,6 +27,9 @@ const FooterWrap = styled.div`
     font-family: interstate;
     background: #b1c3d6;
     padding: 10px 20px;
+  }
+  input:focus {
+    outline: none;
   }
   button {
     background: #b1c3d6;

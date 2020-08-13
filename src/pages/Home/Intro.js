@@ -78,11 +78,13 @@ const Intro = (props: TIntroProps) => {
             onMouseLeave={() => props.onHover("#FE9B96")}
           >
             We’ve been told that so many times, that we almost believed it.
+            <br />
+            <br />
             Almost.
             <br />
             <br />
             Giant Spoon is an agency built on the power of possible thinking to
-            shoot for the moon and solve impossible challenges.
+            – shoot for the moon and solve impossible challenges.
           </Paragraph>
         </LargeTextWrap>
       </Group>
