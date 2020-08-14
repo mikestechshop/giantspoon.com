@@ -141,7 +141,7 @@ const Footer = (props: TStyledFooterProps) => {
             >
               <p> Sign up for our Newsletter </p>
               <Mailchimp
-                action="https://giantspoon.us17.list-manage.com/subscribe/post?u=df3c644d0ffcc72bdb51a361c&amp;id=3db69f1995"
+                action="https://giantspoon.us10.list-manage.com/subscribe/post?u=e61d86b4f423b1e17de378142&amp;id=18aae0e833"
                 fields={[
                   {
                     name: "EMAIL",
