@@ -140,7 +140,7 @@ const Work = (props: TWorkProps) => {
       />
       <ReactFullpage
         //fullpage options
-        licenseKey={"YOUR_KEY_HERE"}
+        licenseKey={"F4C00EBE-7C6841F8-8F3BF1C8-FB079CA8"}
         scrollingSpeed={800} /* Options here */
         onLeave={function (origin, destination, direction) {
           setBreadcrumbs(destination.index);
