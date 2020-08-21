@@ -13,6 +13,17 @@ type TStyledFooterProps = {
   handleLinkChange: Function,
 };
 
+const HyperLink = ({ className, route, children, handleLinkChange }) => (
+  <a className={className} href={route} onClick={() => { handleLinkChange('/contact') }}>
+    {children}
+  </a>
+);
+
+const StyledLink = styled(HyperLink)`
+  color: #B1C3D6;
+  text-decoration: none;
+`;
+
 const FooterWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -132,7 +143,7 @@ const Footer = (props: TStyledFooterProps) => {
             <Box width={window.innerWidth > 1025 ? "50%" : "100%"}>
               <LargeText>
                 Like what you see? <br />
-                <span className="regular">Get In Touch.</span>
+                <StyledLink className="regular" route="/contact" children="Get In Touch." handleLinkChange={handleLinkChange}></StyledLink>
               </LargeText>
             </Box>
             <Box
