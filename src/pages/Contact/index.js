@@ -12,6 +12,17 @@ type TContactProps = {
   handleLinkChange: Function,
 };
 
+const Link = ({ className, route, children }) => (
+  <a className={className} href={route}>
+    {children}
+  </a>
+);
+
+const StyledLink = styled(Link)`
+  color: #FE9B96;
+  margin: auto .2rem;
+`;
+
 const SectionWrap = styled.div`
   position: relative;
   background-color: ${(props) => props.bgc || "#0033a0"};
@@ -244,17 +255,11 @@ const Contact = (props: TContactProps) => {
                         >
                           <SmallText flexAlign="start">
                             (888) SPOON-50 <br />
-                            <a href="mailto:hello@giantspoon.com">
-                              hello@giantspoon.com
-                            </a>
+                            <StyledLink route="mailto:hello@giantspoon.com" children="hello@giantspoon.com"></StyledLink>
                             <br />
-                            <a href="newbiz@giantspoon.com">
-                              newbiz@giantspoon.com
-                            </a>
+                            <StyledLink route="mailto:newbiz@giantspoon.com" children="newbiz@giantspoon.com"></StyledLink>
                             <br />
-                            <a href="careers@giantspoon.com">
-                              careers@giantspoon.com
-                            </a>
+                            <StyledLink route="mailto:careers@giantspoon.com" children="careers@giantspoon.com"></StyledLink>
                           </SmallText>
                         </Group>
                       </Group>

@@ -8,6 +8,17 @@ import "gsap/TextPlugin";
 import ContactVideo from "../../static/videos/contact-video.mp4";
 import { TweenMax } from "gsap";
 
+const Link = ({ className, route, children }) => (
+  <a className={className} href={route}>
+    {children}
+  </a>
+);
+
+const StyledLink = styled(Link)`
+  color: #FE9B96;
+  margin: auto .2rem;
+`;
+
 const TextBox = styled.div`
   position: absolute;
   left: 10%;
@@ -78,7 +89,7 @@ const Intro = () => {
         <Paragraph className="intro-p-text">
           In the market for a really cool agency or looking to send along your
           resume? Give us a call at 888-SPOON-50 or shoot us an email at
-          hello@giantspoon.com and we’ll take it from there.
+          <StyledLink className="" route="mailto:hello@giantspoon.com" children={"hello@giantspoon.com"}></StyledLink>and we’ll take it from there.
         </Paragraph>
       </TextBox>
     </Wrapper>
