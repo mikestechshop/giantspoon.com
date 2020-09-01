@@ -10,6 +10,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect,
   useLocation,
 } from "react-router-dom";
 import {
@@ -44,6 +45,16 @@ const TransitionLayer = styled.div`
   transform: translateY(100%);
 `;
 
+const RedirectWithStatus = (props) => {
+  const {from, to, status} = props;
+  return (
+    <Route render={({ staticContext }) => {
+      if (staticContext) staticContext.status = status;
+      return <Redirect from={from} to={to}></Redirect>;
+    }}></Route>
+  );
+}
+
 const ScrollToTop = () => {
   const { pathname } = useLocation();
 
@@ -67,6 +78,7 @@ const App = () => {
 };
 
 const Routes = () => {
+  const location = useLocation();
   const history = useHistory();
   const { data, error, fetched, loading } = useContentful({
     contentType: "caseStudy",
@@ -104,6 +116,7 @@ const Routes = () => {
       onComplete: resetDiv,
     });
   };
+
   return (
     <>
       <ScrollToTop />
@@ -142,6 +155,10 @@ const Routes = () => {
         <Route exact path="/privacy">
           <Privacy handleLinkChange={handleLinkChange} />
         </Route>
+        <RedirectWithStatus from="/services" to="/about#services" status={301}></RedirectWithStatus>
+        <RedirectWithStatus from="/careers" to="/culture#careers" status={301}></RedirectWithStatus>
+        <RedirectWithStatus from="/press" to="/about#awards" status={301}></RedirectWithStatus>
+        <RedirectWithStatus from="/work-experiential" to="/work" status={301}></RedirectWithStatus>
         <Route>
           <NotFound />
         </Route>
