@@ -164,6 +164,9 @@ const CareersBox = styled.div`
   padding: 2.5rem;
   box-sizing: border-box;
   background-color: #0c2340;
+  > div:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
   @media (max-width: 1024px) {
     margin-left: 50px;
   }
@@ -174,6 +177,7 @@ const JobTitle = styled.div`
   font-size: 2rem;
   line-height: 2.6rem;
   text-transform: capitalize;
+  padding-right: 0 .5rem;
   @media (max-width: 1024px) {
     font-size: 1.5rem;
     margin-bottom: 1rem;

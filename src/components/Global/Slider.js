@@ -136,13 +136,43 @@ const onMouseExit = () => {
   });
   TweenMax.set(".hoverable", { cursor: "default" });
 };
+const onKeyDown = (e, count, slideId, slides, setCount) => {
+  switch(e.keyCode){
+    case 37: // left arrow
+      if(count > 0) {
+        slideLeft(count, slides.length, `#${slideId}`);
+        setCount(count - 1);
+        TweenMax.to(".cursor__ball", 0.3, {
+          scale: 4,
+        });
+        TweenMax.to(".cursor__ball", 0.3, {
+          scale: 1,
+          delay: 0.35,
+        });
+      }
+      break;
+    case 39: // right arrow
+      slideRight(count, slides.length, `#${slideId}`);
+      setCount(count + 1);
+      TweenMax.to(".cursor__ball", 0.3, {
+        scale: 4,
+      });
+      TweenMax.to(".cursor__ball", 0.3, {
+        scale: 1,
+        delay: 0.35,
+      });
+      break;
+    default:
+        // do nothing
+  }
+}
 const Work = (props: TSliderProps) => {
   const { slideId, slides } = props;
 
   const [count, setCount] = useState(0);
 
   return (
-    <div>
+    <div onKeyDown={(e) => onKeyDown(e, count, slideId, slides, setCount)} tabIndex="0">
       <SlideWrap id={slideId}>
         {slides.map((slide, i) => {
           if (i === 0) {
