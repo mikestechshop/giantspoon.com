@@ -6,9 +6,9 @@ import { Image, Group } from "../";
 import LogoVert from "../../static/logo-vert.png";
 import MenuDots from "../../static/MenuDots.svg";
 import CloseBtn from "../../static/close.svg";
-import Ig from "../../static/instagram.png";
+import Ig from "../../static/Instagram.png";
 import Twitter from "../../static/twitter.png";
-import Link from "../../static/linked.png";
+import Link from "../../static/Linked.png";
 import { TweenMax } from "gsap";
 import { useContentful } from "react-contentful";
 
@@ -20,7 +20,7 @@ type TStyledNavProps = {
   handleLinkChange: Function,
 };
 
-const wiggle = keyframes` 
+const wiggle = keyframes`
     0% { transform: rotate(0deg); }
    80% { transform: rotate(0deg); }
    85% { transform: rotate(5deg); }
