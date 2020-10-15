@@ -70,7 +70,7 @@ const Intro = (props: TIntroProps) => {
             onMouseEnter={() => props.onHover("#B1C3D6")}
             onMouseLeave={() => props.onHover("#FE9B96")}
           >
-            that’s <span className="coral">impossible.</span>
+            that’s <span className="coral">vercel.</span>
           </Text>
           <Paragraph
             className="intro-p-text"
