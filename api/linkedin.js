@@ -6,9 +6,14 @@ var connection = mysql.createConnection({
     database: 'gs',
 })
 
-module.exports = connection.connect((err) => {
-    if (err) {
-        return 'error connecting: ' + err.stack
-    }
-    return 'connected as id ' + connection.threadId
-})
+module.exports = () => {
+    connection.query('SELECT * from test', function (err, results, fields) {
+        if (err) {
+            console.error('error connecting: ' + err.stack)
+            return
+        }
+        console.log('connected as id ' + connection.threadId)
+        const thread = connection.threadId
+        res.send(fields)
+    })
+}

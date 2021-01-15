@@ -300,9 +300,18 @@ const Culture = (props: TCultureProps) => {
     const careers = useContentful({
         contentType: 'careers',
     })
-
-    useEffect = () => {
-        fetch('/api/linkedin.js').then((res) => console.log(res))
+    const fetchFunction = () => {
+        fetch('/api/linkedin.js')
+            .then(function (response) {
+                // The response is a Response instance.
+                // You parse the data into a useable format using `.json()`
+                // console.log(response.json())
+                return response
+            })
+            .then(function (data) {
+                // `data` is the parsed version of the JSON returned from the above endpoint.
+                console.log(data) // { "userId": 1, "id": 1, "title": "...", "body": "..." }
+            })
     }
 
     if (
@@ -338,6 +347,7 @@ const Culture = (props: TCultureProps) => {
     const spoonsItems = spoons.data.items
     const careersItems = careers.data.items
     const videosItems = videos.data.items[0].fields
+
     return (
         <>
             <SectionTab text="spoons" />
@@ -564,6 +574,7 @@ const Culture = (props: TCultureProps) => {
                                             Our Open Positions
                                         </MediumText>
                                         <CareersBox>
+                                            <p>{useEffect}</p>
                                             {careersItems.map((career, i) => {
                                                 return (
                                                     <Group
@@ -648,7 +659,7 @@ const Culture = (props: TCultureProps) => {
                                             })}
                                         </CareersBox>
                                         <TextBox>
-                                            <Desc>
+                                            <Desc onLoad={fetchFunction()}>
                                                 Don’t see what you’re looking
                                                 for? We’re always searching for
                                                 new Spoons for the drawer. Send
