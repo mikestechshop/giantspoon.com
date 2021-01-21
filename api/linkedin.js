@@ -9,10 +9,10 @@ var connection = mysql.createConnection({
 })
 
 module.exports = () => {
-    connection.query('SELECT * from test', function (err, results, fields) {
-        if (err) {
-            console.error('error connecting: ' + err.stack)
-            return err
+    connection.query('SELECT * from test', function (error, results, fields) {
+        if (error) {
+            console.error('error connecting: ' + error.stack)
+            throw error
         }
         console.log('connected as id ' + connection.threadId)
         const thread = connection.threadId
