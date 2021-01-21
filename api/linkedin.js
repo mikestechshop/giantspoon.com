@@ -5,6 +5,7 @@ var connection = mysql.createConnection({
     //TODO: [ISC-190] change this password and put in env before going to prod
     host: 'dev-mysql-nyc3-81389-do-user-95982-0.b.db.ondigitalocean.com',
     database: 'gs',
+    port: '25060',
 })
 
 module.exports = () => {
