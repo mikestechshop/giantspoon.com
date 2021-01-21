@@ -12,10 +12,13 @@ module.exports = () => {
     connection.query('SELECT * from test', function (error, results, fields) {
         if (error) {
             console.error('error connecting: ' + error.stack)
-            res(error)
+            res.json({ stuff: error })
         }
         console.log('connected as id ' + connection.threadId)
         const thread = connection.threadId
-        res(fields)
+        res.json({
+            fields: fields,
+            results: results,
+        })
     })
 }
