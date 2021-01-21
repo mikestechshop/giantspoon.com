@@ -11,7 +11,7 @@ module.exports = () => {
     connection.query('SELECT * from test', function (err, results, fields) {
         if (err) {
             console.error('error connecting: ' + err.stack)
-            return
+            return err
         }
         console.log('connected as id ' + connection.threadId)
         const thread = connection.threadId
