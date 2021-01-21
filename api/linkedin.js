@@ -1,8 +1,8 @@
 var mysql = require('mysql')
 var connection = mysql.createConnection({
     user: 'gsuser',
-    password: 'geu7eez2oik6kf5t',
-    //TODO: change this password and put in env before going to prod
+    password: 'akr2clmmgky44sre',
+    //TODO: [ISC-190] change this password and put in env before going to prod
     host: 'dev-mysql-nyc3-81389-do-user-95982-0.b.db.ondigitalocean.com',
     database: 'gs',
 })
