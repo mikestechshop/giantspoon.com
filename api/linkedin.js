@@ -8,9 +8,9 @@ var connection = mysql.createConnection({
     port: '25060',
 })
 
-module.exports = () => {
+module.exports = (req, res) => {
     const { name = 'World' } = req.query
-    res.status(200).send(`Hello spencer!`)
+    res.status(200).send(`Hello ${name}`)
     // connection.query('SELECT * from test', function (error, results, fields) {
     //     if (error) {
     //         console.error('error connecting: ' + error.stack)
