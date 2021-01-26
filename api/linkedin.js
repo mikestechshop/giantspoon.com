@@ -8,11 +8,19 @@ var connection = mysql.createConnection({
 })
 //TODO: [ISC-190] change this password and put in env before going to prod
 module.exports = (req, res) => {
-    connection.connect((err) => {
-        if (err) {
-            console.log('Error connecting to Db')
-            res.send('error')
-        }
-        res.send('connected')
-    })
+    // connection.connect((err) => {
+    //     if (err) {
+    //         console.log('Error connecting to Db')
+    //         res.send('error')
+    //     }
+    //     res.send('connected')
+    // })
+    var query = connection.query('SELECT * from test')
+    query
+        .on('error', function (err) {
+            res.send(err + 'error connect')
+        })
+        .on('fields', function (fields) {
+            res.send(fields)
+        })
 }
