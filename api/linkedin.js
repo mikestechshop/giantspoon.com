@@ -1,5 +1,5 @@
 var mysql = require('mysql')
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
     user: 'gsuser',
     password: 'akr2clmmgky44sre',
     host: 'dev-mysql-nyc3-81389-do-user-95982-0.b.db.ondigitalocean.com',
