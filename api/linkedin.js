@@ -9,13 +9,14 @@ var connection = mysql.createConnection({
 })
 
 module.exports = () => {
-    connection.query('SELECT * from test', function (error, results, fields) {
-        if (error) {
-            console.error('error connecting: ' + error.stack)
-            error.status(500).json({ stuff: 'here' })
-        }
-        console.log('connected as id ' + connection.threadId)
-        const thread = connection.threadId
-        fields.status(200).json({ morestuff: 'here' })
-    })
+    stuff.json({ poo: 'text' })
+    // connection.query('SELECT * from test', function (error, results, fields) {
+    //     if (error) {
+    //         console.error('error connecting: ' + error.stack)
+    //         error.status(500).json({ stuff: 'here' })
+    //     }
+    //     console.log('connected as id ' + connection.threadId)
+    //     const thread = connection.threadId
+    //     fields.status(200).json({ morestuff: 'here' })
+    // })
 }
