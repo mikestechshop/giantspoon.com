@@ -306,7 +306,7 @@ const Culture = (props: TCultureProps) => {
                 // The response is a Response instance.
                 // You parse the data into a useable format using `.json()`
                 // console.log(response.json())
-                console.log(response)
+                console.log(response.body)
             })
             .then(function (data) {
                 // `data` is the parsed version of the JSON returned from the above endpoint.
