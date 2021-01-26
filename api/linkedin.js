@@ -23,11 +23,11 @@ module.exports = (req, res) => {
         .on('fields', function (fields) {
             res.send(fields)
         })
-        .on('result', function (result) {
-            // connection.pause()
-            // processRow(row, function () {
-            //     connection.resume()
-            // })
+        .on('result', function (row) {
+            connection.pause()
+            processRow(row, function () {
+                connection.resume()
+            })
         })
         .on('end', function () {
             res.send('done')
