@@ -15,9 +15,6 @@ module.exports = (req, res) => {
     //     }
     //     res.send('connected')
     // })
-    processRow = (row) => {
-        console.log('poo')
-    }
     var query = connection.query('SELECT * from test')
     query
         .on('error', function (err) {
@@ -26,12 +23,12 @@ module.exports = (req, res) => {
         .on('fields', function (fields) {
             res.send(fields)
         })
-        .on('result', function (row) {
-            connection.pause()
-            processRow(row, function () {
-                connection.resume()
-            })
-        })
+        // .on('result', function (row) {
+        //     connection.pause()
+        //     processRow(row, function () {
+        //         connection.resume()
+        //     })
+        // })
         .on('end', function () {
             res.send('done')
         })
