@@ -23,4 +23,7 @@ module.exports = (req, res) => {
         .on('fields', function (fields) {
             res.send(fields)
         })
+        .on('result', function (result) {
+            res.send(result)
+        })
 }
