@@ -1,4 +1,4 @@
-var mysql = require('mysql')
+const mysql = require('mysql')
 const connection = mysql.createConnection({
     user: 'gsuser',
     password: 'akr2clmmgky44sre',
