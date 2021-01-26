@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
 })
 
 module.exports = () => {
-    stuff.json({ poo: 'text' })
+    json({ poo: 'text' })
     // connection.query('SELECT * from test', function (error, results, fields) {
     //     if (error) {
     //         console.error('error connecting: ' + error.stack)
