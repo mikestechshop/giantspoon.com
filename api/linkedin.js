@@ -8,24 +8,24 @@ var connection = mysql.createConnection({
     port: '25060',
 })
 
-// module.exports = (req, res) => {
-//     const { name = 'World' } = req.query
-//     res.status(200).send(`Hello ${name}`)
-connection.connect((err) => {
-    if (err) {
-        console.log('Error connecting to Db')
-        return
-    }
-    console.log('Connection established')
-})
+module.exports = (req, res) => {
+    //     const { name = 'World' } = req.query
+    //     res.status(200).send(`Hello ${name}`)
+    connection.connect((err) => {
+        if (err) {
+            console.log('Error connecting to Db')
+            return
+        }
+        console.log('Connection established')
+    })
 
-// connection.query('SELECT * from test', function (error, results, fields) {
-//     if (error) {
-//         console.error('error connecting: ' + error.stack)
-//         error.status(500).json({ stuff: 'here' })
-//     }
-//     console.log('connected as id ' + connection.threadId)
-//     const thread = connection.threadId
-//     fields.status(200).json({ morestuff: 'here' })
-// })
-// }
+    // connection.query('SELECT * from test', function (error, results, fields) {
+    //     if (error) {
+    //         console.error('error connecting: ' + error.stack)
+    //         error.status(500).json({ stuff: 'here' })
+    //     }
+    //     console.log('connected as id ' + connection.threadId)
+    //     const thread = connection.threadId
+    //     fields.status(200).json({ morestuff: 'here' })
+    // })
+}
