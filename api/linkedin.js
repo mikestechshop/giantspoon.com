@@ -30,6 +30,6 @@ module.exports = (req, res) => {
         //     })
         // })
         .on('end', function () {
-            res.send('done')
+            console.log('done')
         })
 }
