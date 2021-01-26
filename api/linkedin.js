@@ -15,7 +15,7 @@ module.exports = (req, res) => {
     //     }
     //     res.send('connected')
     // })
-    processRow = () => {
+    processRow = (row) => {
         console.log(row)
     }
     var query = connection.query('SELECT * from test')
