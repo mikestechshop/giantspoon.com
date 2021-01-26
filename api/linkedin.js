@@ -1,7 +1,7 @@
 var mysql = require('mysql')
 var connection = mysql.createConnection({
     user: 'gsuser',
-    password: 'akr2clmmgky44sre',
+    password: 'y7s0fh4tjvggpmg8',
     host: 'dev-mysql-nyc3-81389-do-user-95982-0.b.db.ondigitalocean.com',
     database: 'gs',
     port: '25060',
