@@ -24,11 +24,10 @@ module.exports = (req, res) => {
             res.send(fields)
         })
         .on('result', function (result) {
-            connection.pause()
-
-            processRow(row, function () {
-                connection.resume()
-            })
+            // connection.pause()
+            // processRow(row, function () {
+            //     connection.resume()
+            // })
         })
         .on('end', function () {
             res.send('done')
