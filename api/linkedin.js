@@ -9,7 +9,8 @@ var connection = mysql.createConnection({
 })
 
 module.exports = () => {
-    json({ poo: 'text' })
+    const { name = 'World' } = req.query
+    res.status(200).send(`Hello spencer!`)
     // connection.query('SELECT * from test', function (error, results, fields) {
     //     if (error) {
     //         console.error('error connecting: ' + error.stack)
