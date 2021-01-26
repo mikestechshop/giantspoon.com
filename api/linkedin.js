@@ -13,9 +13,9 @@ module.exports = (req, res) => {
     connection.connect((err) => {
         if (err) {
             console.log('Error connecting to Db')
-            res.status(200).send('error')
+            res.send('error')
         }
-        res.status(200).send('connected')
+        res.send('connected')
     })
 
     // connection.query('SELECT * from test', function (error, results, fields) {
