@@ -27,7 +27,7 @@ var options = {
     stopNodes: ['parse-me-as-string'],
 }
 var insert = "INSERT INTO test (username) VALUES ('insert_worked')"
-module.exports = () => {
+module.exports = (req, res) => {
     var xmlData = fetch(
         'https://www.linkedin.com/talent/thirdPartyJobBoards/098a49c8-8343-4091-8d52-17d131f20187'
     )
