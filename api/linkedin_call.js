@@ -1,5 +1,6 @@
 var parser = require('fast-xml-parser')
 var mysql = require('mysql')
+var axios = require('axios')
 var connection = mysql.createConnection({
     user: 'gsuser',
     password: 'y7s0fh4tjvggpmg8',
@@ -28,7 +29,7 @@ var options = {
 }
 var insert = "INSERT INTO test (username) VALUES ('insert_worked')"
 module.exports = (req, res) => {
-    var xmlData = fetch(
+    var xmlData = axios.fetch(
         'https://www.linkedin.com/talent/thirdPartyJobBoards/098a49c8-8343-4091-8d52-17d131f20187'
     )
 

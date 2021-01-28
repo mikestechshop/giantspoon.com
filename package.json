@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "animate.css": "^4.1.0",
+    "axios": "^0.21.1",
     "fast-xml-parser": "^3.17.6",
     "flow-bin": "^0.125.1",
     "gsap": "^3.3.2",
