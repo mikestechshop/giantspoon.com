@@ -35,11 +35,12 @@ module.exports = (req, res) => {
     if (parser.validate(xmlData) === true) {
         //optional (it'll return an object in case it's not valid)
         var jsonObj = parser.parse(xmlData, options)
-        res.sent('valid')
+        console.log('validated')
+        res.send('valid')
     }
     connection.connect(function (err) {
         if (err) {
-            res.sent('db error')
+            res.send('db error')
         }
         console.log('connected')
         connection.query(insert, function (err, result) {
