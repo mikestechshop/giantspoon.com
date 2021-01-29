@@ -38,7 +38,7 @@ module.exports = (req, res) => {
             }
         )
         .then(function (response) {
-            this.xmlData = response
+            this.xmlData = response.data
         })
         .catch(function (error) {
             console.log(error)
