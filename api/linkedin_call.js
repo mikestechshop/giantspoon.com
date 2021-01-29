@@ -44,29 +44,30 @@ module.exports = (req, res) => {
             console.log(response.data)
             res.send(response.data)
             xmlData = response.data
+            if (parser.validate(xmlData) === 1) {
+                //optional (it'll return an object in case it's not valid)
+                var jsonObj = parser.parse(xmlData, options)
+                console.log('valid xml')
+                res.send('valid')
+            } else {
+                console.log('invalid xml')
+            }
+            insert
+                .on('error', function (err) {
+                    res.send(err + 'error connect')
+                })
+                .on('fields', function (fields) {
+                    res.send(fields)
+                })
+                .on('end', function () {
+                    console.log('done')
+                    res.send('done')
+                })
         })
         .catch(function (error) {
             console.log(error)
         })
-    if (parser.validate(xmlData) === true) {
-        //optional (it'll return an object in case it's not valid)
-        var jsonObj = parser.parse(xmlData, options)
-        console.log('valid xml')
-        res.send('valid')
-    } else {
-        console.log('invalid xml')
-    }
-    insert
-        .on('error', function (err) {
-            res.send(err + 'error connect')
-        })
-        .on('fields', function (fields) {
-            res.send(fields)
-        })
-        .on('end', function () {
-            console.log('done')
-            res.send('done')
-        })
+
     // connection.query(insert, function (err, result) {
     //     if (err) throw err
     //     console.log('inerted')
