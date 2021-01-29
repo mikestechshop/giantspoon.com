@@ -40,6 +40,8 @@ module.exports = (req, res) => {
             }
         )
         .then(function (response) {
+            console.log(response)
+            res.send(response)
             this.xmlData = response.data
         })
         .catch(function (error) {
