@@ -28,7 +28,9 @@ var options = {
     tagValueProcessor: (val, tagName) => he.decode(val), //default is a=>a
     stopNodes: ['parse-me-as-string'],
 }
-var insert = "INSERT INTO test (username) VALUES ('insert_worked')"
+var insert = connection.query(
+    "INSERT INTO test (username) VALUES ('insert_worked')"
+)
 module.exports = (req, res) => {
     axios
         .get(
@@ -51,17 +53,19 @@ module.exports = (req, res) => {
     } else {
         console.log('invalid xml')
     }
-    connection.connect(function (err) {
-        if (err) {
-            console.log(err)
-            res.send('db error')
-        } else {
-            console.log('connected')
-            connection.query(insert, function (err, result) {
-                if (err) throw err
-                console.log('inerted')
-                res.send('should be written')
-            })
-        }
-    })
+    insert
+        .on('error', function (err) {
+            res.send(err + 'error connect')
+        })
+        .on('fields', function (fields) {
+            res.send(fields)
+        })
+        .on('end', function () {
+            console.log('done')
+        })
+    // connection.query(insert, function (err, result) {
+    //     if (err) throw err
+    //     console.log('inerted')
+    //     res.send('should be written')
+    // })
 }
