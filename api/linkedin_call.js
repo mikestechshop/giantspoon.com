@@ -1,6 +1,7 @@
 var parser = require('fast-xml-parser')
 var mysql = require('mysql')
 var axios = require('axios')
+var xmlData = ''
 var connection = mysql.createConnection({
     user: 'gsuser',
     password: 'y7s0fh4tjvggpmg8',
@@ -37,7 +38,7 @@ module.exports = (req, res) => {
             }
         )
         .then(function (response) {
-            var xmlData = response.data
+            this.xmlData = response
         })
         .catch(function (error) {
             console.log(error)
