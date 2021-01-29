@@ -62,6 +62,7 @@ module.exports = (req, res) => {
         })
         .on('end', function () {
             console.log('done')
+            res.send('done')
         })
     // connection.query(insert, function (err, result) {
     //     if (err) throw err
