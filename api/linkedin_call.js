@@ -37,6 +37,7 @@ module.exports = (req, res) => {
             'https://www.linkedin.com/talent/thirdPartyJobBoards/098a49c8-8343-4091-8d52-17d131f20187',
             {
                 'Content-Type': 'application/xml; charset=utf-8',
+                Accept: 'application/xml',
             }
         )
         .then(function (response) {
