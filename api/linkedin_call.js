@@ -53,6 +53,7 @@ module.exports = (req, res) => {
     }
     connection.connect(function (err) {
         if (err) {
+            console.log(err)
             res.send('db error')
         } else {
             console.log('connected')
