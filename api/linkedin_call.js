@@ -1,7 +1,7 @@
 var parser = require('fast-xml-parser')
 var mysql = require('mysql')
 var axios = require('axios')
-var xmlData = ''
+var xmlData =
 var connection = mysql.createConnection({
     user: 'gsuser',
     password: 'y7s0fh4tjvggpmg8',
@@ -54,12 +54,14 @@ module.exports = (req, res) => {
     connection.connect(function (err) {
         if (err) {
             res.send('db error')
-        }
+        } else {
         console.log('connected')
         connection.query(insert, function (err, result) {
             if (err) throw err
             console.log('inerted')
             res.send('should be written')
         })
+        }
     })
+
 }
