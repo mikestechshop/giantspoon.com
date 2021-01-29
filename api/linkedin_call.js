@@ -39,6 +39,9 @@ module.exports = (req, res) => {
         .then(function (response) {
             var xmlData = response.data
         })
+        .catch(function (error) {
+            console.log(error)
+        })
     if (parser.validate(xmlData) === true) {
         //optional (it'll return an object in case it's not valid)
         var jsonObj = parser.parse(xmlData, options)
