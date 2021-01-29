@@ -29,9 +29,16 @@ var options = {
 }
 var insert = "INSERT INTO test (username) VALUES ('insert_worked')"
 module.exports = (req, res) => {
-    var xmlData = axios.get(
-        'https://www.linkedin.com/talent/thirdPartyJobBoards/098a49c8-8343-4091-8d52-17d131f20187'
-    )
+    axios
+        .get(
+            'https://www.linkedin.com/talent/thirdPartyJobBoards/098a49c8-8343-4091-8d52-17d131f20187',
+            {
+                'Content-Type': 'application/xml; charset=utf-8',
+            }
+        )
+        .then(function (response) {
+            var xmlData = response.data
+        })
     if (parser.validate(xmlData) === true) {
         //optional (it'll return an object in case it's not valid)
         var jsonObj = parser.parse(xmlData, options)
