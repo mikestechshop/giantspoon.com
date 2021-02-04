@@ -20,8 +20,8 @@ module.exports = (req, res) => {
         .on('error', function (err) {
             res.send(err + 'error connect')
         })
-        .on('fields', function (fields) {
-            res.send(fields)
+        .on('fields', function (result) {
+            res.send(result)
         })
         // .on('result', function (row) {
         //     connection.pause()
