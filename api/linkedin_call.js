@@ -58,6 +58,7 @@ module.exports = (req, res) => {
                 })
                 .on('fields', function (fields) {
                     res.send(fields)
+                    connection.end()
                 })
                 .on('end', function () {
                     console.log('done')

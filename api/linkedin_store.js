@@ -22,6 +22,7 @@ module.exports = (req, res) => {
     query
         .on('error', function (err) {
             res.send(err + 'error connect')
+            console.log('query error: ' + err)
         })
         .on('fields', function (fields) {
             console.log(fields)
@@ -31,6 +32,7 @@ module.exports = (req, res) => {
             processRow(row, function () {
                 connection.resume()
             })
+            connection.end()
         })
         // .on('result', function (row) {
         //     connection.pause()
