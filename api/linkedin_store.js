@@ -17,9 +17,9 @@ module.exports = (req, res) => {
     // })
     var query = connection.query('SELECT * from test')
     query
-        .on('error', function (err) {
-            res.send(err + 'error connect')
-        })
+        // .on('error', function (err) {
+        //     res.send(err + 'error connect')
+        // })
         .on('result', function (result) {
             res.send(result)
         })
