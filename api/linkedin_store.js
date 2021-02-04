@@ -17,10 +17,17 @@ module.exports = (req, res) => {
     // })
     var query = connection.query('SELECT * from test')
     query
-        // .on('error', function (err) {
-        //     res.send(err + 'error connect')
-        // })
+        .on('error', function (err) {
+            res.send(err + 'error connect')
+        })
+        .on('fields', function (fields) {
+            console.log(fields)
+        })
         .on('result', function (result) {
+            connection.pause()
+            processRow(row, function () {
+                connection.resume()
+            })
             res.send(result)
         })
         // .on('result', function (row) {
