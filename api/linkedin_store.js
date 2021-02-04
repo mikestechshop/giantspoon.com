@@ -8,8 +8,8 @@ var connection = mysql.createConnection({
 })
 //TODO: [ISC-190] change this password and put in env before going to prod
 module.exports = (req, res) => {
-    processRow = (result) => {
-        res.send(result)
+    processRow = (row) => {
+        res.send(row)
     }
     // connection.connect((err) => {
     //     if (err) {
@@ -26,7 +26,7 @@ module.exports = (req, res) => {
         .on('fields', function (fields) {
             console.log(fields)
         })
-        .on('result', function (result) {
+        .on('result', function (row) {
             connection.pause()
             processRow(row, function () {
                 connection.resume()
