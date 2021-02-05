@@ -8,25 +8,25 @@ var connection = mysql.createConnection({
     database: 'gs',
     port: '25060',
 })
-var options = {
-    attributeNamePrefix: '@_',
-    // attrNodeName: 'attr', //default is 'false'
-    textNodeName: '#text',
-    ignoreAttributes: true,
-    ignoreNameSpace: false,
-    allowBooleanAttributes: false,
-    parseNodeValue: true,
-    parseAttributeValue: false,
-    trimValues: true,
-    // cdataTagName: '__cdata', //default is 'false'
-    cdataPositionChar: '\\c',
-    parseTrueNumberOnly: false,
-    arrayMode: false, //"strict"
-    // attrValueProcessor: (val, attrName) =>
-    //     he.decode(val, { isAttributeValue: true }), //default is a=>a
-    // tagValueProcessor: (val, tagName) => he.decode(val), //default is a=>a
-    stopNodes: ['parse-me-as-string'],
-}
+// var options = {
+//     attributeNamePrefix: '@_',
+//     // attrNodeName: 'attr', //default is 'false'
+//     textNodeName: '#text',
+//     ignoreAttributes: true,
+//     ignoreNameSpace: false,
+//     allowBooleanAttributes: false,
+//     parseNodeValue: true,
+//     parseAttributeValue: false,
+//     trimValues: true,
+//     // cdataTagName: '__cdata', //default is 'false'
+//     cdataPositionChar: '\\c',
+//     parseTrueNumberOnly: false,
+//     arrayMode: false, //"strict"
+//     // attrValueProcessor: (val, attrName) =>
+//     //     he.decode(val, { isAttributeValue: true }), //default is a=>a
+//     // tagValueProcessor: (val, tagName) => he.decode(val), //default is a=>a
+//     stopNodes: ['parse-me-as-string'],
+// }
 var insert = connection.query(
     "INSERT INTO test (username) VALUES ('insert_worked')"
 )
@@ -42,12 +42,12 @@ module.exports = (req, res) => {
         )
         .then(function (response) {
             console.log(response.data)
-            xmlData = response.data
+            xmlData = response
             // var jsonObj = parser.parse(xmlData, options)
             // res.send('response: ' + jsonObj.city)
             if (parser.validate(xmlData) === 1) {
                 //optional (it'll return an object in case it's not valid)
-                var jsonObj = parser.parse(xmlData, options)
+                var jsonObj = parser.parse(xmlData)
                 console.log(jsonObj.city)
                 console.log('valid xml')
             } else {
