@@ -10,7 +10,7 @@ var connection = mysql.createConnection({
 })
 var options = {
     attributeNamePrefix: '@_',
-    attrNodeName: 'attr', //default is 'false'
+    // attrNodeName: 'attr', //default is 'false'
     textNodeName: '#text',
     ignoreAttributes: true,
     ignoreNameSpace: false,
@@ -42,7 +42,7 @@ module.exports = (req, res) => {
         )
         .then(function (response) {
             console.log(response.data)
-            xmlData = response.data.replace(/(&nbsp;)*/g, '')
+            xmlData = response.data
             // var jsonObj = parser.parse(xmlData, options)
             // res.send('response: ' + jsonObj.city)
             if (parser.validate(xmlData) === 1) {
