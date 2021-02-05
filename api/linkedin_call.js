@@ -58,6 +58,7 @@ module.exports = (req, res) => {
             } catch (error) {
                 console.log(error.message)
             }
+            console.log(jsonObj.city)
             insert
                 .on('error', function (err) {
                     res.send(err + 'error connect')
