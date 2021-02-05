@@ -42,7 +42,7 @@ module.exports = (req, res) => {
         )
         .then(function (response) {
             console.log(response.data)
-            xmlData = response.data.toString().replace('&nbsp;', '&amp;nbsp;')
+            xmlData = response.data.replace(/(&nbsp;)*/g, '')
             // var jsonObj = parser.parse(xmlData, options)
             // res.send('response: ' + jsonObj.city)
             if (parser.validate(xmlData) === 1) {
