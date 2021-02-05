@@ -22,9 +22,9 @@ var options = {
     cdataPositionChar: '\\c',
     parseTrueNumberOnly: false,
     arrayMode: false, //"strict"
-    attrValueProcessor: (val, attrName) =>
-        he.decode(val, { isAttributeValue: true }), //default is a=>a
-    tagValueProcessor: (val, tagName) => he.decode(val), //default is a=>a
+    // attrValueProcessor: (val, attrName) =>
+    //     he.decode(val, { isAttributeValue: true }), //default is a=>a
+    // tagValueProcessor: (val, tagName) => he.decode(val), //default is a=>a
     stopNodes: ['parse-me-as-string'],
 }
 var insert = connection.query(
