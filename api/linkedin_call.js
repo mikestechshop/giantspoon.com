@@ -18,7 +18,7 @@ var options = {
     parseNodeValue: true,
     parseAttributeValue: false,
     trimValues: true,
-    cdataTagName: '__cdata', //default is 'false'
+    // cdataTagName: '__cdata', //default is 'false'
     cdataPositionChar: '\\c',
     parseTrueNumberOnly: false,
     arrayMode: false, //"strict"
