@@ -59,6 +59,7 @@ module.exports = (req, res) => {
                 console.log(error.message)
             }
             console.log(jsonObj)
+            res.send(jsonObj)
             insert
                 .on('error', function (err) {
                     res.send(err + 'error connect')
@@ -69,7 +70,7 @@ module.exports = (req, res) => {
                 })
                 .on('end', function () {
                     console.log('done')
-                    res.send('done')
+                    // res.send('done')
                 })
         })
         .catch(function (error) {
