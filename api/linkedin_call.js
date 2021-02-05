@@ -42,11 +42,13 @@ module.exports = (req, res) => {
         )
         .then(function (response) {
             console.log(response.data)
-            res.send('response: ' + response.data.city)
             xmlData = response
+            var jsonObj = parser.parse(xmlData, options)
+            res.send('response: ' + jsonObj.city)
             if (parser.validate(xmlData) === 1) {
                 //optional (it'll return an object in case it's not valid)
                 var jsonObj = parser.parse(xmlData, options)
+                console.log(jsonObj.city)
                 console.log('valid xml')
             } else {
                 console.log('invalid xml')
