@@ -57,11 +57,11 @@ module.exports = (req, res) => {
                 console.log(error.message)
             }
             console.log(jsonObj)
-            var json_jobs = [
-                [jsonObj.source.job.title, jsonObj.source.job.city],
-            ]
+
+            var values = [[jsonObj.source.job.title, jsonObj.source.job.city]]
             var insert = connection.query(
-                `INSERT INTO jobs (job_title, location) VALUES ${json_jobs}`
+                `INSERT INTO jobs (job_title, location) VALUES ?`,
+                [values]
             )
             res.send('complete?')
             insert
