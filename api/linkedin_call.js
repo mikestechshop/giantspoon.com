@@ -27,9 +27,7 @@ var options = {
     // // tagValueProcessor: (val, tagName) => he.decode(val), //default is a=>a
     // stopNodes: ['parse-me-as-string'],
 }
-var insert = connection.query(
-    "INSERT INTO test (username) VALUES ('insert_worked')"
-)
+
 module.exports = (req, res) => {
     var xmlData
     axios
@@ -59,17 +57,23 @@ module.exports = (req, res) => {
                 console.log(error.message)
             }
             console.log(jsonObj)
-            res.send(jsonObj)
+            var json_jobs = [
+                [jsonObj.source.job.title, jsonObj.source.job.city],
+            ]
+            var insert = connection.query(
+                `INSERT INTO jobs (job_title, location) VALUES (${json_jobs})`
+            )
+            res.send('complete?')
             insert
                 .on('error', function (err) {
-                    res.send(err + 'error connect')
+                    res.send(err + ' error connect')
                 })
                 .on('fields', function (fields) {
                     res.send(fields)
                     connection.end()
                 })
                 .on('end', function () {
-                    console.log('done')
+                    console.log('closed connection')
                     // res.send('done')
                 })
         })
