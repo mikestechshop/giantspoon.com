@@ -1,6 +1,7 @@
 var parser = require('fast-xml-parser')
 var mysql = require('mysql')
 var axios = require('axios')
+var he = require('he')
 var connection = mysql.createConnection({
     user: 'gsuser',
     password: 'y7s0fh4tjvggpmg8',
@@ -9,24 +10,24 @@ var connection = mysql.createConnection({
     port: '25060',
 })
 var options = {
-    // attributeNamePrefix: '@_',
-    // // attrNodeName: 'attr', //default is 'false'
-    // textNodeName: '#text',
-    // ignoreAttributes: true,
-    // ignoreNameSpace: false,
-    // allowBooleanAttributes: false,
-    // parseNodeValue: true,
-    // parseAttributeValue: false,
-    // trimValues: true,
-    // cdataTagName: '__cdata', //default is 'false'
+    attributeNamePrefix: '@_',
+    // attrNodeName: 'attr', //default is 'false'
+    textNodeName: '#text',
+    ignoreAttributes: true,
+    ignoreNameSpace: false,
+    allowBooleanAttributes: false,
+    parseNodeValue: true,
+    parseAttributeValue: false,
+    trimValues: true,
+    cdataTagName: '__cdata', //default is 'false'
     cdataTagName: false, //default is 'false'
-    // cdataPositionChar: '\\c',
-    // parseTrueNumberOnly: false,
-    // arrayMode: false, //"strict"
-    // // attrValueProcessor: (val, attrName) =>
-    // //     he.decode(val, { isAttributeValue: true }), //default is a=>a
-    // // tagValueProcessor: (val, tagName) => he.decode(val), //default is a=>a
-    // stopNodes: ['parse-me-as-string'],
+    cdataPositionChar: '\\c',
+    parseTrueNumberOnly: false,
+    arrayMode: false, //"strict"
+    attrValueProcessor: (val, attrName) =>
+        he.decode(val, { isAttributeValue: true }), //default is a=>a
+    tagValueProcessor: (val, tagName) => he.decode(val), //default is a=>a
+    stopNodes: ['parse-me-as-string'],
 }
 
 module.exports = (req, res) => {
@@ -40,7 +41,7 @@ module.exports = (req, res) => {
             }
         )
         .then(function (response) {
-            console.log(response.data.job[title])
+            console.log(response.data)
             xmlData = response.data
             // var jsonObj = parser.parse(xmlData, options)
             // res.send('response: ' + jsonObj.city)
@@ -52,12 +53,21 @@ module.exports = (req, res) => {
             // } else {
             //     console.log('invalid xml')
             // }
-            try {
-                var jsonObj = parser.parse(xmlData, options, true)
-            } catch (error) {
-                console.log(error.message)
+            if (parser.validate(xmlData) === true) {
+                //optional (it'll return an object in case it's not valid)
+                var jsonObj = parser.parse(xmlData, options)
+                console.log(jsonObj)
             }
-            console.log(jsonObj.source.job)
+            console.log('fail')
+            var tObj = parser.getTraversalObj(xmlData, options)
+            var jsonObj = parser.convertToJson(tObj, options)
+
+            // try {
+            //     var jsonObj = parser.parse(xmlData, options, true)
+            // } catch (error) {
+            //     console.log(error.message)
+            // }
+            // console.log(jsonObj.source.job)
 
             var values = {
                 job_title: jsonObj.source.job.title,
@@ -67,7 +77,7 @@ module.exports = (req, res) => {
                 `INSERT INTO jobs (job_title, location) VALUES ?`,
                 values
             )
-            res.send(response.data.job.title)
+            res.send('complete?')
             insert
                 .on('error', function (err) {
                     res.send(err + ' error connect')
