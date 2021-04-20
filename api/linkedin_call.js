@@ -58,7 +58,7 @@ module.exports = (req, res) => {
                 var tObj = parser.getTraversalObj(xmlData, options)
                 var jsonObj = parser.convertToJson(tObj, options)
                 var jsonObj = parser.parse(xmlData, options)
-                console.log(jsonObj)
+                console.log(jsonObj.job.job_title)
             }
             // console.log('fail')
             var tObj = parser.getTraversalObj(xmlData, options)
