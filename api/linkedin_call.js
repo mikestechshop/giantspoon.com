@@ -56,7 +56,7 @@ module.exports = (req, res) => {
             } catch (error) {
                 console.log(error.message)
             }
-            console.log(jsonObj)
+            console.log(jsonObj.source.job)
 
             var values = {
                 job_title: jsonObj.source.job.title,
