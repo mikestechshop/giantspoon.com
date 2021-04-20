@@ -39,7 +39,7 @@ module.exports = (req, res) => {
             }
         )
         .then(function (response) {
-            console.log(response.data.job)
+            console.log(response.data.job.title)
             xmlData = response.data
             // var jsonObj = parser.parse(xmlData, options)
             // res.send('response: ' + jsonObj.city)
