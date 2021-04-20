@@ -18,7 +18,8 @@ var options = {
     // parseNodeValue: true,
     // parseAttributeValue: false,
     // trimValues: true,
-    // // cdataTagName: '__cdata', //default is 'false'
+    // cdataTagName: '__cdata', //default is 'false'
+    cdataTagName: false, //default is 'false'
     // cdataPositionChar: '\\c',
     // parseTrueNumberOnly: false,
     // arrayMode: false, //"strict"
@@ -39,7 +40,7 @@ module.exports = (req, res) => {
             }
         )
         .then(function (response) {
-            console.log(response.data.job.title)
+            console.log(response.data.job[title])
             xmlData = response.data
             // var jsonObj = parser.parse(xmlData, options)
             // res.send('response: ' + jsonObj.city)
