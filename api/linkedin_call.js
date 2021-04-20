@@ -66,7 +66,7 @@ module.exports = (req, res) => {
                 `INSERT INTO jobs (job_title, location) VALUES ?`,
                 values
             )
-            res.send('complete?')
+            res.send(response.data.job.title)
             insert
                 .on('error', function (err) {
                     res.send(err + ' error connect')
