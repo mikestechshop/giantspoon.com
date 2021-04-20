@@ -58,9 +58,12 @@ module.exports = (req, res) => {
                 var tObj = parser.getTraversalObj(xmlData, options)
                 var jsonObj = parser.convertToJson(tObj, options)
                 var jsonObj = parser.parse(xmlData, options)
-                jsonObj.forEach((job) => {
+                jsonObj.job.forEach((job) => {
                     console.log(job.job_title)
                 })
+                // jsonObj.array.forEach(element => {
+
+                // });
                 // console.log(jsonObj.job.job_title)
             }
             // console.log('fail')
