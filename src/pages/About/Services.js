@@ -66,11 +66,10 @@ const Work = () => {
         slides={[
           <Group height="100vh" bgc="#0C2340">
             <TextBox>
-              <ServicesSmallTitle> Our Services </ServicesSmallTitle>
+              <ServicesSmallTitle>What We Do</ServicesSmallTitle>
               <ServicesDesc>
-                We aren’t like everyone else and neither are our services. Take
-                a scroll to check out what we do differently to build our
-                Spoonshots.
+              We believe brands need more than a TV campaign to prove their worth,
+and we’re just crazy enough to try anything. Sure, we can craft a big beautiful commercial, but we prefer pushing the limits, exploring new formats, avenues and media outlets to create transformative work that drives business value.
               </ServicesDesc>
             </TextBox>
             <Vid id="vid" autoPlay muted loop data-keepplaying>

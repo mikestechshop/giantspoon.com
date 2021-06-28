@@ -150,7 +150,7 @@ const MediumText = styled.div`
 const MediumTextBox = styled.div`
   position: absolute;
   left: 10%;
-  bottom: 15%;
+  bottom: 40%;
   text-align: left;
   color: #fffcf2;
   cursor: pointer;
@@ -454,16 +454,18 @@ const Culture = (props: TCultureProps) => {
                       <source id="mp4" src={Careers} type="video/mp4" />
                     </Vid>
                     <MediumTextBox>
-                      <MediumText margin="10vh 0vw 2rem">
+                      {/* <MediumText margin="10vh 0vw 2rem">
                         We love that everyone’s <br /> strange and personal{" "}
                         <br />
                         journey brought them here.
-                      </MediumText>
+
+                      </MediumText> */}
                       <Desc color="#FFFCF2" margin="0">
-                        We hire playwrights, former politicos, and pro gamers.
+                        {/* We hire playwrights, former politicos, and pro gamers.
                         The humans we hire are what makes the work so damn good.
                         Take a look at some of the Spoons in our drawer and the
-                        weird stuff they’re into.
+                        weird stuff they’re into. */}
+                        We don’t create typical ad campaigns so we hire people with unconventional backgrounds like playwrights, politicos and pro gamers. We’re a group of people who are insanely curious, ridiculously passionate, and enjoy breaking the rules. We hire people who can see around corners and connect the dots in unexpected ways. To be honest, we like humans who are a little bit weird, and kind, we’re really big on kind.
                       </Desc>
                     </MediumTextBox>
                   </Group>

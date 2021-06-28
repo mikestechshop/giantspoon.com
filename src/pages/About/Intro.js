@@ -61,19 +61,13 @@ const Intro = () => {
         <div ref={ref}></div>
         <LargeTextWrap className="intro-large-text">
           <Text color="#B1C3D6">
-            we believe <span class="coral"> ideas </span>
+          we unlock the <span class="coral"> hidden potential </span>
           </Text>
           <Text color="#B1C3D6">
-            can come from <span class="coral">anywhere.</span>
+          buried within brands.
           </Text>
           <Paragraph className="intro-p-text">
-            We’re a full-service agency and our secret sauce is that we’ve
-            always been that way. We weren’t a creative shop that decided to
-            break into media or an experiential upstart that sprouted a strategy
-            arm. We built our agency so that the best brains from every
-            discipline could collaborate to lend their own brand of problem
-            solving to the brief. Because the best ideas aren’t born from one
-            department or another, but the magic in between.
+          We launched Giant Spoon because we wanted to do it differently, create things never before imagined. From the start, we steeped everything we do in business strategy and made sure all disciplines had a seat at the table. Together, we tackle the problem that sits above the brief. Our collective imagination then takes us to places never before explored. We feel scrappy because we’ve hung onto our start-up culture, but we drive value for big brands, really big brands. But we’re not for everybody, we do our best work with brave clients who want to challenge conventions and bend reality. But we never build the same things twice. So when you work with us, expect the unexpected. Come on, challenge us with your most pressing business problem.
           </Paragraph>
         </LargeTextWrap>
       </Group>
