@@ -70,21 +70,17 @@ const Intro = (props: TIntroProps) => {
             onMouseEnter={() => props.onHover("#B1C3D6")}
             onMouseLeave={() => props.onHover("#FE9B96")}
           >
-            that’s <span className="coral">impossible.</span>
+            dare to believe the <span className="coral">impossible</span> is <span className="coral">possible.</span>
           </Text>
           <Paragraph
             className="intro-p-text"
             onMouseEnter={() => props.onHover("#FFFCF2")}
             onMouseLeave={() => props.onHover("#FE9B96")}
           >
-            We’ve been told that so many times, that we almost believed it.
+           At Giant Spoon, we believe the magic happens when we reject the predictable and explore what’s never been done before.
             <br />
             <br />
-            Almost.
-            <br />
-            <br />
-            Giant Spoon is an agency built on the power of possible thinking –
-            to shoot for the moon and solve impossible challenges.
+            We’re not really big on rules around here, but we do follow three principles. Try anything. Give a damn. Enjoy doing it.
           </Paragraph>
         </LargeTextWrap>
       </Group>
