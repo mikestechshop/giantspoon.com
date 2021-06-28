@@ -70,7 +70,9 @@ const Intro = (props: TIntroProps) => {
             onMouseEnter={() => props.onHover("#B1C3D6")}
             onMouseLeave={() => props.onHover("#FE9B96")}
           >
-            dare to believe the <span className="coral">impossible</span> is <span className="coral">possible.</span>
+            dare to believe the
+            <br />
+            <span className="coral">impossible</span> is <span className="coral">possible.</span>
           </Text>
           <Paragraph
             className="intro-p-text"
